@@ -5,9 +5,9 @@ import logo from '../assets/icons/logo.svg'
 import {navLinks} from '../assets/icons/index'
 function NavBar() {
   return (
-    <header className="padding-x py-8  z-10 w-full bg-black text-gray-300 fixed">
+    <header className="padding-x py-6  z-10 w-full bg-black text-gray-300 fixed mt-[-120px]">
         <nav className='flex justify-between items-center max-container '>
-          <button href="#" className='ml-6 flex justify-around items-center w-56'>
+          <button href="#" className='sm:ml-20 flex justify-around items-center w-56'>
             <img src={logo} alt='logo' width={50} height={10} />
             <h1 className='font-montserrat leading-normal text-xl text-white'>UrbanSport</h1>
           </button>
