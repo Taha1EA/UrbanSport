@@ -1,6 +1,6 @@
 ﻿# UrbanSport
-- [ ] Navbar T
-- [ ] EventSection T
+- [x] Navbar T
+- [x] MainSection T
 - [ ] Offres Y
 - [ ] Schedule T
 - [ ] Price Y
