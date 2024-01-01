@@ -3,6 +3,6 @@
 - [x] MainSection T
 - [ ] Offres Y
 - [ ] Schedule T
-- [ ] Price Y
+- [x] Price Y
 - [ ] MapSection Y
-- [ ] Footer Y
+- [x] Footer Y
