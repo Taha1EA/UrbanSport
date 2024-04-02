@@ -19,17 +19,6 @@ const log = (props) => {
   const handlePass = (e) => {
     setPass(e.target.value);
   };
-  // useEffect(()=>{
-  //   getComptes();
-  // },[]);
-  // const getComptes = () => {
-  //   axios.get("http://localhost/UrbanSport/logReg/log.php")
-  //   .then((Response)=>{
-  //       console.log(Response.data)
-  //       setListeU(Response.data);
-  //   })
-  //   .catch(error=>alert(error))
-  // };
 
   const hanleSubmit=(e)=>{
       if(nom.length!==0&&pass.length!==0){
