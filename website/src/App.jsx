@@ -1,16 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
-
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom"
+import Home from "/src/Home.jsx"
+import Log from "/src/Composent/regLog/Log.jsx"
+import Reg from "/src/Composent/regLog/Reg.jsx"
 const App = () => {
   return (
     <Router>
-      <div className="bg-gray-200 p-4">
-        <Route path="/" exact component={Home} />
-        {/* home:page d accueil */}
-        <Route path="/logReg" component={logReg} />
-      </div>
+      <Routes >
+        <Route exact path="/" Component={<Home/>} />
+        <Route path="/Reg" element={<Reg />} />
+        <Route path="/Log" element={<Log Admin="false"/>} />
+        <Route path="/LogAdmin" element={<Log Admin="true"/>} />
+        
+      </Routes >
     </Router>
   );
 };
