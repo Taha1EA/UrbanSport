@@ -1,53 +1,87 @@
-
+import React from 'react';
+import facebook from '../images/facebook.png';
+import instagram from '../images/instagram.png';
+import twitter from '../images/twitter.png';
+import linkedin from '../images/linkedin.png';
+import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer >
-       <footer className="bg-gray-800 text-white py-6">
-  <div className="container mx-auto px-4">
-    <div className="flex flex-wrap justify-between items-center">
-      <div className="w-full md:w-auto mb-6 md:mb-0">
-        <div className="text-lg font-bold">Follow Us</div>
-        <div className="text-lg font-serif w-72 ma">description 5 lines .........................................................................................</div>
-        <div className="flex mt-2">
-          <a href="#" className="mr-4 hover:text-gray-400">Facebook</a>
-          <a href="#" className="mr-4 hover:text-gray-400">Twitter</a>
-          <a href="#" className="mr-4 hover:text-gray-400">Instagram</a>
-          <a href="#" className="hover:text-gray-400">LinkedIn</a>
-        </div>
-      </div>
-      <div className="w-full md:w-auto">
-        <div className="text-lg font-bold">Quick Links</div>
-        <div className="mt-2">
-          <a href="#" className="block hover:text-gray-400">About Us</a>
-          <a href="#" className="block hover:text-gray-400">Our Team</a>
-          <a href="#" className="block hover:text-gray-400">Projects</a>
-          <a href="#" className="block hover:text-gray-400">Contact Us</a>
-        </div>
-      </div>
-      <div className="w-full md:w-auto">
-        <div className="text-lg font-bold">Quick Links</div>
-        <div className="mt-2">
-          <a href="#" className="block hover:text-gray-400">About Us</a>
-          <a href="#" className="block hover:text-gray-400">Our Team</a>
-          <a href="#" className="block hover:text-gray-400">Projects</a>
-          <a href="#" className="block hover:text-gray-400">Contact Us</a>
-        </div>
-      </div>
-      <div className="w-full md:w-auto">
-        <div className="text-lg font-bold">Quick Links</div>
-        <div className="mt-2">
-          <a href="#" className="block hover:text-gray-400">About Us</a>
-          <a href="#" className="block hover:text-gray-400">Our Team</a>
-          <a href="#" className="block hover:text-gray-400">Projects</a>
-          <a href="#" className="block hover:text-gray-400">Contact Us</a>
-        </div>
+    <div className='footer'>
+      <div className='sb__footer section__padding'>
+          <div className='sb__footer-links'>
+            <div className='sb__footer-links-div'>
+                    <h4>For Business</h4>
+                    <a href="##">
+                      <p>About us</p>
+                    </a>
+                    <a href="##">
+                      <p>Services</p>
+                    </a>
+                    <a href="##">
+                      <p>Contact us</p>
+                    </a>
+            </div>
+            <div className='sb__footer-links-div'>
+                    <h4>For Business</h4>
+                    <a href="##">
+                      <p>About us</p>
+                    </a>
+                    <a href="##">
+                      <p>Services</p>
+                    </a>
+                    <a href="##">
+                      <p>Contact us</p>
+                    </a>
+            </div>
+            <div className='sb__footer-links-div'>
+                    <h4>For Business</h4>
+                    <a href="##">
+                      <p>About us</p>
+                    </a>
+                    
+            </div>
+            <div className='sb__footer-links-div'>
+                    <h4>For Business</h4>
+                    <a href="##">
+                      <p>About us</p>
+                    </a>
+                    <a href="##">
+                      <p>Services</p>
+                    </a>
+                    <a href="##">
+                      <p>Contact us</p>
+                    </a>
+                    <a href="##">
+                      <p>Contact us</p>
+                    </a>
+            </div>
+            <div className='sb__footer-links-div'>
+                    <h4>Coming soon on</h4>
+                    <div className='socialmedia'>
+                       <p><img src={facebook} alt=""  /></p>
+                       <p><img src={twitter} alt=""  /></p>
+                       <p><img src={linkedin} alt=""  /></p>
+                       <p><img src={instagram} alt=""  /></p>
+                    </div>
+            </div>
+
+          </div>
+          <div className='sb__footer-below'>
+            <div className='sb__footer-copyright'>
+              
+              <p>@{new Date().getFullYear()} UrabainFive. All rights reserved.</p>
+
+            </div>
+            <div className='sb__footer-below-links'>
+            <a href="##"><div> <p>Terms & Conditions</p></div></a>
+            <a href="##"><div> <p>Privacy</p></div></a>
+            <a href="##"><div> <p>Security</p></div></a>
+            <a href="##"><div> <p>Cookie Declarations</p></div></a>
+            </div>
+          </div>
       </div>
     </div>
-  </div>
-</footer>
-
-      </footer>
   );
 };
 

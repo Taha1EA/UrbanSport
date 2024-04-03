@@ -1,0 +1,121 @@
+.overlay {
+    
+    width: 100%; /* Ensure the overlay takes the full width */
+    height: 100vh; /* Adjust based on how you want to display the video */
+    overflow: hidden;
+}
+.content-offers .flex > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start; 
+}
+
+video {
+    position: absolute;
+    top: 0; /* Align the top edge of the video with the container */
+    left: 0; /* Align the left edge of the video with the container */
+    width: 100%; /* Make the video stretch to cover the full width of the container */
+    height: 100%; /* Make the video stretch to cover the full height of the container */
+    object-fit: cover; /* Cover the container while preserving the video's aspect ratio */
+    z-index: -1; /* Ensure the video stays in the background */
+}
+
+  
+  .BgVid {
+    position: absolute;
+    width: 77%;
+    height: 100%;
+    top: 0%;
+    left: 50%;
+    transform: translate(-50%, -10%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    color: white;
+    z-index: 1;
+  }
+  @media screen and (max-width:850px){
+    .BgVid h1{
+        font-size: 44px;
+        line-height: 50px;
+    }
+    video {
+        width: 100%; /* Make the video stretch to cover the full width of the container */
+        height: 100%;
+       
+      
+      }
+      .BgVid {
+        width: 77%;
+        height: 100%;
+        top: -20%;
+        display: none;
+      }
+      .overlay {
+       
+        width: 100%; /* Adjust as necessary */
+        height: 80vh; /* Adjust based on how you want to display the video */
+        overflow: hidden;
+      }
+}
+@media screen and (max-width:550px){
+    .BgVid h1{
+        font-size: 34px;
+        line-height: 42px;
+    }
+    .BgVid {
+        
+        width: 77%;
+    height: 100%;
+    display: none;
+    top: -30%;
+        
+        
+      }
+    video {
+     
+        width: 100%; /* Make the video stretch to cover the full width of the container */
+    height: 100%;
+       
+      }
+      .overlay {
+        
+        width: 100%; 
+        height: 30vh; 
+        overflow: hidden;
+      }
+    
+}
+
+@media screen and (max-width:400px){
+    .BgVid h1{
+        font-size: 27px;
+        line-height: 38px;
+    }
+    .BgVid {
+        
+        width: 77%;
+    height: 100%;
+    top: -40%;
+    display: none;
+        
+        
+      }
+    video {
+        
+        width: 100%; /* Make the video stretch to cover the full width of the container */
+    height: 100%;
+        
+      }
+      .overlay {
+        
+        width: 100%; /* Adjust as necessary */
+        height: 30vh; /* Adjust based on how you want to display the video */
+        overflow: hidden;
+      }
+
+
+}

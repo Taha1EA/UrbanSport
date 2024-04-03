@@ -1,16 +1,20 @@
-import Header from "./assets/Header";
-import MainContent from "./assets/Maincontent";
-import  Footer from "./assets/Footer";
 
+import MainContent from "./assets/Maincontent.jsx";
+import Footer from "./assets/Footer.jsx";
+import Offers from "./assets/Offers.jsx";
+import Events from "./assets/Event.jsx";
 
 
 function Home() {
     return (
       <div>
       
-        <Header /> 
-        <MainContent />
-        <Footer/> 
+         <MainContent /> 
+         <Offers/>
+         <Events/> 
+         <Footer/> 
+         
+        
       </div>
       
     );
