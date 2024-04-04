@@ -4,7 +4,7 @@ import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import logo from "../icons/logo.png";
 import logReg from "../logReg";
 import { Link } from "react-router-dom";
-
+import DashboardC from "./dashboardC";
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   return (
@@ -12,25 +12,25 @@ const Navbar = () => {
       <div className="sb__navbar">
         <div className="sb__navbar-links">
           <div className="sb__navbar-links_logo">
-            <a href="www.google.com">
+            <Link to="/">
               <img src={logo} alt="logo" />
-            </a>
+            </Link>
           </div>
           <div className="sb__navbar-links_container">
             <p>
-              <a href="www.google.com">HOME</a>
+              <Link to="/">HOME</Link>
             </p>
             <p>
-              <a href="www.google.com">ABOUT</a>
+              <Link to="www.google.com">ABOUT</Link>
             </p>
             <p>
-              <a href="www.google.com">CLASSES</a>
+              <Link to="/dashbardC">Dashboard</Link>
             </p>
             <p>
-              <a href="www.google.com">TRAINERS</a>
+              <Link to="www.google.com">TRAINERS</Link>
             </p>
             <p>
-              <a href="www.google.com">CONTACT</a>
+              <Link to="www.google.com">CONTACT</Link>
             </p>
           </div>
         </div>
@@ -63,19 +63,19 @@ const Navbar = () => {
             <div className="sb__navbar-menu_container scale-up-center">
               <div className="sb__navbar-menu_container-links">
                 <p>
-                  <a href="www.google.com">ABOUT</a>
+                  <Link to="www.google.com">ABOUT</Link>
                 </p>
                 <p>
-                  <a href="www.google.com">ORGANIZATIONS</a>
+                  <Link to={DashboardC}>Dashboard</Link>
                 </p>
                 <p>
-                  <a href="www.google.com">INDIVIDUALS</a>
+                  <Link to="www.google.com">INDIVIDUALS</Link>
                 </p>
               </div>
               <div className="sb__navbar-menu_container-links-sign">
-                <a href="www.google.com">
+                <Link to="www.google.com">
                   <button type="button">JOIN US</button>
-                </a>
+                </Link>
               </div>
             </div>
           )}
