@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axios from "axios"
 const TabReservation = () => {
-    const tabDeJour=[1,2,3,4,5,6,7];
+    const [dateR,setDateR]=useState();
+    const [deHeure,setDeHeure]=useState();
+    const [aHeure,setAHeure]=useState();
+    const tabDeJour=[[0,"Sunday"],[1,"Monday"],[2,"Tuesday"],[3,"Wednesday"],[4,"Thursday"],[5,"Friday"],[6,"Saturday"]];
     const tabDesHeures=[
         ["09:00","10:00"],["10:00","11:00"],["11:00","12:00"],["12:00","13:00"],
         ["13:00","14:00"],["14:00","15:00"],["15:00","16:00"],["16:00","17:00"],
@@ -9,14 +12,69 @@ const TabReservation = () => {
         ["21:00","22:00"],["22:00","23:00"],["23:00","00:00"],["00:00","01:00"],
         ["01:00","02:00"]
     ];
-    let [res,setRes]=useState();
+    const [dayOfTable,setDayOfTable]=useState([]); 
+    const [matchDetails, setMatchDetails] = useState({
+        debutMatch: {},
+        finMatch: {},
+        terrainReserved: {}
+      });
     useEffect(()=>{
         let url="http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes.php";
         axios.get(url).then(Response => {
-            setRes(Response.data);
+            Response.data?Response.data.map( (day)=>{
+                let d=  new Date(day[0]);
+                let dayOfweek=d.getDay();
+                setDayOfTable(prevState => [...prevState, dayOfweek]);
+                setMatchDetails(prevState => ({
+                    ...prevState,
+                    debutMatch: { ...prevState.debutMatch, [dayOfweek]: day[1] },
+                    finMatch: { ...prevState.finMatch, [dayOfweek]: day[2] },
+                    terrainReserved: { ...prevState.terrainReserved, [dayOfweek]: day[3] }
+                  }));
+            }):null
         })
     },[])
-    console.log(res)
+    function takeReservation(heureDebut,heureFin,nbDay){
+        let thisJour=new Date();
+        let diff=nbDay-thisJour.getDay();
+        thisJour.setDate(thisJour.getDate()+diff)
+        let j=thisJour.toISOString().split('T')[0];
+        console.log(j)
+        setDateR(j);
+        setDeHeure(heureDebut);
+        setAHeure(heureFin);
+    }
+    function checkDate(nbDay){
+        let dayJour=new Date();
+        let thisJour=new Date();
+        let diff=nbDay-thisJour.getDay();
+        thisJour.setDate(thisJour.getDate()+diff)
+        if(dayJour.getTime()>thisJour.getTime()){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+    function handleReserved(heureDebut,heureFin,nbDay){
+        if(dayOfTable.includes(nbDay)){   
+            if(matchDetails.debutMatch[nbDay]==(heureDebut) && matchDetails.finMatch[nbDay]==heureFin){     
+                    if(matchDetails.terrainReserved[nbDay]=="5"){
+                       return ( <td key={nbDay} className={checkDate(nbDay)?"bg-red-500 border-2 border-gray-200":"bg-red-300 border-2 border-gray-200"}></td> )
+                    }
+                    else {
+                        return (<td onClick={() => {checkDate(nbDay)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-orange-500 border-2 border-gray-200":"bg-orange-300 border-2 border-gray-200"}></td>)
+                    }
+                }
+                else{
+                    return (<td onClick={() => {checkDate(nbDay)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-green-500 border-2 border-gray-200":"bg-green-300 border-2 border-gray-200"}></td>)
+                }
+            }
+            else{
+                return (<td onClick={() => {checkDate(nbDay)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-green-500 border-2 border-gray-200":"bg-green-300 border-2 border-gray-200"}></td>)
+            }
+    }
+
   return (
     <div>
         <h2 className="text-2xl font-bold text-center mb-8">Book Now</h2>
@@ -26,26 +84,20 @@ const TabReservation = () => {
                 <thead className='bg-gray-100 border-b-2 border-gray-200'>
                     <tr>
                         <th className='w-[60px]'></th>
-                        <th className='p-2 text-[8px] md:text-sm font-bold '>Sunday</th>
-                        <th className='p-2 text-[8px] md:text-sm font-bold '>Monday</th>
-                        <th className='p-2 text-[8px] md:text-sm font-bold '>Tuesday</th>
-                        <th className='p-2 text-[8px] md:text-sm font-bold '>Wednesday</th>
-                        <th className='p-2 text-[8px] md:text-sm font-bold '>Thursday</th>
-                        <th className='p-2 text-[8px] md:text-sm font-bold '>Friday</th>
-                        <th className='p-2 text-[8px] md:text-sm font-bold '>Saturday</th>
+                        {tabDeJour.map((day)=>{
+                            return(
+                                <th value={day[0]} key={day[0]} className='p-2 text-[8px] md:text-sm font-bold '>{day[1]}</th>
+                            )
+                        })}
                     </tr>
                 </thead>
                 <tbody className='bg-gray-50 border-b-4 border-gray-200'>
                     {tabDesHeures.map((time)=>{
                        return( <tr className='h-[30px]' key={time}>
-                        <th className='p-1 w-[70px]  text-[8px] md:text-[10px] font-bold ' >{time[0]}-{time[1]}</th>
-                        <td className='border-2 border-gray-200'></td>
-                        <td className='border-2 border-gray-200'></td>
-                        <td className='border-2 border-gray-200'></td>
-                        <td className='border-2 border-gray-200'></td>
-                        <td className='border-2 border-gray-200'></td>
-                        <td className='border-2 border-gray-200'></td>
-                        <td className='border-2 border-gray-200'></td>
+                        <th className='p-1 w-[70px]  text-[8px] md:text-[10px] font-bold ' value={[time[0],time[1]]} >{time[0]}-{time[1]}</th>
+                        {tabDeJour.map((day)=>(
+                            handleReserved(time[0],time[1],day[0])
+                        ))}
                          </tr>)
                     })} 
                 </tbody>
@@ -70,15 +122,15 @@ const TabReservation = () => {
             <div className='w-[60%]'>
                 <div className='flex flex-col my-6'>
                     <label>Date</label>
-                    <input type='date' name='date' className='border-gray-300 border-2 '/>
+                    <input type='date' name='date' value={dateR} onInput={(e)=>setDateR(e.target.value)} className='border-gray-300 border-2 '/>
                 </div>
                 <div className='flex flex-col my-6'>
                     <label>De</label>
-                    <input type='text' name='heureDeb' className='border-gray-300 border-2 '/>
+                    <input type='text' name='heureDeb' value={deHeure} onInput={(e)=>setDateR(e.target.value)} className='border-gray-300 border-2 '/>
                 </div>
                 <div className='flex flex-col my-6'>
                     <label>A</label>
-                    <input type='text' name='heureFin' className='border-gray-300 border-2 '/>
+                    <input type='text' name='heureFin' value={aHeure} onInput={(e)=>setDateR(e.target.value)} className='border-gray-300 border-2 '/>
                 </div>
                 <div className='flex flex-col my-6'>
                     <label>Type terrain</label>
