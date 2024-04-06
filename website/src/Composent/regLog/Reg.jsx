@@ -106,7 +106,7 @@ const Reg = () => {
           <input type='submit' onClick={handleSubmit} value="Register" className='cursor-pointer	w-full mb-4 text-[15px] mt-6 rounded-full bg-gray-800 text-yellow-50 hover:bg-yellow-50 hover:text-gray-800 py-2 transition-colors duration-300' />
           <div className='flex flex-col justify-center content-center text-center'>
             <a href="" className="text-gray-400 hover:text-gray-300 duration-300">Forgot your password?</a>
-            <span>Have an account ? <Link to='/Log' className='text-gray-600 hover:text-gray-300 duration-300'>Create an account</Link></span>
+            <span>Have an account ? <Link to='/Log' className='text-gray-600 hover:text-gray-300 duration-300'>Log In </Link></span>
           </div>
         </div>
 

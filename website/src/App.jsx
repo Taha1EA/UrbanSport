@@ -1,11 +1,11 @@
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "/src/Home.jsx";
 import Navbar from "./assets/Navbar.jsx";
-import axios from "axios";
-import { useEffect } from "react";
 import DashboardC from "./assets/dashboardC.jsx";
 import Log from "/src/Composent/regLog/Log.jsx"
 import Reg from "/src/Composent/regLog/Reg.jsx"
+
 const App = () => {
   return (
     <div>
