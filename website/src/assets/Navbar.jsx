@@ -70,8 +70,8 @@ const Navbar = () => {
 
           ))
         }
-        <Button>Get Started</Button>
-        <Button>Read more</Button>
+        <Button ><Link to='/Reg' className='text-gray-600 hover:text-gray-300 duration-300'>Get Started</Link></Button>
+        <Button ><Link to='/Log' className='text-gray-600 hover:text-gray-300 duration-300'>Log In</Link></Button>
       </ul></div>
     </div>
   );

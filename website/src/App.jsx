@@ -3,7 +3,8 @@ import Home from "./Home";
 import Log from "./Composent/regLog/Log";
 import Reg from "./Composent/regLog/Reg";
 import Dashboard from "./assets/dashboardC"
-
+import Main from "./sousComp/ClientMain"
+import AdminDash from "./sousComp/AdminDash"
 const App = () => {
   return (
     
@@ -14,6 +15,8 @@ const App = () => {
         <Route path="/Log" element={<Log Admin="false"/>} />
         <Route path="/Reg" element={<Reg />} />
         <Route path="/Dashboard" element={<Dashboard />} />
+        <Route path="/Main" element={<Main />} />
+        <Route path="/AdminDash" element={<AdminDash />} />
       </Routes>
     </Router>
   );

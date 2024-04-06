@@ -21,7 +21,7 @@ const TabReservation = () => {
         terrainReserved: {}
       });
     useEffect(()=>{
-        let url="http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes.php";
+        let url="http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
         axios.get(url).then(Response => {
             Response.data?Response.data.map( (day)=>{
                 let d=  new Date(day[0]);

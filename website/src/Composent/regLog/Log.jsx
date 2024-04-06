@@ -13,7 +13,7 @@ const Log = ({ Admin }) => {
     if (isAdmin) {
       return "Welcome Admin";
     }
-    return "Login";
+    return "Log in";
   }
 
   const handleNom = (e) => {
@@ -32,7 +32,7 @@ const Log = ({ Admin }) => {
       if (isAdmin) {
         informations.append("admin", isAdmin);
       }
-      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/log.php", informations).then(Response => {
+      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/log", informations).then(Response => {
         if (isAdmin) {
           if (Response.data) {
             setTimeout(() => nav('/Log'), 2000);
@@ -52,7 +52,9 @@ const Log = ({ Admin }) => {
 
   return (
     <div className='text-white h-[100vh] flex justify-center items-center bg-black'>
-      <Navbar/>
+      {
+        isAdmin?null:<Navbar/>
+      }
       <div className='bg-[#161616] border border-[#444444] rounded-md p-8 shadow-lg relative'>
         <h1 className="text-[32px] text-white font-bold text-center mb-6 ">{AdminOrUser()}</h1>
         <div>
