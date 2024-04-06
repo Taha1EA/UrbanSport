@@ -4,18 +4,9 @@ import Navbar from "./assets/Navbar.jsx";
 import axios from "axios";
 import { useEffect } from "react";
 import DashboardC from "./assets/dashboardC.jsx";
-import Home from "/src/Home.jsx"
 import Log from "/src/Composent/regLog/Log.jsx"
 import Reg from "/src/Composent/regLog/Reg.jsx"
 const App = () => {
-  useEffect(() => {
-    axios
-      .get(
-        "http://localhost/PFE_Backend/UrbanSport-Backend-/UrbanSport/Clientside/test.php"
-      )
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
-  }, []);
   return (
     <div>
       <Navbar/>
