@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import {useNavigate} from "react-router-dom"
 import axios from "axios"
 const TabReservation = () => {
-    const [dateR,setDateR]=useState();
-    const [deHeure,setDeHeure]=useState();
-    const [aHeure,setAHeure]=useState();
+    const nav=useNavigate();
+    const [dateR,setDateR]=useState("");
+    const [deHeure,setDeHeure]=useState("");
+    const [aHeure,setAHeure]=useState("");
     const tabDeJour=[[0,"Sunday"],[1,"Monday"],[2,"Tuesday"],[3,"Wednesday"],[4,"Thursday"],[5,"Friday"],[6,"Saturday"]];
     const tabDesHeures=[
         ["09:00","10:00"],["10:00","11:00"],["11:00","12:00"],["12:00","13:00"],
@@ -39,18 +41,20 @@ const TabReservation = () => {
         let diff=nbDay-thisJour.getDay();
         thisJour.setDate(thisJour.getDate()+diff)
         let j=thisJour.toISOString().split('T')[0];
-        console.log(j)
         setDateR(j);
         setDeHeure(heureDebut);
         setAHeure(heureFin);
     }
-    function checkDate(nbDay){
+    function checkDate(nbDay, heureDebut){
         let dayJour=new Date();
         let thisJour=new Date();
         let diff=nbDay-thisJour.getDay();
+        let h=dayJour.getHours()
+        // console.log(heureDebut)
         thisJour.setDate(thisJour.getDate()+diff)
         if(dayJour.getTime()>thisJour.getTime()){
             return false;
+            
         }
         else{
             return true;
@@ -60,19 +64,23 @@ const TabReservation = () => {
         if(dayOfTable.includes(nbDay)){   
             if(matchDetails.debutMatch[nbDay]==(heureDebut) && matchDetails.finMatch[nbDay]==heureFin){     
                     if(matchDetails.terrainReserved[nbDay]=="5"){
-                       return ( <td key={nbDay} className={checkDate(nbDay)?"bg-red-500 border-2 border-gray-200":"bg-red-300 border-2 border-gray-200"}></td> )
+                       return ( <td key={nbDay} className={checkDate(nbDay,heureDebut)?"bg-red-500 border-2 border-gray-200":"bg-red-300 border-2 border-gray-200"}></td> )
                     }
                     else {
-                        return (<td onClick={() => {checkDate(nbDay)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-orange-500 border-2 border-gray-200":"bg-orange-300 border-2 border-gray-200"}></td>)
+                        return (<td onClick={() => {checkDate(nbDay,heureDebut)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-orange-500 border-2 border-gray-200":"bg-orange-300 border-2 border-gray-200"}></td>)
                     }
                 }
                 else{
-                    return (<td onClick={() => {checkDate(nbDay)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-green-500 border-2 border-gray-200":"bg-green-300 border-2 border-gray-200"}></td>)
+                    return (<td onClick={() => {checkDate(nbDay,heureDebut)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-green-500 border-2 border-gray-200":"bg-green-300 border-2 border-gray-200"}></td>)
                 }
             }
             else{
-                return (<td onClick={() => {checkDate(nbDay)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-green-500 border-2 border-gray-200":"bg-green-300 border-2 border-gray-200"}></td>)
+                return (<td onClick={() => {checkDate(nbDay,heureDebut)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-green-500 border-2 border-gray-200":"bg-green-300 border-2 border-gray-200"}></td>)
             }
+    }
+    function SubmitHandler(){
+        setTimeout( ()=>nav('/Log'),2000)
+    
     }
 
   return (
@@ -140,7 +148,7 @@ const TabReservation = () => {
                     </select>
                 </div>
                 <div>
-                    <input type="submit" className='cursor-pointer w-full  text-[15px] my-6 rounded-xl bg-red-500 text-yellow-50 hover:bg-red-300 hover:text-white py-2  duration-300'/>
+                    <input type="submit" onClick={SubmitHandler} className='cursor-pointer w-full  text-[15px] my-6 rounded-xl bg-red-500 text-yellow-50 hover:bg-red-300 hover:text-white py-2  duration-300'/>
                 </div>
             </div>
         </div>
