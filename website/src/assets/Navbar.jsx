@@ -65,7 +65,7 @@ const Navbar = () => {
           Links.map((Linko)=>(
 
             <li key={Linko.name} className="md:ml-8 text-xl md:my-0 my-7">
-             <a > <Link to="{Linko.link}" className="text-gray-500 hover:text-gray-400 duration-500">{Linko.name}</Link></a>
+              <Link to={Linko.link} className="text-gray-500 hover:text-gray-400 duration-500">{Linko.name}</Link>
             </li>
 
           ))
