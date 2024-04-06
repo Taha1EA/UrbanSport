@@ -28,7 +28,7 @@ const Offers = () => {
     const visibleOffers = offersData.slice(currentIndex, currentIndex + 3).concat(offersData.slice(0, Math.max(0, 3 - (offersData.length - currentIndex))));
   
     return (
-      <div className=" my-8">
+      <div className=" my-8 mt-[60px] md:mt-[140px]">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-8">Our Special Offers</h2>
           

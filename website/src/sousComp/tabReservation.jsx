@@ -84,8 +84,8 @@ const TabReservation = () => {
     }
 
   return (
-    <div>
-        <h2 className="text-2xl font-bold text-center mb-8">Book Now</h2>
+    <div className='mt-[100px] md:mt-[150px] bg-slate-200'>
+        <h2 className="text-2xl font-bold text-center mb-8 mt-5">Book Now</h2>
     <div className='w-full flex flex-col items-center md:flex-row  md:justify-around'>
         <div className='w-[90%] mb-12 md:mb-0 md:w-[65%] '>
             <table className='w-full'>

@@ -1,24 +1,21 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./Home";
-import Navbar from "./assets/Navbar.jsx";
-import DashboardC from "./assets/dashboardC.jsx";
-import Log from "./Composent/regLog/Log.jsx"; 
-import Reg from "./Composent/regLog/Reg.jsx"; 
+import Log from "./Composent/regLog/Log";
+import Reg from "./Composent/regLog/Reg";
+import Dashboard from "./assets/dashboardC"
 
 const App = () => {
   return (
-    <div>
-      <Navbar />
+    
       <Router>
-        <Routes>
-           <Route path="/" element={Home} />
-           <Route path="/cd" element={<DashboardC />} />
-           <Route path="/Reg" element={<Reg />} />
-           <Route path="/Log" element={<Log Admin="false" />} />
-           <Route path="/LogAdmin" element={<Log Admin="true" />} />
-         </Routes>
-       </Router>
-    </div>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/LogAdmin" element={<Log Admin="true"/>} />
+        <Route path="/Log" element={<Log Admin="false"/>} />
+        <Route path="/Reg" element={<Reg />} />
+        <Route path="/Dashboard" element={<Dashboard />} />
+      </Routes>
+    </Router>
   );
 };
 

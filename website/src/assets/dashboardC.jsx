@@ -4,11 +4,14 @@ import React from "react";
 // import twitter from "../images/twitter.png";
 // import linkedin from "../images/linkedin.png";
 import "./Footer.css";
+import Navbar from "./Navbar"
 
 const DashboardC = () => {
   
   return (
-    <div className="flex ">
+    <div>
+      <Navbar/>
+      <div className="flex ">
       <div className="flex flex-col w-52 h-screen bg-slate-800 items-center justify-around">
         <a href="##">
           <p>Programs</p>
@@ -22,6 +25,8 @@ const DashboardC = () => {
       </div>
       <div className="w-lvw h-screen bg-white"></div>
     </div>
+    </div>
+   
   );
 };
 

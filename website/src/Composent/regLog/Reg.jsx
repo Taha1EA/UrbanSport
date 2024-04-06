@@ -1,5 +1,6 @@
 import React, { useEffect,useState } from 'react'
 import {Link,useNavigate} from 'react-router-dom'
+import Navbar from "../../assets/Navbar"
 import axios from 'axios'
 const Reg = () => {
   const passRegex  =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -58,7 +59,7 @@ const Reg = () => {
   };
   const handleSubmit=()=>{
     if(i===4){
-      const url="http://localhost/UrbanSport/logReg/register.php";
+      const url="http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/register.php";
       let informations=new FormData();
       informations.append("nom",nom);
       informations.append("email",email);
@@ -78,6 +79,7 @@ const Reg = () => {
   
   return (
     <div className='text-white h-[100vh] flex flex-col justify-center items-center bg-black'>
+      <Navbar/>
        {/* <div className={`bg-[#161616] border border-[#444444] rounded-md p-8 shadow-lg relative text-white text-center w-[355px] mb-4 ${handleSubmit?'hidden':'block'}`}>{s}</div> */}
       <div className='bg-[#161616] border border-[#444444] rounded-md p-8 shadow-lg relative'>
         <h1 className="text-4xl text-white font-bold text-center mb-6">Register</h1>
