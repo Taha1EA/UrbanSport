@@ -6,6 +6,7 @@ import linkedin from "../images/linkedin.png";
 import "./Footer.css";
 
 const DashboardC = () => {
+  
   return (
     <div className="flex ">
       <div className="flex flex-col w-52 h-screen bg-slate-800 items-center justify-around">
@@ -19,7 +20,7 @@ const DashboardC = () => {
           <p>Contact us</p>
         </a>
       </div>
-      <div className="w-lvw h-screen bg-orange-600"></div>
+      <div className="w-lvw h-screen bg-white"></div>
     </div>
   );
 };

@@ -6,21 +6,21 @@ import axios from "axios";
 import { useEffect } from "react";
 import DashboardC from "./assets/dashboardC.jsx";
 const App = () => {
-  //   useEffect(() => {
-  //     axios
-  //       .get(
-  //         "http://localhost/PFE_Backend/UrbanSport-Backend-/UrbanSport/logReg/register.php"
-  //       )
-  //       .then((res) => console.log(res))
-  //       .catch((err) => console.log(err));
-  //   }, []);
+  useEffect(() => {
+    axios
+      .get(
+        "http://localhost/PFE_Backend/UrbanSport-Backend-/UrbanSport/Clientside/test.php"
+      )
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  }, []);
   return (
     <Router>
       <div className="App">
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashbardC" element={<DashboardC />} />
+          <Route path="/cd" element={<DashboardC />} />
         </Routes>
       </div>
     </Router>
