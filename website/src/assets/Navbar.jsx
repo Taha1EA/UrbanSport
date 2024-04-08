@@ -15,7 +15,7 @@ const Navbar = () => {
   ]
   const [toggleMenu, setToggleMenu] = useState(false);
   return (
-    <div className="shadow-md w-full fixed top-0 left-0">
+    <div className="shadow-md w-full fixed top-0 left-0 z-40">
       <div className="md:flex items-center justify-between bg-red-700 py-4 md:px-10 px-7">
         <div className="font-bold text-2xl cursor-pointer flex item-cnter font-[Poppins] text-gray-800">
         
@@ -45,7 +45,7 @@ const Navbar = () => {
                   <Link to="www.google.com">ABOUT</Link>
                 </p>
                 <p>
-                  <Link to="/cd">Dashboard</Link>
+                  <Link to="/Dashboard">Dashboard</Link>
                 </p>
                 <p>
                   <Link to="www.google.com">INDIVIDUALS</Link>
