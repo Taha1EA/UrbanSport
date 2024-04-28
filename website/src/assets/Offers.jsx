@@ -14,9 +14,9 @@ const offersData = [
   { id: 4, title: 'Personal Training Offer', description: 'Book 5 sessions and get 1 free.', image: tae },
   { id: 5, title: 'Yoga Classes', description: 'Experience tranquility and improve flexibility with our yoga classes.', image: fit },
 ];
+
 const Offers = () => {
     const [currentIndex, setCurrentIndex] = useState(0);
-  
     const handlePrev = () => {
       setCurrentIndex((prevIndex) => (prevIndex - 1 + offersData.length) % offersData.length);
     };
@@ -31,12 +31,18 @@ const Offers = () => {
       <div className=" my-8 mt-[60px] md:mt-[140px]">
         <div className="container mx-auto px-4">
           <h2 className="text-2xl font-bold text-center mb-8">Our Special Offers</h2>
-          
           <div className="flex justify-center md:flex-row flex-col sm:h-fit items-center gap-8 md:h-96 h-{36rem} w-{200px}">
           <button onClick={handlePrev} className="px-4 py-2 bg-blue-500 text-white rounded h-12"><HiArrowCircleLeft/></button>
             {visibleOffers.map((offer, index) => (
               
-              <div key={offer.id} className={`bg-white rounded-lg shadow overflow-hidden flex md:flex-col flex-row items-center ${index === 1 ? 'md:w-64 md:h-96 w-{200px} ' : 'md:w-48 md:h-80 w-{160px} '} transform transition-all duration-300 ease-in-out`}>
+              <div
+  key={offer.id}
+  className={`bg-white rounded-lg shadow overflow-hidden flex ${
+    index === 1
+      ? 'md:flex-col flex-row md:w-64 md:h-96 w-200px h-36rem'
+      : 'md:flex-col flex-row md:w-48 md:h-80 w-160px'
+  } transform transition-all duration-300 ease-in-out`}
+>
                 {offer.image && (
                   <div className="w-full h-2/3"> 
                     <img
