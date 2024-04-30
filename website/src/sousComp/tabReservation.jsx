@@ -16,26 +16,29 @@ const TabReservation = () => {
     ];
     const [dayOfTable,setDayOfTable]=useState([]); 
     const [matchDetails, setMatchDetails] = useState({
-        debutMatch: {},
-        finMatch: {},
-        terrainReserved: {}
+        debutMatch: [],
+        finMatch: [],
+        terrainReserved: []
       });
-    useEffect(()=>{
-        let url="http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
-        axios.get(url).then(Response => {
-            Response.data?Response.data.map( (day)=>{
-                let d=  new Date(day[0]);
-                let dayOfweek=d.getDay();
-                setDayOfTable(prevState => [...prevState, dayOfweek]);
-                setMatchDetails(prevState => ({
-                    ...prevState,
-                    debutMatch: { ...prevState.debutMatch, [dayOfweek]: day[1] },
-                    finMatch: { ...prevState.finMatch, [dayOfweek]: day[2] },
-                    terrainReserved: { ...prevState.terrainReserved, [dayOfweek]: day[3] }
-                  }));
-            }):null
-        })
-    },[])
+      useEffect(() => {
+        let url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
+        axios.get(url).then(response => {
+            if (response.data) {
+                response.data.forEach((day) => { // Use forEach with index
+                    let d = new Date(day[0]);
+                    let dayOfWeek = d.getDay()+day[1];
+                    setDayOfTable(prevState => [...prevState, dayOfWeek]);
+                    setMatchDetails(prevState => ({
+                        ...prevState,
+                        debutMatch: { ...prevState.debutMatch, [dayOfWeek]: day[1] },
+                        finMatch: { ...prevState.finMatch, [dayOfWeek]: day[2] },
+                        terrainReserved: { ...prevState.terrainReserved, [dayOfWeek]: day[3] }
+                    }));
+                });
+            }
+        });
+    }, []);
+    console.log(matchDetails)
     function takeReservation(heureDebut,heureFin,nbDay){
         let thisJour=new Date();
         let diff=nbDay-thisJour.getDay();
@@ -45,46 +48,69 @@ const TabReservation = () => {
         setDeHeure(heureDebut);
         setAHeure(heureFin);
     }
-    function checkDate(nbDay, heureDebut){
-        let dayJour=new Date();
-        let thisJour=new Date();
-        let diff=nbDay-thisJour.getDay();
-        let h=dayJour.getHours()
-        // console.log(heureDebut)
-        thisJour.setDate(thisJour.getDate()+diff)
-        if(dayJour.getTime()>thisJour.getTime()){
-            return false;
-            
+    function checkDate(nbDay) {
+        let numDay=nbDay.substring(0,1);
+        let heure=nbDay.substring(1,3);
+        if(heure=='00'){
+            heure=24;
         }
-        else{
+        if(heure=='01'){
+            heure=25;
+        }
+        let dayJour = new Date();
+        let thisJour = new Date();
+        let diff = numDay - thisJour.getDay();
+        let h = dayJour.getHours();
+        let diffHeure=heure-h-5;
+        // console.log(heureDebut)
+        thisJour.setDate(thisJour.getDate() + diff);
+        if (dayJour.getTime() > thisJour.getTime()) {
+            return false;
+        }
+        else if(dayJour.getTime() == thisJour.getTime()){
+            if(diffHeure<0){
+                return false
+            }
+            else{
+                return true
+            }
+        } else {
             return true;
         }
     }
-    function handleReserved(heureDebut,heureFin,nbDay){
-        if(dayOfTable.includes(nbDay)){   
-            if(matchDetails.debutMatch[nbDay]==(heureDebut) && matchDetails.finMatch[nbDay]==heureFin){     
-                    if(matchDetails.terrainReserved[nbDay]=="5"){
-                       return ( <td key={nbDay} className={checkDate(nbDay,heureDebut)?"bg-red-500 border-2 border-gray-200":"bg-red-300 border-2 border-gray-200"}></td> )
-                    }
-                    else {
-                        return (<td onClick={() => {checkDate(nbDay,heureDebut)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-orange-500 border-2 border-gray-200":"bg-orange-300 border-2 border-gray-200"}></td>)
-                    }
+    
+    function handleReserved(heureDebut, heureFin, nbDay) {
+        if (dayOfTable.includes(nbDay)) { 
+            if (matchDetails.debutMatch[nbDay] === heureDebut && matchDetails.finMatch[nbDay] === heureFin) { 
+                if (matchDetails.terrainReserved[nbDay] === "5") {
+                    return (
+                        <td key={nbDay} className={checkDate(nbDay, heureDebut) ? "bg-red-500 border-2 border-gray-200" : "bg-red-300 border-2 border-gray-200"}></td>
+                    );
+                } else {
+                    console.log(nbDay)
+                    return (
+                        <td onClick={() => { checkDate(nbDay, heureDebut) ? takeReservation(heureDebut, heureFin) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-orange-500 border-2 border-gray-200" : "bg-orange-300 border-2 border-gray-200"}></td>
+                    );
                 }
-                else{
-                    return (<td onClick={() => {checkDate(nbDay,heureDebut)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-green-500 border-2 border-gray-200":"bg-green-300 border-2 border-gray-200"}></td>)
-                }
+            } else {
+                return (
+                    <td onClick={() => { checkDate(nbDay, heureDebut) ? takeReservation(heureDebut, heureFin) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200" : "bg-green-300 border-2 border-gray-200"}></td>
+                );
             }
-            else{
-                return (<td onClick={() => {checkDate(nbDay,heureDebut)?takeReservation(heureDebut, heureFin, nbDay):null}} key={nbDay} className={checkDate(nbDay)?"bg-green-500 border-2 border-gray-200":"bg-green-300 border-2 border-gray-200"}></td>)
-            }
+        } else {
+            return (
+                <td onClick={() => { checkDate(nbDay, heureDebut) ? takeReservation(heureDebut, heureFin) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200" : "bg-green-300 border-2 border-gray-200"}></td>
+            );
+        }
     }
+    
     function SubmitHandler(){
         setTimeout( ()=>nav('/Log'),2000)
     
     }
 
   return (
-    <div className='mt-[100px] md:mt-[150px] bg-slate-200'>
+    <div className='mt-12 md:mt-[150px] bg-slate-200'>
         <h2 className="text-2xl font-bold text-center mb-8 mt-5">Book Now</h2>
     <div className='w-full flex flex-col items-center md:flex-row  md:justify-around'>
         <div className='w-[90%] mb-12 md:mb-0 md:w-[65%] '>
@@ -103,8 +129,9 @@ const TabReservation = () => {
                     {tabDesHeures.map((time)=>{
                        return( <tr className='h-[30px]' key={time}>
                         <th className='p-1 w-[70px]  text-[8px] md:text-[10px] font-bold ' value={[time[0],time[1]]} >{time[0]}-{time[1]}</th>
-                        {tabDeJour.map((day)=>(
-                            handleReserved(time[0],time[1],day[0])
+                        {
+                        tabDeJour.map((day)=>(
+                            handleReserved(time[0],time[1],day[0]+time[0])
                         ))}
                          </tr>)
                     })} 
