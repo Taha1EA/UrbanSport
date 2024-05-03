@@ -24,7 +24,7 @@ const TabReservation = () => {
         let url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
         axios.get(url).then(response => {
             if (response.data) {
-                response.data.forEach((day) => { // Use forEach with index
+                response.data.forEach((day) => { 
                     let d = new Date(day[0]);
                     let dayOfWeek = d.getDay()+day[1];
                     setDayOfTable(prevState => [...prevState, dayOfWeek]);
@@ -38,7 +38,7 @@ const TabReservation = () => {
             }
         });
     }, []);
-    console.log(matchDetails)
+    // console.log(matchDetails)
     function takeReservation(heureDebut,heureFin,nbDay){
         let thisJour=new Date();
         let diff=nbDay-thisJour.getDay();

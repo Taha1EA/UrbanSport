@@ -8,7 +8,7 @@ const ClientMain = () => {
         navigate('/Main/accueil');
     }, [navigate]);
   return (
-    <div className='bg-gray-300 w-full py-12'>
+    <div className='bg-gray-300 w-full pt-12'>
         <div>
             <ClientNavBar/>
         </div>

@@ -1,0 +1,14 @@
+import React from 'react';
+import { Outlet, Navigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+
+const ProtectedRoute = ({ children, ...rest }) => {
+  const [cookies] = useCookies(['user']);
+
+  return(
+    cookies.user ? <Outlet/> : <Navigate to="/Log"/>
+
+  );
+};
+
+export default ProtectedRoute;

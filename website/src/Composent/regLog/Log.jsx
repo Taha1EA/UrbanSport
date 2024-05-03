@@ -2,13 +2,13 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Navbar from "../../assets/Navbar"
-
+import { useCookies } from 'react-cookie'
 const Log = ({ Admin }) => {
   const isAdmin = Admin === "true" ? true : false;
   const nav = useNavigate();
   const [nom, setNom] = useState("");
   const [pass, setPass] = useState("");
-
+  const [cookies, setCookie] = useCookies(['user'])
   const AdminOrUser = () => {
     if (isAdmin) {
       return "Welcome Admin";
@@ -35,13 +35,15 @@ const Log = ({ Admin }) => {
       axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/log", informations).then(Response => {
         if (isAdmin) {
           if (Response.data) {
-            setTimeout(() => nav('/Log'), 2000);
+            setCookie('user',Response.data[0] , { path: '/' })
+            setTimeout(() => nav('/AdminDash'), 2000);
           } else {
             alert("not exist")
           }
         } else {
           if (Response.data) {
-            setTimeout(() => nav('/Reg'), 2000);
+            setCookie('user',Response.data[0] , { path: '/' })
+            setTimeout(() => nav('/Main'), 2000);
           } else {
             alert("not exist")
           }
