@@ -9,6 +9,7 @@ function ClientNavBar(props) {
     const [cookies] = useCookies(['user']);
     const openNav = () =>{
         setIsOpen(!isOpen)
+        window.scrollTo(0, 0)
     }
     const navTab=[
         ["/Main/accueil","Accueil"],

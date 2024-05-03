@@ -4,6 +4,7 @@ import Offers from "./assets/Offers.jsx";
 import Events from "./assets/Event.jsx";
 import Tab from "./sousComp/tabReservation"
 import Navbar from "./assets/Navbar.jsx";
+import Class from "../src/Composent/ClientsCom/ClassS.jsx";
 function Home() {
   return (
     <div>
@@ -11,6 +12,7 @@ function Home() {
       <MainContent/>
       <Offers />
       <Tab/>
+      <Class />
       <Events />
       <Footer />
     </div>
