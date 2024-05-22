@@ -11,12 +11,12 @@ const Navbar = () => {
     {name : "Events",link : "/"},
     {name : "Coaches",link : "/"},
     {name : "Offers",link : "/"},
-    {name : "AboutUs",link : "/"}
+    {name : "Dashboard",link : "/Dashboard"}
   ]
   const [toggleMenu, setToggleMenu] = useState(false);
   return (
     <div className="shadow-md w-full fixed top-0 left-0 z-40">
-      <div className="md:flex items-center justify-between bg-red-700 py-4 md:px-10 px-7">
+      <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
         <div className="font-bold text-2xl cursor-pointer flex item-cnter font-[Poppins] text-gray-800">
         
         Nowress
@@ -52,9 +52,9 @@ const Navbar = () => {
                 </p>
               </div>
               <div className="sb__navbar-menu_container-links-sign">
-                <Link to="www.google.com">
-                  <button type="button">JOIN US</button>
-                </Link>
+              
+                  <button type="button">  <Link to="/reg">JOIN US  </Link></button>
+              
               </div>
             </div>
           )}
@@ -70,8 +70,8 @@ const Navbar = () => {
 
           ))
         }
-        <Button>Get Started</Button>
-        <Button>Read more</Button>
+        <Button >  <Link to="/reg">JOIN US  </Link></Button>
+        <Button><Link to="/log">LOG IN  </Link></Button>
       </ul></div>
     </div>
   );

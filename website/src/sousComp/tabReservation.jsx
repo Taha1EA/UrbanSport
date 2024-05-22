@@ -39,7 +39,7 @@ const TabReservation = () => {
     function takeReservation(heureDebut,heureFin,nbDay){
         let thisJour=new Date();
         let diff=nbDay-thisJour.getDay();
-        thisJour.setDate(thisJour.getDate()+diff)
+        thisJour.setDate(thisJour.getDate()+diff);
         let j=thisJour.toISOString().split('T')[0];
         setDateR(j);
         setDeHeure(heureDebut);

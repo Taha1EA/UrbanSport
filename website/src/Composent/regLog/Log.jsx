@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Navbar from "../../assets/Navbar"
-
+import { useCookies } from 'react-cookie'
 const Log = ({ Admin }) => {
   const isAdmin = Admin === "true" ? true : false;
   const nav = useNavigate();
   const [nom, setNom] = useState("");
   const [pass, setPass] = useState("");
-
+  const [cookies, setCookie] = useCookies(['user'])
   const AdminOrUser = () => {
     if (isAdmin) {
       return "Welcome Admin";
     }
-    return "Login";
+    return "Log in";
   }
 
   const handleNom = (e) => {
@@ -32,16 +32,19 @@ const Log = ({ Admin }) => {
       if (isAdmin) {
         informations.append("admin", isAdmin);
       }
-      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/log.php", informations).then(Response => {
+      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/log", informations).then(Response => {
         if (isAdmin) {
           if (Response.data) {
-            setTimeout(() => nav('/Log'), 2000);
+            setCookie('userA',Response.data[0] , { path: '/' })
+            setTimeout(() => nav('/Dashboard'), 2000);
           } else {
             alert("not exist")
           }
         } else {
           if (Response.data) {
-            setTimeout(() => nav('/Reg'), 2000);
+            setCookie('user',Response.data[0] , { path: '/' })
+            setCookie('userI',Response.data[1] , { path: '/' })
+            setTimeout(() => nav('/Main'), 2000);
           } else {
             alert("not exist")
           }
@@ -52,7 +55,9 @@ const Log = ({ Admin }) => {
 
   return (
     <div className='text-white h-[100vh] flex justify-center items-center bg-black'>
-      <Navbar/>
+      {
+        isAdmin?null:<Navbar/>
+      }
       <div className='bg-[#161616] border border-[#444444] rounded-md p-8 shadow-lg relative'>
         <h1 className="text-[32px] text-white font-bold text-center mb-6 ">{AdminOrUser()}</h1>
         <div>

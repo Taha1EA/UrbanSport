@@ -9,7 +9,7 @@ function Home() {
     <div>
       <Navbar/>
       <MainContent/>
-      <Offers />
+     <div className="pt-4">  <Offers  /></div>
       <Tab/>
       <Events />
       <Footer />

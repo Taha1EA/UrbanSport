@@ -28,7 +28,9 @@ export default function Sidebar() {
 					<span className="text-xl">
 						<HiOutlineLogout />
 					</span>
-					Logout
+					<Link to="/log">
+                  Log Out
+                </Link>
 				</div>
 			</div>
 		</div>
