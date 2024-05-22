@@ -35,15 +35,16 @@ const Log = ({ Admin }) => {
       axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/log", informations).then(Response => {
         if (isAdmin) {
           if (Response.data) {
-            setCookie('user',Response.data[0] , { path: '/' })
-            setTimeout(() => nav('/AdminDash'), 2000);
+            setCookie('userA',Response.data[0] , { path: '/' })
+            setTimeout(() => nav('/AdminDash'), 500);
           } else {
             alert("not exist")
           }
         } else {
           if (Response.data) {
             setCookie('user',Response.data[0] , { path: '/' })
-            setTimeout(() => nav('/Main'), 2000);
+            setCookie('userI',Response.data[1] , { path: '/' })
+            setTimeout(() => nav('/Main'), 500);
           } else {
             alert("not exist")
           }

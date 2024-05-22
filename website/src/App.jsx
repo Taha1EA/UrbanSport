@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import PrivateRoutes from '../src/sousComp/ProtectedRoutes';
+import PrivateRoutesA from '../src/sousComp/ProtectedRoutesA';
 import Home from "./Home";
 import Log from "./Composent/regLog/Log";
 import Reg from "./Composent/regLog/Reg";
@@ -29,7 +30,10 @@ const App = () => {
                 <Route path="manage" element={<Accueil/>}/>
             </Route>
           </Route>
-          <Route path="/AdminDash" element={<AdminDash />} />
+          <Route element={<PrivateRoutesA />}>
+              <Route path="/AdminDash" element={<AdminDash />} />
+          </Route>
+          
         </Routes>
       </Router>
   );

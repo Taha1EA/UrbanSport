@@ -26,8 +26,8 @@ function ClientNavBar(props) {
             <h1>Nouress</h1>
         </div>
         <div className='hidden md:flex space-x-10'>
-            {navTab.map((navE,index)=>(
-                 <NavLink key={index} to={navE[0]} className='text-gray-700' >{navE[1]}</NavLink>
+            {navTab.map((navE)=>(
+                 <NavLink key={navE[0]} to={navE[0]} className='text-gray-700' >{navE[1]}</NavLink>
             ))}
         </div>
         <div className='flex space-x-5 items-center'>

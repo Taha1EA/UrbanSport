@@ -39,11 +39,13 @@ const TabReservation = () => {
         });
     }, []);
     // console.log(matchDetails)
-    function takeReservation(heureDebut,heureFin,nbDay){
+    function takeReservation(heureDebut,heureFin,nbDay){// nbDay=
         let thisJour=new Date();
-        let diff=nbDay-thisJour.getDay();
-        thisJour.setDate(thisJour.getDate()+diff)
+        let numDay=nbDay.substring(0,1);
+        let diff=numDay-thisJour.getDay();
+        thisJour.setDate(thisJour.getDate()+diff);
         let j=thisJour.toISOString().split('T')[0];
+        // console.log(j);
         setDateR(j);
         setDeHeure(heureDebut);
         setAHeure(heureFin);
@@ -84,22 +86,21 @@ const TabReservation = () => {
             if (matchDetails.debutMatch[nbDay] === heureDebut && matchDetails.finMatch[nbDay] === heureFin) { 
                 if (matchDetails.terrainReserved[nbDay] === "5") {
                     return (
-                        <td key={nbDay} className={checkDate(nbDay, heureDebut) ? "bg-red-500 border-2 border-gray-200" : "bg-red-300 border-2 border-gray-200"}></td>
+                        <td key={nbDay} className={checkDate(nbDay) ? "bg-red-500 border-2 border-gray-200" : "bg-red-300 border-2 border-gray-200"}></td>
                     );
                 } else {
-                    console.log(nbDay)
                     return (
-                        <td onClick={() => { checkDate(nbDay, heureDebut) ? takeReservation(heureDebut, heureFin) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-orange-500 border-2 border-gray-200" : "bg-orange-300 border-2 border-gray-200"}></td>
+                        <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin,nbDay) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-orange-500 border-2 border-gray-200" : "bg-orange-300 border-2 border-gray-200"}></td>
                     );
                 }
             } else {
                 return (
-                    <td onClick={() => { checkDate(nbDay, heureDebut) ? takeReservation(heureDebut, heureFin) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200" : "bg-green-300 border-2 border-gray-200"}></td>
+                    <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin,nbDay) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200" : "bg-green-300 border-2 border-gray-200"}></td>
                 );
             }
         } else {
             return (
-                <td onClick={() => { checkDate(nbDay, heureDebut) ? takeReservation(heureDebut, heureFin) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200" : "bg-green-300 border-2 border-gray-200"}></td>
+                <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin,nbDay) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200" : "bg-green-300 border-2 border-gray-200"}></td>
             );
         }
     }
