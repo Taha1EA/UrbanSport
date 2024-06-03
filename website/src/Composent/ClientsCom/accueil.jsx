@@ -85,13 +85,13 @@ const Accueil = () => {
         </div>
       </div>
       <div className=' w-[97%] mt-4 bg-white rounded-md mb-4'>
-        <Offers />
+        {/* <Offers /> */}
         <Class />
         <Events />
 
       </div>
       <div className='w-[100%]'>
-        <Footer/>
+        {/* <Footer/> */}
       </div>
     </div>
   );

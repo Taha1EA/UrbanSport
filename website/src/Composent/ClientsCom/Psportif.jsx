@@ -1,31 +1,52 @@
-import React,{useState} from 'react'
-import full from '../../images/Offer_full.jpg';
-import foot from '../../images/Offer_football.jpg';
-import box from '../../images/Offer_box.jpg';
+import React,{useState,useEffect} from 'react'
+import BodyB from '../../images/bodyBuilding.jpg';
+import Cardio from '../../images/cardio.jpg';
+import CrossFit from '../../images/crossFit.png';
+import Fitness from '../../images/fitness.jpg';
+import Loss from '../../images/lose.jpg';
+import MuscleB from '../../images/muscleB.jpg';
+import PowerL from '../../images/powerLifting.jpg';
+import Yoga from '../../images/yoga.jpg';
+import ClassTab from "../ClientsCom/ClassTab.jsx";
+import AddPro from "../ClientsCom/addPro.jsx";
 function Psportif() {
-  const tab = [
-    [full, "Join our summer football camp and improve your skills!"],
-    [foot, '20% off on all gym memberships this month.'],
-    [box, 'Get fit with friends and save on group training sessions.']
-  ];
-  const [cIndex, setCindex] = useState(0);
+  const tab1 = [CrossFit,BodyB,Cardio];
+  const tab2 = [Fitness,Loss];
+  const tab3 = [MuscleB,PowerL,Yoga];
+  const [cIndex1, setCindex1] = useState(0);
+  const [cIndex2, setCindex2] = useState(0);
+  const [cIndex3, setCindex3] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      if(cIndex1<2){
+        setCindex1(cIndex1 + 1);
+        setCindex3(cIndex3 + 1);
+      }
+      else{
+        setCindex1(0);
+        setCindex3(0);  
+      }
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [cIndex1]);
   return (
     <div>
       <div className='bg-black w-[100%] h-[300px]  relative lg:h-[685px] group flex  items-center justify-around'>
-          <div style={{ backgroundImage: `url(${tab[cIndex][0]})` }} className='w-[60%]  h-[90%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>
-              <h2 className='p-4 bg-white/50 text-xl rounded-lg'>{tab[cIndex][1]}</h2>
+          <div style={{ backgroundImage: `url(${tab1[cIndex1]})` }} className='w-[60%]  h-[90%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>
+              <h1 className='p-4 bg-white/50 text-xl rounded-lg'>BE patient</h1>
             </div>
           <div className='w-[35%] h-[90%] flex flex-col justify-around'>
-              <div style={{ backgroundImage: `url(${tab[cIndex][0]})` }} className='w-full  h-[49%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>
-                <h2 className='p-4 bg-white/50 text-xl rounded-lg'>{tab[cIndex][1]}</h2>
-              </div>
-              <div style={{ backgroundImage: `url(${tab[cIndex][0]})` }} className='w-full  h-[49%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>
-                <h2 className='p-4 bg-white/50 text-xl rounded-lg'>{tab[cIndex][1]}</h2>
+              <div style={{ backgroundImage: `url(${tab2[cIndex2]})` }} className='w-full  h-[49%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>
+               </div>
+              <div style={{ backgroundImage: `url(${tab3[cIndex3]})` }} className='w-full  h-[49%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>
               </div>
           </div>
       </div>
-      <div>
-          <h1>Your programm</h1>
+      <div className='py-5'>
+          <ClassTab/>
+      </div>
+      <div className='py-5'>
+          <AddPro/>
       </div>
     </div>
   )

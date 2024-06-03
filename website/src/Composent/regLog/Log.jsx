@@ -42,8 +42,7 @@ const Log = ({ Admin }) => {
           }
         } else {
           if (Response.data) {
-            setCookie('user',Response.data[0] , { path: '/' })
-            setCookie('userI',Response.data[1] , { path: '/' })
+            setCookie('userI',Response.data[0] , { path: '/' })
             setTimeout(() => nav('/Main'), 500);
           } else {
             alert("not exist")

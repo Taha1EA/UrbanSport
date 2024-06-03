@@ -8,10 +8,8 @@ import Dashboard from "./assets/dashboardC"
 import Main from "./sousComp/ClientMain"
 import AdminDash from "./sousComp/AdminDash"
 import Accueil from "./Composent/ClientsCom/accueil";
-import Events from "./Composent/ClientsCom/Cevents";
 import Psportif from "./Composent/ClientsCom/Psportif";
 import ResMatch from "./Composent/ClientsCom/ResMatch";
-import { CookiesProvider } from 'react-cookie'
 const App = () => {
   return (
         <Router>
@@ -24,10 +22,8 @@ const App = () => {
           <Route element={<PrivateRoutes />}>
             <Route path="Main" element={<Main />} >
                 <Route  path="accueil" element={<Accueil/>}/>
-                <Route path="events" element={<Events/>}/>
                 <Route path="ps" element={<Psportif/>}/>
                 <Route path="res" element={<ResMatch/>}/>
-                <Route path="manage" element={<Accueil/>}/>
             </Route>
           </Route>
           <Route element={<PrivateRoutesA />}>
