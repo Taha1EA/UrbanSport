@@ -34,7 +34,7 @@ const PaymentForm = ({onData,price,infos}) => {
                 const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/reserve";
                 const fetchData = async () => {
                     let classes = new FormData();
-                    classes.append("idClient", parseInt(cookies.userI));
+                    classes.append("idClient", (cookies.userI));
                     classes.append("idTerrain", parseInt(infos[3])+1);
                     classes.append("DateRes", infos[0]);
                     classes.append("heureDeb", infos[1]);

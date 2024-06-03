@@ -27,7 +27,7 @@ function ClassTab() {
       const fetchData = async () => {
         if (cookiesU.userI) {
           let classes = new FormData();
-          classes.append("idClient", parseInt(cookiesU.userI));
+          classes.append("idClient", (cookiesU.userI));
           try {
             const response = await axios.post(url, classes);
             if (Array.isArray(response.data)) {
@@ -72,7 +72,7 @@ function ClassTab() {
       const fetchData = async () => {
         if (cookiesU.userI) {
           let classes = new FormData();
-          classes.append("idClient", parseInt(cookiesU.userI));
+          classes.append("idClient", (cookiesU.userI));
           classes.append("idPro", parseInt(sport));
           try {
             const response = await axios.post(url, classes);

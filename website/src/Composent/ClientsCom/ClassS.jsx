@@ -16,7 +16,7 @@ function ClassS() {
     const fetchData = async () => {
       if (cookies.userI) {
         let classes = new FormData();
-        classes.append("idClient", parseInt(cookies.userI));
+        classes.append("idClient", (cookies.userI));
         try {
           const response = await axios.post(url, classes);
           if (Array.isArray(response.data)) {

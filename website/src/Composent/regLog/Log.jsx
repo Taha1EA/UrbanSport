@@ -36,14 +36,14 @@ const Log = ({ Admin }) => {
         if (isAdmin) {
           if (Response.data) {
             setCookie('userA',Response.data[0] , { path: '/' })
-            setTimeout(() => nav('/AdminDash'), 500);
+            setTimeout(() => nav('/Dashboard'), 2000);
           } else {
             alert("not exist")
           }
         } else {
           if (Response.data) {
             setCookie('userI',Response.data[0] , { path: '/' })
-            setTimeout(() => nav('/Main'), 500);
+            setTimeout(() => nav('/Main'), 2000);
           } else {
             alert("not exist")
           }
@@ -73,7 +73,7 @@ const Log = ({ Admin }) => {
           </div>
           <input type='submit' onClick={hanleSubmit} value="Log In" className='cursor-pointer	 w-full mb-4 text-[15px] mt-6 rounded-full bg-gray-800 text-yellow-50 hover:bg-yellow-50 hover:text-gray-800 py-2 transition-colors duration-300' />
           <div className='flex flex-col justify-center content-center text-center'>
-            <a href="" className="text-gray-400 hover:text-gray-300 duration-300">Forgot your password?</a>
+            <Link to="/forgot" className="text-gray-400 hover:text-gray-300 duration-300">Forgot your password?</Link>
             {(!isAdmin) ? <span>New ? <Link to='/Reg' className='text-gray-600 hover:text-gray-300 duration-300'>Create an account</Link></span> : <span></span>}
           </div>
         </div>
@@ -82,4 +82,4 @@ const Log = ({ Admin }) => {
   )
 }
 
-export default Log;
+export default Log;

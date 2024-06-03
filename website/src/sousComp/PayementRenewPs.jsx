@@ -33,7 +33,7 @@ const PaymentForm = ({sport,price}) => {
                 const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/renewPs";
                 const fetchData = async () => {
                     let classes = new FormData();
-                    classes.append("idClient", parseInt(cookies.userI));
+                    classes.append("idClient", (cookies.userI));
                     classes.append("idPro", parseInt(sport));
                     try {
                         const response = await axios.post(url, classes);

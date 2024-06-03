@@ -9,7 +9,7 @@ const eventsData = [
   { id: 1, title: 'Football league', description: 'Join our summer football camp and improve your skills!', date: "April 19", image: full },
   { id: 2, title: 'Karate tournament', description: '20% off on all gym memberships this month.', date: "May 5", image: box },
   { id: 3, title: 'Fitness updates', description: 'Get fit with friends and save on group training sessions.', date: "April 19", image: foot },
-  // Add more events here as needed
+
 ];
 
 const Events = () => {

@@ -34,7 +34,7 @@ const PaymentForm = ({sport,price,weekDays,nbdays}) => {
                 const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/inscrire";
                 const fetchData = async () => {
                     let classes = new FormData();
-                    classes.append("idClient", parseInt(cookies.userI));
+                    classes.append("idClient", (cookies.userI));
                     classes.append("idPro", parseInt(sport));
                     classes.append("idWeek", parseInt(weekDays));
                     classes.append("nbdays", nbdays);
