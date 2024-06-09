@@ -6,6 +6,7 @@ import DropMenu from '../Composent/ClientsCom/dropPhoto';
 import { useCookies } from 'react-cookie';
 import './navStyle.css';
 import Logo from "../images/Sports.png"
+import Test from "../images/test.jpeg";
 function ClientNavBar(props) {
     const [isOpen, setIsOpen] = useState(false);
     const [cookiesU] = useCookies(['userI']);
@@ -17,7 +18,11 @@ function ClientNavBar(props) {
         setIsOpen(!isOpen);
         window.scrollTo(0, 0);
     };
-
+    const ShowMenuHandler = () => {setShowMenu(true)
+        setTimeout(() => {
+            setShowMenu(false);
+          }, 3000);
+    }
     const navTab = [
         ["/Main/accueil", "Accueil"],
         ["/Main/ps", "Programmes Sportif"],
@@ -33,7 +38,13 @@ function ClientNavBar(props) {
             const response = await axios.post(url, classes);
             if (response.data) {
                 setUsername(response.data[0][0])
-                let p="http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/"+response.data[0][1]
+                let p;
+                if(response.data[0][1]==""){
+                    p=Test
+                  }
+                  else{
+                    p = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/"+response.data[0][1];
+                  }
                 setPhoto(p)
             } else {
               console.error("Expected an array but got:", response.data);
@@ -59,8 +70,7 @@ function ClientNavBar(props) {
                 </div>
                 <div className='flex space-x-5 items-center'>
                     <div 
-                        onMouseEnter={() => setShowMenu(true)}
-                        onMouseLeave={() => setShowMenu(false)}
+                        onMouseEnter={ShowMenuHandler}
                         className="relative"
                     >
                         <img className='h-[40px] w-[40px] rounded-full cursor-pointer' src={photo} />

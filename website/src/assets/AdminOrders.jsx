@@ -1,5 +1,7 @@
 import React from 'react'
-
+import AddPro from "../Composent/ClientsCom/addPro"
 export default function AdminOrders() {
-	return <div>Orders Page</div>
+	return <div>
+		<AddPro/>
+	</div>
 }

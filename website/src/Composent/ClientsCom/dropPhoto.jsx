@@ -2,12 +2,10 @@ import React from 'react';
 import { NavLink } from "react-router-dom";
 import { useCookies } from 'react-cookie';
 const DropPhoto = () => {
-  const [cookies, setCookie, removeCookie] = useCookies(['userI']);
-  
+  const [cookie, setCookie, removeCookie] = useCookies();
   const Logout = () => {
-    removeCookie('userI');
-    console.log('User logged out and cookie removed');
-  };
+    removeCookie('userI',{path:'/'});
+    };
 
   return (
     <div className='flex flex-col border-2 border-gray-400 absolute w-[150px] h-[100px] z-10 bg-white rounded-lg p-4'>

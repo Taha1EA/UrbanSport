@@ -92,9 +92,9 @@ function ClassS() {
           </div>
         ))}
       </div>
-      <div className='w-[90%] flex flex-wrap mb-8 justify-center'>
+      <div className='w-[90%] flex flex-col items-center lg:flex-row flex-wrap mb-8 lg:justify-center'>
         {T[currentDay] && T[currentDay].map((timeSlot, index) => (
-          <div key={index} className='bg-gray-900 w-[23%] h-32 text-center mr-4 mt-4 p-4'>
+          <div key={index} className='bg-gray-900 w-[70%]  lg:w-[23%] h-32 text-center mr-4 mt-4 p-4'>
             <h3 className='text-lg text-gray-300'>{timeSlot[0]}</h3>
             <h1 className='text-xl text-bold text-orange-600'>{timeSlot[1]}</h1>
             <h3 className='text-lg text-gray-300'>{timeSlot[2]}</h3>

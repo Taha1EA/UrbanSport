@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
+import Notification from './Notification';
 const UpdateP = () => {
     const [pass, setPass] = useState("");
     const [newPass, setNewPass] = useState("");
@@ -8,7 +9,7 @@ const UpdateP = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [cookiesU] = useCookies(['userI']);
     const [infos, setInfos] = useState(null);
-  
+    const [notification, setNotification] = useState('');
     const handleNewCPass = (e) => {
         setCpass(e.target.value);
     };
@@ -36,7 +37,10 @@ const UpdateP = () => {
             try {
               const response = await axios.post(url, classes);
               if ((response.data)) {
-                alert(response.data)
+                setNotification('Your Password has been apdated');
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
               } else {
                 console.error("Expected an array but got:", response.data);
               }
@@ -70,6 +74,7 @@ const UpdateP = () => {
         <input onClick={handleSubmit} type='submit' value="Update Profile" className='cursor-pointer w-full mb-4 text-[15px] mt-6 rounded-full bg-gray-800 text-yellow-50 hover:bg-white hover:border-2 hover:border-gray-800 hover:text-gray-800 py-2 transition-colors duration-300' />
     
     </div>
+    <Notification message={notification} />
 </div>
   )
 }

@@ -13,7 +13,7 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 	{
 		key: 'home',
 		label: 'Home',
-		path: '/',
+		path: '/Dashboard',
 		icon: <HiOutlineViewGrid />
 	},
 	{
@@ -23,48 +23,28 @@ export const DASHBOARD_SIDEBAR_LINKS = [
 		icon: <HiOutlineCube />
 	},
 	{
-		key: 'orders',
-		label: 'Orders',
-		path: 'orders',
+		key: 'addPro',
+		label: 'Add Programme ',
+		path: 'Ordermatch',
 		icon: <HiOutlineShoppingCart />
 	},
 	{
-		key: 'customers',
-		label: 'Customers',
-		path: 'customers',
+		key: 'client Classes',
+		label: 'Client Classes',
+		path: 'ClientClasses',
 		icon: <HiOutlineUsers />
 	},
 	{
-		key: 'transactions',
-		label: 'Transactions',
-		path: '/transactions',
-		icon: <HiOutlineDocumentText />
-	},
-	{
-		key: 'messages',
-		label: 'Messages',
-		path: '/messages',
+		key: 'TabRes',
+		label: 'Reservation Table',
+		path: 'TabRes',
 		icon: <HiOutlineAnnotation />
 	},
 	{
-		key: 'Program Classes',
-		label: 'Program Classes',
-		path: 'ProgramClasses',
-		icon: <HiOutlineAnnotation />
-	}
-]
-
-export const DASHBOARD_SIDEBAR_BOTTOM_LINKS = [
-	{
-		key: 'settings',
-		label: 'Settings',
-		path: '/settings',
+		key: 'ShowRes',
+		label: 'Show Reservation',
+		path: 'ShowRes',
 		icon: <HiOutlineCog />
-	},
-	{
-		key: 'support',
-		label: 'Help & Support',
-		path: '/support',
-		icon: <HiOutlineQuestionMarkCircle />
 	}
+	
 ]

@@ -2,7 +2,9 @@ import React,{useState} from 'react';
 import { CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
+import Notification from '../Composent/ClientsCom/Notification';
 const PaymentForm = ({sport,price,weekDays,nbdays}) => {
+    const [notification, setNotification] = useState('');
     const stripe = useStripe();
     const elements = useElements();
     const [password,handlePassword]=useState("klj")
@@ -41,7 +43,10 @@ const PaymentForm = ({sport,price,weekDays,nbdays}) => {
                     try {
                         const response = await axios.post(url, classes);
                         if (response.data) {
-                            alert(response.data);
+                            setNotification('You Inscrire on the Programme  successfully');
+                            setTimeout(() => {
+                                window.location.reload();
+                            }, 2000);
                         } else {
                             console.error("Expected an array but got:", response.data);
                         }
@@ -61,11 +66,8 @@ const PaymentForm = ({sport,price,weekDays,nbdays}) => {
 
     return (
         <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto mt-8 p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
-            <div className="mb-4">
-                <input type='text'  value={p} onChange={(e)=>handlePassword(e.target.value)} className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
-            </div>
-            <div className="mb-4">
-                <input type='password' placeholder='enter your password' value={password} onChange={(e)=>handlePassword(e.target.value)} className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
+           <div className="mb-4">
+                <h1>You have to pay : {p} DHS</h1>
             </div>
             <div className="mb-4">
                 <CardElement className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
@@ -73,6 +75,7 @@ const PaymentForm = ({sport,price,weekDays,nbdays}) => {
             <button type="submit" disabled={!stripe} className="w-full bg-indigo-600 text-white py-2 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50">
                 Pay
             </button>
+            <Notification message={notification} />
         </form>
     );
 

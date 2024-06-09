@@ -4,6 +4,7 @@ import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
 import Button from "./button";
 import "./Navbar.css";
+import Logo from "../images/Sports.png"
 
 const Navbar = () => {
   let Links = [
@@ -17,10 +18,9 @@ const Navbar = () => {
   return (
     <div className="shadow-md w-full fixed top-0 left-0 z-40">
       <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
-        <div className="font-bold text-2xl cursor-pointer flex item-cnter font-[Poppins] text-gray-800">
-        
-        Nowress
-      </div>
+      <div>
+                    <img src={Logo} width={180} height={60} className='cursor-pointer' />
+                </div>
       {/* <div onClick={()=>setOpen(!open)} className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden">
         < RiMenu3Line name={open ? 'close' : 'menu'} />
       </div> */}

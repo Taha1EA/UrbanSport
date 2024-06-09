@@ -1,6 +1,4 @@
-import footballImage from "../images/football.jpg";
-import bgVideo from "../videos/video.mp4";
-
+import HeroSec from "../images/HeroSection.png"
 import "./Maincontent.css";
 const offersData = [
   {
@@ -26,9 +24,8 @@ const offersData = [
 const MainContent = () => {
   return (
     <main>
-      <div className="flex flex-col items-center max-h-fit ">
-        <div className="overlay">
-          <video src={bgVideo} autoPlay loop muted />
+      <div className="flex flex-col items-center h-screen ">
+        <div style={{ backgroundImage: `url(${HeroSec})` }} className='bg-fixed w-full h-full  bg-center bg-cover duration-700 flex items-end justify-center p-8'>
         </div>
       </div>
     </main>

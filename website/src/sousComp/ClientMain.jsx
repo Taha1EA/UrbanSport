@@ -4,6 +4,7 @@ import ClientNavBar from "../sousComp/ClientNavBar.jsx"
 const ClientMain = () => {
   const navigate = useNavigate();
     useEffect(() => {
+      
       if(window.location.pathname=='/Main')
         navigate('/Main/accueil');
     }, [navigate]);

@@ -4,8 +4,14 @@ import axios from 'axios';
 
 export default function DashboardStatsGrid() {
     const [clientCount, setClientCount] = useState(null);
+   
     const [error, setError] = useState(null);
-
+    const [TotalAll, setTotalAll] = useState(null);
+   
+    const [error1, setError1] = useState(null);
+    const [InscTotal, setInscTotal] = useState(null);
+   
+    const [error2, setError2] = useState(null);
     useEffect(() => {
         axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowTClients.php')
             .then(response => {
@@ -17,30 +23,72 @@ export default function DashboardStatsGrid() {
             });
     }
 	, []);
+    useEffect(() => {
+        axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowAllTotalYear.php')
+            .then(response => {
+                
+       
+                setTotalAll(response.data[0]['TOTALYEar']);
+            })
+            .catch(error1 => {
+                setError1('Failed to fetch Total Year');
+                console.error('Error fetching Total Year:', error1);
+            });
+    }
+	, []);
+    useEffect(() => {
+        axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/TotalInsc.php')
+            .then(response => {
+                
+       
+                setInscTotal(response.data[0]['YearTotal']);
+            })
+            .catch(error2 => {
+                setError2('Failed to fetch Total Year');
+                console.error('Error fetching Total Year:', error2);
+            });
+    }
+	, []);
+
+    const Total = (parseFloat(InscTotal) || 0) + (parseFloat(TotalAll) || 0);
+   
 
     return (
         <div className="flex gap-4">
             <BoxWrapper>
-                <div className="rounded-full h-12 w-12 flex items-center justify-center bg-sky-500">
+                <div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-500">
                     <IoBagHandle className="text-2xl text-white" />
                 </div>
                 <div className="pl-4">
-                    <span className="text-sm text-gray-500 font-light">Total Sales</span>
+                    <span className="text-sm text-gray-500 font-light">T I  Year</span>
                     <div className="flex items-center">
-                        <strong className="text-xl text-gray-700 font-semibold">$54232</strong>
-                        <span className="text-sm text-green-500 pl-2">+343</span>
+                        <strong className="text-xl text-gray-700 font-semibold">{Total} DHs</strong>
+                        
                     </div>
                 </div>
             </BoxWrapper>
             <BoxWrapper>
-                <div className="rounded-full h-12 w-12 flex items-center justify-center bg-orange-600">
+                <div className="rounded-full h-12 w-12 flex items-center justify-center bg-blue-600">
                     <IoPieChart className="text-2xl text-white" />
                 </div>
                 <div className="pl-4">
-                    <span className="text-sm text-gray-500 font-light">Total Expenses</span>
+                    <span className="text-sm text-gray-500 font-light">T I  reservation</span>
                     <div className="flex items-center">
-                        <strong className="text-xl text-gray-700 font-semibold">$3423</strong>
-                        <span className="text-sm text-green-500 pl-2">-343</span>
+                        <strong className="text-xl text-gray-700 font-semibold">{TotalAll} DHs</strong>
+                      
+                    </div>
+                </div>
+            </BoxWrapper>
+            
+            <BoxWrapper>
+                <div className="rounded-full h-12 w-12 flex items-center justify-center bg-orange-600">
+                    <IoCart className="text-2xl text-white" />
+                </div>
+                <div className="pl-4">
+                    <span className="text-sm text-gray-500 font-light">T I Classes</span>
+                    <div className="flex items-center">
+                        <strong className="text-xl text-gray-700 font-semibold">{InscTotal} DHs</strong>
+                        
                     </div>
                 </div>
             </BoxWrapper>
@@ -52,21 +100,9 @@ export default function DashboardStatsGrid() {
                     <span className="text-sm text-gray-500 font-light">Total Customers</span>
                     <div className="flex items-center">
                         {clientCount !== null && (
-                            <strong className="text-xl text-gray-700 font-semibold">{clientCount}</strong>
+                            <strong className="text-xl text-gray-700 font-semibold">{clientCount} client</strong>
                         )}
                         {error && <p>{error}</p>}
-                    </div>
-                </div>
-            </BoxWrapper>
-            <BoxWrapper>
-                <div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-600">
-                    <IoCart className="text-2xl text-white" />
-                </div>
-                <div className="pl-4">
-                    <span className="text-sm text-gray-500 font-light">Total Orders</span>
-                    <div className="flex items-center">
-                        <strong className="text-xl text-gray-700 font-semibold">16432</strong>
-                        <span className="text-sm text-red-500 pl-2">-43</span>
                     </div>
                 </div>
             </BoxWrapper>

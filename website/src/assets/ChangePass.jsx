@@ -44,18 +44,18 @@ const UpdatePassword = () => {
   };
 
   return (
-    <div className='text-white h-[100vh] flex justify-center items-center bg-black'>
-      <div className='bg-[#161616] border border-[#444444] rounded-md p-8 shadow-lg relative'>
-        <h1 className="text-[32px] text-white font-bold text-center mb-6">Change Password</h1>
+    <div className='text-black h-[100vh] flex justify-center items-center bg-white'>
+      <div className='bg-white border-4 border-[#444444] rounded-md p-8 shadow-lg relative'>
+        <h1 className="text-[32px] text-black font-bold text-center mb-6">Change Password</h1>
         {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>} {/* Display error message */}
         <form onSubmit={handleSubmit}>
           <div className="relative my-4">
-            <input onInput={handleNewPass} type="password" name="newPass" id="newPass" placeholder='' className='block w-72 py-2.5 pl-2 px-0 text-sm text-white bg-[#0c0b0b] border-0 border-b-2 border-gray-600 focus:outline-none focus:ring-0 focus:text-white focus:border-white peer' />
-            <label htmlFor="newPass" className='absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>New Password</label>
+            <input onInput={handleNewPass} type="password" name="newPass" id="newPass" placeholder='' className='block w-72 py-2.5 pl-2 px-0 text-sm text-black bg-white border-0 border-b-2 border-gray-600 focus:outline-none focus:ring-0 focus:text-black focus:border-white peer' />
+            <label htmlFor="newPass" className='absolute text-sm text-black duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>New Password</label>
           </div>
           <div className="relative my-4">
-            <input onInput={handleRnewPass} type="password" name="rnewPass" id="rnewPass" placeholder='' className='block w-72 py-2.5 pl-2 px-0 text-sm text-white bg-[#0c0b0b] border-0 border-b-2 border-gray-600 focus:outline-none focus:ring-0 focus:text-white focus:border-white peer' />
-            <label htmlFor="rnewPass" className='absolute text-sm text-white duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>Repeat New Password</label>
+            <input onInput={handleRnewPass} type="password" name="rnewPass" id="rnewPass" placeholder='' className='block w-72 py-2.5 pl-2 px-0 text-sm text-black bg-white border-0 border-b-2 border-gray-600 focus:outline-none focus:ring-0 focus:text-black focus:border-white peer' />
+            <label htmlFor="rnewPass" className='absolute text-sm text-black duration-300 transform -translate-y-6 scale-75 top-3 z-10 origin-[0] peer-focus:left-0 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6'>Repeat New Password</label>
           </div>
           <input type='submit' value="Change Password" className='cursor-pointer w-full mb-4 text-[15px] mt-6 rounded-full bg-gray-800 text-yellow-50 hover:bg-yellow-50 hover:text-gray-800 py-2 transition-colors duration-300' />
         </form>

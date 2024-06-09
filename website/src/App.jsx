@@ -18,6 +18,8 @@ import Dashboard from './assets/Dashboard'
 import AdminEvents from './assets/AdminEvents'
 import CompleteRegistration from './assets/AdditionalInfo'
 import AdminOrders from "./assets/AdminOrders";
+import TabRes from "./assets/TabResAdmin";
+import ShowRes from "./assets/ShowRes";
 import AdminClients from "./assets/AdminClients";
 import VerifyEmail from './assets/VerifyEmail';
 import ClassTab from  './assets/adminTabClass'
@@ -50,9 +52,11 @@ const App = () => {
                 <Route path="/Dashboard" element={<Layout />}>
                   <Route index element={<Dashboard />} />
                   <Route path="events" element={<AdminEvents />} />
-                  <Route path="orders" element={<AdminOrders />} />
+                  <Route path="Ordermatch" element={<AdminOrders />} />
                   <Route path="customers" element={<AdminClients />} />
-                  <Route path="ProgramClasses" element={<ClassTab />} />
+                  <Route path="ClientClasses" element={<ClassTab />} />
+                  <Route path="TabRes" element={<TabRes />} />
+                  <Route path="ShowRes" element={<ShowRes />} />
                 </Route>
               </Route>
         </Routes>
