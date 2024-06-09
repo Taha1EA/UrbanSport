@@ -17,12 +17,12 @@ function PopularProgram() {
   return (
     <div className='w-full'>
       <h1 className='text-center'>Popular Programs</h1>
-      <table className="min-w-full divide-y divide-gray-200 text-center w-[60%]">
-        <thead className="bg-gray-50 text-center">
+      <table className="min-w-full divide-y divide-gray-600 text-center w-[60%]">
+        <thead className="bg-[#ea580c] text-center">
           <tr>
-            <th className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Program ID</th>
-            <th className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-            <th className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Clients</th>
+            <th className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Program ID</th>
+            <th className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Name</th>
+            <th className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Clients</th>
             {/* Add more table headers if needed */}
           </tr>
         </thead>

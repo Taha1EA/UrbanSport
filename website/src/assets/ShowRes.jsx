@@ -13,7 +13,7 @@ const ShowRes = () => {
                       setClassDetail(prevState => [...prevState,[Class[0],
                         Class[1],
                         Class[2] ,Class[3],
-                          tabF[Class[4]],
+                          tabF[Class[4]-1],
                           ]]);    
                   })
               } else {
@@ -36,22 +36,22 @@ const ShowRes = () => {
     <div className="overflow-x-auto w-full">
       <div className="inline-block min-w-full py-2 align-middle">
         <div className="overflow-hidden shadow-md sm:rounded-lg">
-          <table className="min-w-full divide-y divide-gray-200 text-center">
-            <thead className="bg-gray-50 text-center">
+          <table className="min-w-full divide-y divide-gray-600  text-center">
+            <thead className="bg-red-500 text-center">
               <tr>
-                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   CNIE
                 </th>
-                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   DATE
                 </th>
-                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   START HOUR
                 </th>
-                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   END HOUR
                 </th>
-                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th scope="col" className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">
                   Terrain
                 </th>
               </tr>

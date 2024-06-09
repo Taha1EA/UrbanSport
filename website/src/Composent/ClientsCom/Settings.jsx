@@ -89,20 +89,20 @@ const UpdateClientProfile = () => {
         <div className='w-full'>
         <div className='w-full bg-gray-100 h-[220px] flex items-center justify-around'>
           <div className='flex flex-col items-start'>
-            <h1>Username: {infos[4]}</h1>
-            <h1>Email: {infos[2]}</h1>
-            <h1>Phone number: {infos[3]}</h1>
-            <h1>CNIE: {infos[6]}</h1>
+            <h1 className='text-xl'><span className='underline underlineunderline-offset-8'>Username:</span> {infos[4]}</h1>
+            <h1 className='text-xl'><span className='underline underlineunderline-offset-8'>Email: </span>{infos[2]}</h1>
+            <h1 className='text-xl'><span className='underline underlineunderline-offset-8'> Phone number:</span> {infos[3]}</h1>
+            <h1 className='text-xl'><span className='underline underlineunderline-offset-8'>CNIE:</span> {infos[6]}</h1>
           </div>
           <div>
             <img className='h-[150px] w-[150px] rounded-full cursor-pointer' src={infos[5]} alt="Profile" />
-            <h1>{infos[0]} {infos[1]}</h1>
+            <h1 className='text-xl text-center'>{infos[0]} {infos[1]}</h1>
           </div>
         </div>
-        <div className='flex space-x-10 h-[40px] justify-around items-center w-full bg-white'>
-            <Link to="updatePassword" className='hover:bg-blue-gray-200 text-center text-gray-900 bg-white border-1 border-gray-500 w-[33%] h-full'>Update Password</Link>
-            <Link to="updatePhoto" className='hover:bg-blue-gray-200 text-center text-gray-900 bg-white border-1 border-gray-500 w-[33%] h-full'>Update Photo</Link>
-            <Link to="Delete" className='hover:bg-blue-gray-200 text-center text-gray-900 bg-white border-1 border-gray-500 w-[33%] h-full'>Delete Account</Link>
+        <div className='flex space-x-10 h-[40px] justify-around  w-full bg-white'>
+            <Link to="updatePassword" className='flex items-center justify-center hover:bg-blue-gray-200 text-center text-gray-900 bg-white border-1 border-gray-500 w-[33%] h-full'>Update Password</Link>
+            <Link to="updatePhoto" className='flex items-center justify-center hover:bg-blue-gray-200 text-center text-gray-900 bg-white border-1 border-gray-500 w-[33%] h-full'>Update Photo</Link>
+            <Link to="Delete" className='flex items-center justify-center hover:bg-blue-gray-200 text-center text-gray-900 bg-white border-1 border-gray-500 w-[33%] h-full'>Delete Account</Link>
         </div>
         <div className='w-[100%]'>
           <Outlet/>

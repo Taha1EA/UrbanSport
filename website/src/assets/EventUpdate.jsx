@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from "axios";
-
+import Notification from '../Composent/ClientsCom/Notification';
 function EventUpdate() {
     const [eventDetail, seteventDetail] = useState([]);
     const [editingEvent, setEditingEvent] = useState(null);
@@ -12,7 +12,7 @@ function EventUpdate() {
         image: null
     });
     const [currentImage, setCurrentImage] = useState('');
-
+    const [notification,setNotification]=useState();
     useEffect(() => {
         fetchData();
     }, []);
@@ -40,8 +40,10 @@ function EventUpdate() {
                 try {
                     const response = await axios.post(url, classes);
                     if (response.data) {
-                        alert("Delete successfully");
-                        window.location.reload(); // Refresh the page
+                        setNotification('Event deleted  successfully');
+                        setTimeout(() => {
+                            window.location.reload();
+                        }, 2000);
                     } else {
                         console.error("Expected an array but got:", response.data);
                     }
@@ -89,7 +91,10 @@ function EventUpdate() {
         try {
             const response = await axios.post(url, form);
             if (response.data) {
-                alert("Update successfully");
+                setNotification("Update successfully");
+                setTimeout(() => {
+                    setNotification("");
+                }, 2000);
                 setEditingEvent(null);
                 fetchData(); // Re-fetch data to update the list
             } else {
@@ -168,6 +173,7 @@ function EventUpdate() {
                     )}
                 </div>
             ))}
+            <Notification message={notification}/>
         </div>
     );
 }

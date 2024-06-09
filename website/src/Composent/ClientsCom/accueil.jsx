@@ -14,7 +14,7 @@ import Footer from "../../assets/Footer.jsx"
 const Accueil = () => {
   const tab = [
     [full, "Join our summer football camp and improve your skills!"],
-    [foot, '20% off on all gym memberships this month.'],
+    [foot, 'Champions ship of football is now Available'],
     [box, 'Get fit with friends and save on group training sessions.']
   ];
   const [cIndex, setCindex] = useState(0);

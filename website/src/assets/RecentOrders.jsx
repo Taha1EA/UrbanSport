@@ -22,21 +22,21 @@ const ReservationsTable = () => {
     <div className='w-full'>
       <h1 className='text-center'>Reservations</h1>
       <table className="min-w-full divide-y divide-gray-200 text-center w-[60%]">
-        <thead className="bg-gray-50 text-center">
+        <thead className="bg-[#0ea5e9] text-center">
           <tr>
             
-            <th  className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Terrain ID</th>
-            <th  className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">TotalC</th>
+            <th  className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Terrain ID</th>
+            <th  className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">TotalC</th>
             
-            <th  className="px-8 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type ID</th>
+            <th  className="px-8 py-3 text-left text-xs font-medium text-white uppercase tracking-wider">Type ID</th>
           </tr>
         </thead>
         <tbody className="bg-white divide-y divide-gray-200 text-center">
           {reservations.map((reservation, index) => (
-            <tr key={index}>
+            <tr key={index} >
               <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-900">{reservation.idTerrainT}</td>
               <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-900">{reservation.TotalC}</td>
-              <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-900">{reservation.idTypeT}</td>
+              <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-900">{reservation.nbJoueurs+" "+reservation.terrainPlace}</td>
             </tr>
           ))}
         </tbody>

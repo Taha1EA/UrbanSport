@@ -9,6 +9,7 @@ import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from "../sousComp/PayementForm";
 import CustomDatePicker from '../Composent/ClientsCom/CustomDatePicker'; 
 import Notification from '../Composent/ClientsCom/Notification';
+import ErrorNotification from '../Composent/ClientsCom/ErrorNotification';
 const TabReservation = () => {
     const stripePromise = loadStripe('pk_test_51PN2ejLKugBhnMnptyFTTIIqxLXCdDiUtiMsH7UwuNpxl1RiL35DIvWsnpbrNKWrqi38oFrxINmDTOKBHy3OgHwI00VmeRcg0A');
     const [tabFields, setTabFields] = useState([RedF, RedF, RedF, RedF, RedF]);
@@ -28,6 +29,7 @@ const TabReservation = () => {
     const containerRef = useRef(null);
     const [heightClass, setHeightClass] = useState('');
     const [notification, setNotification] = useState('');
+    const [Enotification, setENotification] = useState('');
     useEffect(() => {
       const updateHeight = () => {
         if (containerRef.current) {
@@ -194,7 +196,15 @@ const TabReservation = () => {
         }
     }
     function SubmitUserHandler(){
-        setshowPay(true)        
+        if(pricef != 0){
+            setshowPay(true)
+        }
+        else{
+            setENotification('Please Select A field Graphiqly');
+                    setTimeout(() => {
+                        setENotification("");
+                    }, 2000);
+        }        
     }
     function SubmitAdminHandler(){
         const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/reserveAdmin";
@@ -396,6 +406,7 @@ const TabReservation = () => {
                 </div>
             </div>
             <Notification message={notification} />
+            <ErrorNotification message={Enotification} />
         </div>
     );
 }

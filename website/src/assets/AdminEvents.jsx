@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import EventUpdate from './EventUpdate';
-
+import Notification from '../Composent/ClientsCom/Notification';
 const AdminEvents = () => {
   const [formData, setFormData] = useState({
     nomEvent: '',
@@ -11,7 +11,7 @@ const AdminEvents = () => {
     DescriptionEvents: '',
     photoE: null,
   });
-
+  const [notification,setNotification]=useState("");
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
 
@@ -41,7 +41,10 @@ const AdminEvents = () => {
       })
       .then(response => {
         if (response.data === "Success") {
-          setTimeout(() => navigate('/dashboard/events'), 2000);
+          setNotification('Event Created Succefully');
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 2000);
         } else {
           alert("Failed to create event: " + response.data);
         }
@@ -75,7 +78,7 @@ const AdminEvents = () => {
   return (
     <>
       <div className="flex flex-col items-center mt-8 space-y-8">
-        <div className="bg-gradient-to-r from-blue-400 via-red-500 to-blue-500 p-10 rounded-lg shadow-2xl transform transition duration-500 hover:scale-105">
+        <div className="bg-gradient-to-r from-blue-500 via-blue-300 to-blue-500 p-10 rounded-lg shadow-2xl transform transition duration-500 hover:scale-105">
           <h1 className="text-4xl text-white font-bold text-center mb-6">Add Event</h1>
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="w-full">
@@ -143,6 +146,7 @@ const AdminEvents = () => {
         </div>
       </div>
       <EventUpdate />
+      <Notification message={notification}/>
     </>
   );
 }
