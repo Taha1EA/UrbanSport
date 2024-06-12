@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
-import Button from "./Button";
+import Button from "./button";
 import Logo from "../images/Sports.png";
 import LogoW from "../images/SportsWhite.png";
 import DarkModeToggle from "./DarkModeToggle";
