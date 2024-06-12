@@ -1,37 +1,32 @@
 import React from 'react';
-import facebook from '../images/facebook.png';
-import instagram from '../images/instagram.png';
-import twitter from '../images/twitter.png';
-import linkedin from '../images/linkedin.png';
+import { ImFacebook2 } from "react-icons/im";
+import { FaInstagram } from "react-icons/fa6";
+import { BsTwitterX } from "react-icons/bs";
+import { FaYoutube } from "react-icons/fa";
 import './Footer.css';
-
+import LogoW from "../images/SportsWhite.png";
 const Footer = () => {
   return (
     <div className='footer   '>
       <div className='sb__footer section__padding'>
           <div className='sb__footer-links'>
             <div className='sb__footer-links-div'>
-                    <h4>For Business</h4>
-                    <a href="##">
-                      <p>About us</p>
-                    </a>
-                    <a href="##">
-                      <p>Services</p>
-                    </a>
-                    <a href="##">
-                      <p>Contact us</p>
-                    </a>
+                    <img src={LogoW} alt="logo"/>
+                    
             </div>
             <div className='sb__footer-links-div'>
-                    <h4>For Business</h4>
+                    <h4>Home Page</h4>
                     <a href="##">
-                      <p>About us</p>
+                      <p>Book NOw</p>
                     </a>
                     <a href="##">
-                      <p>Services</p>
+                      <p>Class Schedule</p>
                     </a>
                     <a href="##">
-                      <p>Contact us</p>
+                      <p>Class Prices</p>
+                    </a>
+                    <a href="##">
+                      <p>Event</p>
                     </a>
             </div>
             <div className='sb__footer-links-div'>
@@ -43,26 +38,25 @@ const Footer = () => {
             </div>
             <div className='sb__footer-links-div'>
                     <h4>For Business</h4>
-                    <a href="##">
-                      <p>About us</p>
+                    <a href="/aboutUs">
+                      <p>05 77 88 99 10</p>
                     </a>
                     <a href="##">
-                      <p>Services</p>
+                      <p>urbainSport@gmail.com</p>
                     </a>
                     <a href="##">
-                      <p>Contact us</p>
+                      <p>azli lot industriel 2eme tranche lot n° 15 Près de l'usine Coca cola, Marrakech 40000</p>
                     </a>
-                    <a href="##">
-                      <p>Contact us</p>
-                    </a>
+                    
             </div>
             <div className='sb__footer-links-div'>
                     <h4>Coming soon on</h4>
                     <div className='socialmedia'>
-                       <p><img src={facebook} alt=""  /></p>
-                       <p><img src={twitter} alt=""  /></p>
-                       <p><img src={linkedin} alt=""  /></p>
-                       <p><img src={instagram} alt=""  /></p>
+                        <p><ImFacebook2 className='text-white w-12 h-8'/></p>
+                        <p><FaInstagram className='text-white w-12 h-8'/></p>
+                        <p><BsTwitterX className='text-white w-12 h-8'/></p>
+                        <p><FaYoutube className='text-white w-12 h-8'/></p>
+                       
                     </div>
             </div>
 
