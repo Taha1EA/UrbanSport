@@ -36,7 +36,7 @@ const Log = ({ Admin }) => {
       if (isAdmin) {
         informations.append("admin", isAdmin);
       }
-      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/log", informations).then(Response => {
+      axios.post("http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/log", informations).then(Response => {
         if (isAdmin) {
           if (Response.data) {
             setCookie('userA',Response.data[0] , { path: '/' })

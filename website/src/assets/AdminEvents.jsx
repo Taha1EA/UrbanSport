@@ -28,7 +28,7 @@ const AdminEvents = () => {
     e.preventDefault();
     const formErrors = validateForm(formData);
     if (Object.keys(formErrors).length === 0) {
-      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/CreateEvents.php";
+      const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/CreateEvents.php";
       const informations = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
         informations.append(key, value);

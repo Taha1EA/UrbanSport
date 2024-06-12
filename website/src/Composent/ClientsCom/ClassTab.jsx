@@ -42,7 +42,7 @@ function ClassTab() {
       setshowPay(true)        
     };
     useEffect(() => {
-      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/selectPs";
+      const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/selectPs";
       const fetchData = async () => {
         if (cookiesU.userI) {
           let classes = new FormData();
@@ -87,7 +87,7 @@ function ClassTab() {
     }
     //delete class
     const deleteClass=(sport)=>{
-      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/deletePs";
+      const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/deletePs";
       const fetchData = async () => {
         if (cookiesU.userI) {
           let classes = new FormData();
@@ -111,9 +111,9 @@ function ClassTab() {
       fetchData();
     }
   return (
-    <div className="p-4 flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">Your Classes</h1>
-         <div className='px-8 py-3 text-center text-[14px] font-medium flex text-gray-800 uppercase tracking-wider'>
+    <div className="p-4 flex flex-col items-center dark:bg-blue-gray-900  ">
+      <h1 className="text-2xl font-bold mb-4 dark:text-white">Your Classes</h1>
+         <div className='px-8 py-3 text-center text-[14px] font-medium flex text-gray-800 dark:text-white uppercase tracking-wider'>
       Days content meaning :<br/>1: Monday-Wednesday-Friday<br/>2:Tuesday-Thursday-Saturday
       </div>
       <div className="flex flex-col items-center">

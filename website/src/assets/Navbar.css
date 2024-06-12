@@ -14,7 +14,7 @@
 .sb__navbar-menu_container button{
     padding: 0.5rem 1rem;
     color: #8000e5;
-    background-color: white;
+    background-color: orange;
     border: 1px solid #8000e5;
     font-weight: 600;
     font-size: 13px;
@@ -91,3 +91,24 @@
         display: block;
     }
 }
+/* Default Navbar styles */
+.navbar {
+    background-color: white;
+    color: black;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  .navbar a {
+    color: black;
+  }
+  
+  /* Dark mode Navbar styles */
+  body.dark-mode .navbar {
+    background-color: #121212;
+    color: white;
+  }
+  
+  body.dark-mode .navbar a {
+    color: white;
+  }
+  

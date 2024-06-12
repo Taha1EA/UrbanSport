@@ -7,7 +7,7 @@ import PopularProgram from './PopularProducts'
 
 export default function Dashboard() {
 	return (
-		<div className="flex flex-col gap-4">
+		<div className="flex flex-col gap-4 dark:bg-blue-gray-800">
 			<DashboardStatsGrid />
 			<div className="flex flex-row gap-4 w-full">
 				<TransactionChart />

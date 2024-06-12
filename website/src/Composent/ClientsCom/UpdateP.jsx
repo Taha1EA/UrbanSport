@@ -26,7 +26,7 @@ const UpdateP = () => {
       setNewPass(e.target.value);
     };
     const handleSubmit = () => {
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/setting";
+        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/setting";
         const fetchData = async () => {
           if (cookiesU.userI) {
             let classes = new FormData();

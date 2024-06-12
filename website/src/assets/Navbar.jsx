@@ -1,30 +1,46 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { RiMenu3Line, RiCloseLine } from "react-icons/ri";
-// import logo from "../icons/logo.png";
 import { Link } from "react-router-dom";
-import Button from "./button";
-import "./Navbar.css";
-import Logo from "../images/Sports.png"
+import Button from "./Button";
+import Logo from "../images/Sports.png";
+import LogoW from "../images/SportsWhite.png";
+import DarkModeToggle from "./DarkModeToggle";
 
 const Navbar = () => {
-  let Links = [
-    {name : "HOME",link : "/"},
-    {name : "Events",link : "/"},
-    {name : "Coaches",link : "/"},
-    {name : "Offers",link : "/"},
-    {name : "Dashboard",link : "/Dashboard"}
-  ]
   const [toggleMenu, setToggleMenu] = useState(false);
+  const [darkMode, setDarkMode] = useState(() => {
+    const savedMode = localStorage.getItem('dark-mode');
+    return savedMode ? JSON.parse(savedMode) : false;
+  });
+
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add('dark');
+    } else {
+      document.body.classList.remove('dark');
+    }
+    localStorage.setItem('dark-mode', JSON.stringify(darkMode));
+  }, [darkMode]);
+
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+  };
+
+  const Links = [
+    { name: "HOME", link: "/" },
+    { name: "Events", link: "/events" },
+    { name: "Coaches", link: "/coaches" },
+    { name: "Offers", link: "/offers" },
+    { name: "Dashboard", link: "/dashboard" },
+  ];
+
   return (
     <div className="shadow-md w-full fixed top-0 left-0 z-40">
-      <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
-      <div>
-                    <img src={Logo} width={180} height={60} className='cursor-pointer' />
-                </div>
-      {/* <div onClick={()=>setOpen(!open)} className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden">
-        < RiMenu3Line name={open ? 'close' : 'menu'} />
-      </div> */}
-      <div className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden">
+      <div className="navbar bg-white dark:bg-gray-900 text-black dark:text-white py-4 md:px-10 px-7 flex items-center justify-between">
+        <div>
+          <img src={darkMode ? LogoW : Logo} width={180} height={60} className="cursor-pointer" alt="Logo" />
+        </div>
+        <div className="text-3xl absolute right-8 top-6 cursor-pointer md:hidden">
           {toggleMenu ? (
             <RiCloseLine
               color="#000"
@@ -39,40 +55,40 @@ const Navbar = () => {
             />
           )}
           {toggleMenu && (
-            <div className="sb__navbar-menu_container scale-up-center">
-              <div className="sb__navbar-menu_container-links">
-                <p>
-                  <Link to="www.google.com">ABOUT</Link>
+            <div className="sb__navbar-menu_container scale-up-center bg-white dark:bg-gray-900 text-black dark:text-white p-5">
+              {Links.map((Linko) => (
+                <p key={Linko.name} className="py-2">
+                  <Link to={Linko.link}>{Linko.name}</Link>
                 </p>
-                <p>
-                  <Link to="/Dashboard">Dashboard</Link>
-                </p>
-                <p>
-                  <Link to="www.google.com">INDIVIDUALS</Link>
-                </p>
-              </div>
-              <div className="sb__navbar-menu_container-links-sign">
-              
-                  <button type="button">  <Link to="/reg">JOIN US  </Link></button>
-              
+              ))}
+              <div className="sb__navbar-menu_container-links-sign mt-4">
+                <button type="button">
+                  <Link to="/reg">JOIN US</Link>
+                </button>
               </div>
             </div>
           )}
         </div>
-
-      <ul className="md:flex md:items-center md:pb-0 pb-12 absolute md:static  md:z-auto z-[-1] left-0 w-full md:w-auto md:pl-0 pl-9 hidden">
-        {
-          Links.map((Linko)=>(
-
-            <li key={Linko.name} className="md:ml-8 text-xl md:my-0 my-7">
-              <Link to={Linko.link} className="text-gray-500 hover:text-gray-400 duration-500">{Linko.name}</Link>
+        <ul className="hidden md:flex items-center space-x-8">
+          {Links.map((Linko) => (
+            <li key={Linko.name} className="text-xl">
+              <Link
+                to={Linko.link}
+                className="text-gray-500 hover:text-gray-400 dark:text-gray-200 dark:hover:text-gray-300"
+              >
+                {Linko.name}
+              </Link>
             </li>
-
-          ))
-        }
-        <Button >  <Link to="/reg">JOIN US  </Link></Button>
-        <Button><Link to="/log">LOG IN  </Link></Button>
-      </ul></div>
+          ))}
+          <Button>
+            <Link to="/reg">JOIN US</Link>
+          </Button>
+          <Button>
+            <Link to="/log">LOG IN</Link>
+          </Button>
+          <DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+        </ul>
+      </div>
     </div>
   );
 };

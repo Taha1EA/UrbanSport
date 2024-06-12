@@ -30,7 +30,7 @@ const UpdateClientProfile = () => {
   };
 
   useEffect(() => {
-    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/infoSetting";
+    const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/infoSetting";
     const fetchData = async () => {
       if (cookiesU.userI) {
         let classes = new FormData();
@@ -43,7 +43,7 @@ const UpdateClientProfile = () => {
               T[5]=Test
             }
             else{
-              T[5] = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/" + response.data[0][5];
+              T[5] = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/" + response.data[0][5];
             }
             setInfos(T);
           } else {
@@ -66,7 +66,7 @@ const UpdateClientProfile = () => {
       informations.append("newNom", newNom);
       informations.append("newPass", newPass);
 
-      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/setting", informations)
+      axios.post("http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/setting", informations)
         .then(response => {
           if (response.data.success) {
             alert("Profile updated successfully!");

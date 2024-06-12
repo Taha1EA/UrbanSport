@@ -13,7 +13,7 @@ export default function DashboardStatsGrid() {
    
     const [error2, setError2] = useState(null);
     useEffect(() => {
-        axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowTClients.php')
+        axios.get('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowTClients.php')
             .then(response => {
                 setClientCount(response.data[0]['TotlalClient']);
             })
@@ -55,14 +55,14 @@ export default function DashboardStatsGrid() {
 
     return (
         <div className="flex gap-4">
-            <BoxWrapper>
+            <BoxWrapper >
                 <div className="rounded-full h-12 w-12 flex items-center justify-center bg-green-500">
                     <IoBagHandle className="text-2xl text-white" />
                 </div>
-                <div className="pl-4">
-                    <span className="text-sm text-gray-500 font-light">T I  Year</span>
+                <div className="pl-4 " >
+                    <span className="text-sm text-gray-500 font-light dark:text-white">T I  Year</span>
                     <div className="flex items-center">
-                        <strong className="text-xl text-gray-700 font-semibold">{Total} DHs</strong>
+                        <strong className="text-xl text-gray-700 font-semibold dark:text-white ">{Total} DHs</strong>
                         
                     </div>
                 </div>
@@ -72,9 +72,9 @@ export default function DashboardStatsGrid() {
                     <IoPieChart className="text-2xl text-white" />
                 </div>
                 <div className="pl-4">
-                    <span className="text-sm text-gray-500 font-light">T I  reservation</span>
+                    <span className="text-sm text-gray-500 font-light dark:text-white ">T I  reservation</span>
                     <div className="flex items-center">
-                        <strong className="text-xl text-gray-700 font-semibold">{TotalAll} DHs</strong>
+                        <strong className="text-xl text-gray-700 font-semibold dark:text-white">{TotalAll} DHs</strong>
                       
                     </div>
                 </div>
@@ -85,9 +85,9 @@ export default function DashboardStatsGrid() {
                     <IoCart className="text-2xl text-white" />
                 </div>
                 <div className="pl-4">
-                    <span className="text-sm text-gray-500 font-light">T I Classes</span>
+                    <span className="text-sm text-gray-500 font-light dark:text-white">T I Classes</span>
                     <div className="flex items-center">
-                        <strong className="text-xl text-gray-700 font-semibold">{InscTotal} DHs</strong>
+                        <strong className="text-xl text-gray-700 font-semibold dark:text-white">{InscTotal} DHs</strong>
                         
                     </div>
                 </div>
@@ -97,10 +97,10 @@ export default function DashboardStatsGrid() {
                     <IoPeople className="text-2xl text-white" />
                 </div>
                 <div className="pl-4">
-                    <span className="text-sm text-gray-500 font-light">Total Customers</span>
+                    <span className="text-sm text-gray-500 font-light dark:text-white">Total Customers</span>
                     <div className="flex items-center">
                         {clientCount !== null && (
-                            <strong className="text-xl text-gray-700 font-semibold">{clientCount} client</strong>
+                            <strong className="text-xl text-gray-700 font-semibold dark:text-white">{clientCount} client</strong>
                         )}
                         {error && <p>{error}</p>}
                     </div>
@@ -111,5 +111,5 @@ export default function DashboardStatsGrid() {
 }
 
 function BoxWrapper({ children }) {
-    return <div className="bg-white rounded-sm p-4 flex-1 border border-gray-200 flex items-center">{children}</div>
+    return <div className="bg-white rounded-sm p-4 flex-1 border border-gray-200 flex items-center  dark:bg-gray-900 ">{children}</div>
 }

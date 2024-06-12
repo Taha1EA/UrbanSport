@@ -25,3 +25,38 @@
       transform: rotate(360deg);
     }
   }
+  body {
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+:root {
+  --bg-color-light: #ffffff;
+  --bg-color-dark: #1a202c;
+  --text-color-light: #000000;
+  --text-color-dark: #ffffff;
+}
+
+body {
+  background-color: var(--bg-color-light);
+  color: var(--text-color-light);
+}
+
+body.dark {
+  background-color: var(--bg-color-dark);
+  color: var(--text-color-dark);
+}
+
+.navbar {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.sb__navbar-menu_container {
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.dark-mode-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: inherit;
+}

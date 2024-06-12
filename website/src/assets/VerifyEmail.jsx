@@ -11,7 +11,7 @@ const Verifycode = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/VerifyEmail.php', {
+            const res = await axios.post('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/VerifyEmail.php', {
                 email,
             }, {
                 withCredentials: true,

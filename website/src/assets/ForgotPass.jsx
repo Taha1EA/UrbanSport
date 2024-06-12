@@ -11,7 +11,7 @@ const ForgotPass = () => {
         e.preventDefault();
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/MAIL.php', {
+            const res = await axios.post('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/MAIL.php', {
                 email,
             }, {
                 withCredentials: true,

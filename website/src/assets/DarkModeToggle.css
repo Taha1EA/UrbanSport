@@ -1,0 +1,19 @@
+.dark-mode-toggle {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s, background-color 0.3s;
+  }
+  
+  .dark-mode-toggle:focus {
+    outline: none;
+  }
+  
+  body.dark .dark-mode-toggle {
+    color: #fff;
+  }
+  

@@ -77,7 +77,7 @@ const TabReservation = () => {
     console.log(field)
     useEffect(() => {
        if(selectedDate == null){
-        let url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
+        let url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
         axios.post(url).then(response => {
             setDayOfTable([])
                 setMatchDetails({
@@ -102,7 +102,7 @@ const TabReservation = () => {
        }
        else{
         console.log('Selected Date:', selectedDate);
-        let url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
+        let url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
         let dateInfo=new FormData();
         dateInfo.append("date",selectedDate)
         axios.post(url,dateInfo).then(response => {
@@ -207,7 +207,7 @@ const TabReservation = () => {
         }        
     }
     function SubmitAdminHandler(){
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/reserveAdmin";
+        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/reserveAdmin";
         const fetchData = async () => {
             let classes = new FormData();
             classes.append("admin",parseInt(cookiesA.userA))
@@ -254,7 +254,7 @@ const TabReservation = () => {
         setPricef(tabprice[index])
     };
     useEffect(() => {
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/fields";
+        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/fields";
         const fetchData = async () => {
             let classes = new FormData();
             classes.append("DateRes", dateR);
@@ -281,27 +281,27 @@ const TabReservation = () => {
     }, [dateR, deHeure, aHeure]);
 
     return (
-        <div className='mt-12 md:mt-4 '>
-            <h2 className="text-2xl font-bold text-center mb-8 mt-5">Book Now</h2>
-            <div className='flex flex-col items-center  mb-4'>
+        <div className='mt-12 md:mt-4 dark:bg-blue-gray-800 '>
+            <h2 className="text-2xl font-bold text-center mb-8 mt-5 dark:text-white">Book Now</h2>
+            <div className='flex flex-col items-center  mb-4 dark:text-white'>
                 <p>Choose the date if doesn't exist in the table behind</p>
                 <CustomDatePicker  onDateChange={handleDateChange} />
             </div>
             <div className='w-full flex flex-col items-center lg:flex-row lg:justify-around'>
                 <div className='w-[90%] mb-12 md:mb-0 md:w-[65%]'>
                     <table className='w-full'>
-                        <thead className='bg-gray-100 border-b-2 border-gray-200'>
+                        <thead className='bg-gray-100 border-b-2 border-gray-200 dark:bg-gray-900'>
                             <tr>
-                                <th className='w-[60px]'></th>
+                                <th className='w-[60px] '></th>
                                 {tabDeJour.map((day) => (
-                                    <th value={day[0]} key={day[0]} className='p-1 w-[70px] md:w-auto text-[8px] md:text-sm font-bold '>{day[1]}</th>
+                                    <th value={day[0]} key={day[0]} className='p-1 w-[70px] md:w-auto text-[8px] dark:text-white md:text-sm font-bold '>{day[1]}</th>
                                 ))}
                             </tr>
                         </thead>
-                        <tbody className='bg-gray-50 border-b-4 border-gray-200'>
+                        <tbody className='bg-gray-50 border-b-4 border-gray-200 dark:bg-gray-900'>
                             {tabDesHeures.map((time) => (
                                 <tr className='h-[30px]' key={time}>
-                                    <th className='p-1 w-[70px] text-[8px] md:text-[10px] font-bold ' value={[time[0], time[1]]}>{time[0]}-{time[1]}</th>
+                                    <th className='p-1 w-[70px] text-[8px] md:text-[10px] font-bold dark:text-white ' value={[time[0], time[1]]}>{time[0]}-{time[1]}</th>
                                     {tabDeJour.map((day) => (
                                         handleReserved(time[0], time[1], day[0] + time[0])
                                     ))}
@@ -310,51 +310,51 @@ const TabReservation = () => {
                         </tbody>
                     </table>
                     <div className='flex w-full justify-center mt-3 space-x-6'>
-                        <div className='flex space-x-1 justify-center items-center'>
+                        <div className='flex space-x-1 justify-center items-center dark:text-white'>
                             <div className='h-3 w-3 bg-green-500'></div>
                             <p>Disponible</p>
                         </div>
-                        <div className='flex space-x-1 justify-center items-center'>
+                        <div className='flex space-x-1 justify-center items-center dark:text-white'>
                             <div className='h-3 w-3 bg-orange-400'></div>
                             <p>Some Disponible</p>
                         </div>
-                        <div className='flex space-x-1 justify-center items-center'>
+                        <div className='flex space-x-1 justify-center items-center dark:text-white'>
                             <div className='h-3 w-3 bg-red-500'></div>
                             <p>Booked</p>
                         </div>
                     </div>
                 </div>
-                <div className='w-[80%] lg:w-[30%] flex flex-col items-center rounded-xl border-gray-400 border-2 bg-gray-100'>
-                    <h4 className='text-center leading-10 font-bold w-full h-10 bg-gray-50 border-gray-400 border-b-2 rounded-t-xl'>Online Booking</h4>
+                <div className='w-[80%] lg:w-[30%] flex flex-col items-center rounded-xl border-gray-400 border-2 bg-gray-100 dark:bg-blue-gray-900'>
+                    <h4 className='text-center leading-10 font-bold w-full h-10 bg-gray-50 border-gray-400 border-b-2 rounded-t-xl dark:bg-blue-gray-900 dark:text-white'>Online Booking</h4>
                     <div className='w-[60%]'>
                         {cookiesA.userA?
-                        <div className='flex flex-col my-6'>
+                        <div className='flex flex-col my-6 dark:text-white'>
                             <label>client  CNIE</label>
-                            <input type='text' name='date' value={CNIE} onChange={(e)=>{setCNIE(e.target.value)}} className='border-gray-300 border-2 ' />
+                            <input type='text' name='date' value={CNIE} onChange={(e)=>{setCNIE(e.target.value)}} className='border-gray-300 border-2 dark:text-black ' />
                         </div>:null}
-                        <div className='flex flex-col my-6'>
+                        <div className='flex flex-col my-6 dark:text-white'>
                             <label>Date</label>
-                            <input type='date' name='date' value={dateR}  className='border-gray-300 border-2 ' />
+                            <input type='date' name='date' value={dateR}  className='border-gray-300 border-2 dark:text-black ' />
                         </div>
-                        <div className='flex flex-col my-6'>
+                        <div className='flex flex-col my-6 dark:text-white'>
                             <label>De</label>
-                            <input type='text' name='heureDeb' value={deHeure}  className='border-gray-300 border-2 ' />
+                            <input type='text' name='heureDeb' value={deHeure}  className='border-gray-300 border-2 dark:text-black ' />
                         </div>
-                        <div className='flex flex-col my-6'>
+                        <div className='flex flex-col my-6 dark:text-white'>
                             <label>A</label>
-                            <input type='text' name='heureFin' value={aHeure}  className='border-gray-300 border-2 ' />
+                            <input type='text' name='heureFin' value={aHeure}  className='border-gray-300 border-2 dark:text-black ' />
                         </div>
-                        <div className='flex flex-col my-6'>
+                        <div className='flex flex-col my-6 dark:text-white'>
                             <label>Type terrain</label>
-                            <select className='border-gray-300 border-2' value={field} >
+                            <select className='border-gray-300 border-2 dark:text-black' value={field} >
                                 {selectFields.map((c, idx) => (
                                     <option key={idx} value={idx}>{c}</option>
                                 ))}
                             </select>
                         </div>
-                        <div className='flex flex-col my-6'>
+                        <div className='flex flex-col my-6 dark:text-white'>
                             <label>Price</label>
-                            <input type='text' name='pricef' value={pricef}  className='border-gray-300 border-2 ' />
+                            <input type='text' name='pricef' value={pricef}  className='border-gray-300 border-2 dark:text-black ' />
                         </div>
                         {(cookiesU.userI || cookiesA.userA) && (
                             <input 

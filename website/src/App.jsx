@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+
 import PrivateRoutes from '../src/sousComp/ProtectedRoutes';
 import PrivateRoutesA from '../src/sousComp/ProtectedRoutesA';
 import Home from "./Home";
@@ -24,11 +25,14 @@ import AdminClients from "./assets/AdminClients";
 import VerifyEmail from './assets/VerifyEmail';
 import ClassTab from  './assets/adminTabClass'
 import ResetPass from "./assets/ChangePass"
+import About from "./assets/About" 
 const App = () => {
   return (
+    
         <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/aboutUs" element={<About />} />
           <Route path="LogAdmin" element={<Log Admin="true"/>} />
           <Route path="Log" element={<Log Admin="false"/>} />
           <Route path="Reg" element={<Reg />} />

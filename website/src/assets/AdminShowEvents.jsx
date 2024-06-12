@@ -9,7 +9,7 @@ function EventUpdate() {
     }, []);
 
     const fetchData = async () => {
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowEvents.php";
+        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowEvents.php";
         try {
             const response = await axios.get(url);
             if (Array.isArray(response.data)) {
@@ -23,7 +23,7 @@ function EventUpdate() {
     };
 
     const deleteEvent = async (idEvent) => {
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/deleteEv.php";
+        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/deleteEv.php";
         try {
             const response = await axios.post(url, { id: idEvent });
             if (response.data.message === "Event deleted successfully") {

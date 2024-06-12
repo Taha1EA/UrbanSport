@@ -35,7 +35,7 @@ const UpdatePhoto = () => {
     fileData.append('file', file);
 
     try {
-      const response = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changeProfilePhoto', fileData, {
+      const response = await axios.post('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changeProfilePhoto', fileData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

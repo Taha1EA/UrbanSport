@@ -9,10 +9,9 @@ export default function TransactionChart() {
     const [months1, setMonths1] = useState([]);
     const [loading1, setLoading1] = useState(true);
     const [error1, setError1] = useState(null);
-   
 
     useEffect(() => {
-        axios.get("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowDiagram.php")
+        axios.get("http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowDiagram.php")
             .then(response => {
                 if (Array.isArray(response.data)) {
                     const modifiedData = response.data.map(entry => ({
@@ -71,8 +70,8 @@ export default function TransactionChart() {
     
 
     return (
-        <div className="h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
-            <strong className="text-gray-700 font-medium">Incomes</strong>
+        <div className="h-[22rem] bg-white  dark:bg-gray-900 p-4 rounded-sm border border-gray-200 flex flex-col flex-1">
+            <strong className="text-gray-700 dark:text-white font-medium">Incomes</strong>
             <div className="mt-3 w-full flex-1 text-xs">
                 <ResponsiveContainer width="100%" height="100%">
                 <BarChart
@@ -87,7 +86,7 @@ export default function TransactionChart() {
     }}
 >
     <CartesianGrid strokeDasharray="3 3 0 0" vertical={false} />
-    <XAxis dataKey="month" />
+    <XAxis dataKey="months" />
     <YAxis />
     <Tooltip />
     <Legend />

@@ -12,20 +12,20 @@ function Home(props) {
   setTimeout(() => setLoading(true), 2500)
   return (
       
-    <div >
+    <div className="dark:bg-blue-gray-800" >
       {loading ? 
     
     (<>
       <Navbar/>
       <MainContent/>
       {/* <Offers /> */}
-      <div className="mt-36">
+      <div className="mt-36 ">
           <Tab/>
       </div>
       <Class />
       <h1 className="text-2xl font-bold text-center mb-8 mt-5">Our Class Prices</h1>
-      <div className="p-6  flex justify-between	w-full">
-      <div className='rounded-xl border-8 border-gray-200 hover:border-red-100'>
+      <div className="p-6  flex justify-between	w-full ">
+      <div className='rounded-xl border-8 border-gray-200 hover:border-red-100 '>
         <PriceCard  daysnumber='7' title="Weekly " price="60"  discount="5%"/>
       </div>
       <div className='rounded-xl border-8 border-gray-200 hover:border-red-100'>

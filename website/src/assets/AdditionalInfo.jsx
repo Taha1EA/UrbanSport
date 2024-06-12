@@ -12,7 +12,7 @@ const CompleteRegistration = () => {
   const [nationalId, setNationalId] = useState('');
 
   const handleSubmit = () => {
-    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/additonalInfo.php";
+    const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/additonalInfo.php";
     const data = new FormData();
     data.append('email', email);
     data.append('firstName', firstName);

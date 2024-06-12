@@ -31,7 +31,7 @@ function Psportif() {
   }, [cIndex1]);
   return (
     <div>
-      <div className='bg-black w-[100%] h-[300px]  relative lg:h-[685px] group flex  items-center justify-around'>
+      <div className='dark:bg-blue-gray-900  w-[100%] h-[300px]  relative lg:h-[685px] group flex  items-center justify-around'>
           <div style={{ backgroundImage: `url(${tab1[cIndex1]})` }} className='w-[60%]  h-[90%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>
               {/* <h1 className='p-4 bg-white/50 text-xl rounded-lg'>BE patient</h1> */}
             </div>
@@ -42,10 +42,10 @@ function Psportif() {
               </div>
           </div>
       </div>
-      <div className='py-5 '>
+      <div className='py-5 dark:bg-blue-gray-900 '>
           <ClassTab/>
       </div>
-      <div className='pt-5 h-[full]'>
+      <div className='pt-5 h-[full] dark:bg-blue-gray-900 '>
           <AddPro/>
       </div>
       <div >

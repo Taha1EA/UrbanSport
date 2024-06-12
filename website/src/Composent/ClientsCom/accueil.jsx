@@ -11,6 +11,7 @@ import foot from '../../images/Offer_football.jpg';
 import box from '../../images/Offer_box.jpg';
 import Class from "../ClientsCom/ClassS.jsx";
 import Footer from "../../assets/Footer.jsx"
+import '../../assets/DarkModeToggle.css';
 const Accueil = () => {
   const tab = [
     [full, "Join our summer football camp and improve your skills!"],
@@ -42,7 +43,7 @@ const Accueil = () => {
     return () => clearInterval(intervalId);
   }, []);
   useEffect (() =>{
-    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/accueil";
+    const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/accueil";
     const fetchData = async () => {
         let classes = new FormData();
         classes.append("idClient",(cookiesU.userI))
@@ -57,19 +58,19 @@ const Accueil = () => {
         } catch (error) {
             console.error("Error fetching data:", error);
         }
-    };
+    }
     fetchData();
   },[])
   return (
-    <div className='flex flex-col items-center'>
+    <div className='flex flex-col items-center dark:bg-blue-gray-900'>
       <div className='w-[97%] h-[300px] mt-6 relative lg:h-[620px] group'>
         <div style={{ backgroundImage: `url(${tab[cIndex][0]})` }} className='w-full h-full rounded-2xl bg-center bg-cover duration-700 flex items-end justify-center p-8'>
-          <h2 className='p-4 bg-white/50 text-xl rounded-lg'>{tab[cIndex][1]}</h2>
+          <h2 className='p-4 bg-white dark:bg-blue-gray-800 dark:text-white  text-xl rounded-lg '>{tab[cIndex][1]}</h2>
         </div>
         <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 -translate-y-[-50%] left-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
           <BsChevronCompactLeft onClick={prevSlide} size={30} />
         </div>
-        <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 -translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20 text-white cursor-pointer'>
+        <div className='hidden group-hover:block absolute top-[50%] -translate-x-0 -translate-y-[-50%] right-5 text-2xl rounded-full p-2 bg-black/20  text-white cursor-pointer'>
           <BsChevronCompactRight onClick={nextSlide} size={30} />
         </div>
         <div className='flex top-4 justify-center py-2'>
@@ -80,31 +81,31 @@ const Accueil = () => {
           ))}
         </div>
       </div>
-      <div className='felx-col md:flex gap-2 w-[90%] md:w-[60%] mt-12'>
-        <div className='bg-white rounded-xl p-4 flex-1 border border-gray-200 flex items-center mb-3 md:mb-0'>
+      <div className='felx-col md:flex gap-2 w-[90%] md:w-[60%] mt-12 '>
+        <div className='bg-white dark:bg-blue-gray-800 rounded-xl p-4 flex-1 border border-gray-200 flex items-center mb-3 md:mb-0'>
           <div className='flex rounded-full w-12 h-12 items-center justify-center bg-green-500'>
             <TbSoccerField className='text-3xl text-white' />
           </div>
           <div className='pl-4 '>
-            <span className='text-sm text-gray-800 font-light '>nombre of match Played</span>
-            <div>
+            <span className='text-sm text-gray-800 font-light dark:text-white '>nombre of match Played</span>
+            <div className='dark:text-white'>
               <strong>{nbMatch}</strong>
             </div>
           </div>
         </div>
-        <div className='bg-white rounded-xl p-4 flex-1 border border-gray-200 flex items-center'>
+        <div className='bg-white dark:bg-blue-gray-800 rounded-xl p-4 flex-1 border border-gray-200 flex items-center'>
           <div className='flex rounded-full w-12 h-12 items-center justify-center bg-blue-500'>
             <FaDumbbell className='text-3xl text-white' />
           </div>
           <div className='pl-4'>
-            <span className='text-sm text-gray-800 font-light'>Nombre Of Programme registered</span>
-            <div>
+            <span className='text-sm text-gray-800 font-light dark:text-white'>Nombre Of Programme registered</span>
+            <div className='dark:text-white'>
               <strong>{nbProg}</strong>
             </div>
           </div>
         </div>
       </div>
-      <div className=' w-[97%] mt-4 bg-white rounded-md mb-4'>
+      <div className=' w-[97%] mt-4 bg-white dark:bg-blue-gray-800 rounded-md mb-4'>
         {/* <Offers /> */}
         <Class />
         <Events />

@@ -17,7 +17,7 @@ function ClassTab() {
         return result;
     };
     useEffect(() => {
-      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/selectAdminPs";
+      const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/selectAdminPs";
       const fetchData = async () => {
           try {
             const response = await axios.get(url);
@@ -106,11 +106,11 @@ function ClassTab() {
   
   return (
     <div className="p-4 flex flex-col items-center">
-      <h1 className="text-2xl font-bold mb-4">Your Classes</h1>
+      <h1 className="text-2xl font-bold mb-4 dark:text-white">Your Classes</h1>
       <div className='px-8 py-3 text-left text-[12px] font-medium flex text-gray-700 uppercase tracking-wider'>
       <input type="text" name="text" value={Search}  onInput={(e)=>setSearch(e.target.value)} className='border-2 border-blue-500 py-2 px-8 rounded-lg' placeholder='SEARCH by CNIE of client' />
       </div>
-      <div className='px-8 py-3 text-center text-[14px] font-medium flex text-gray-800 uppercase tracking-wider'>
+      <div className='px-8 py-3 text-center text-[14px] font-medium flex text-gray-800 uppercase tracking-wider dark:text-white'>
       Days content meaning :<br/>1: Monday-Wednesday-Friday<br/>2:Tuesday-Thursday-Saturday
       </div>
       <div className="flex flex-col items-center">
@@ -118,36 +118,36 @@ function ClassTab() {
         <div className="inline-block min-w-full py-2 align-middle">
           <div className="overflow-hidden shadow-md sm:rounded-lg">
             <table className="min-w-full divide-y divide-gray-200 text-center">
-              <thead className="bg-gray-50 text-center">
+              <thead className="bg-gray-50 text-center dark:bg-blue-gray-400">
                 <tr>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     Client
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white dark:text-whiteuppercase tracking-wider">
                     Class
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     Time
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     Days
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     first Regestiration
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     last Renew
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     offre Type
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     case
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     Renew
                   </th>
-                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 uppercase tracking-wider">
+                  <th scope="col" className="px-8 py-3 text-left text-[12px] font-medium text-gray-700 dark:text-white uppercase tracking-wider">
                     Delete Class
                   </th>
                 </tr>
@@ -157,15 +157,15 @@ function ClassTab() {
                     if(c[8]=="payed"){
                         return (
                             <tr className={Search?Search==c[1]?"" : "hidden":""} key={c[0]}>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] font-medium text-gray-900">{c[1]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] font-medium text-gray-900">{c[2]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[3]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[4]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[5]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[6]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[7]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[8]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700"></td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] font-medium text-gray-900 dark:text-white dark:bg-gray-900 ">{c[1]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] font-medium text-gray-900 dark:text-white dark:bg-gray-900">{c[2]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:text-white dark:bg-gray-900">{c[3]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:text-white dark:bg-gray-900">{c[4]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:text-white dark:bg-gray-900">{c[5]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:text-white dark:bg-gray-900">{c[6]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:text-white dark:bg-gray-900">{c[7]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:text-white dark:bg-gray-900">{c[8]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:text-white dark:bg-gray-900"></td>
                                 <td onClick={()=>deleteClass(c[0],c[1])} className="px-8 py-4 whitespace-nowrap text-[12px] text-white bg-orange-500 cursor-pointer hover:bg-white hover:text-orange-500  transition-colors duration-300 border-2 border-white">Delete</td>
                             </tr>
                         )
@@ -173,16 +173,16 @@ function ClassTab() {
                     else{
                         return (
                             <tr className={Search?Search==c[1]?"" : "hidden":""} key={c[0]}>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] font-medium text-gray-900">{c[1]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] font-medium text-gray-900">{c[2]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[3]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[4]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[5]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[6]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[7]}</td>
-                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700">{c[8]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] font-medium text-gray-900 dark:bg-gray-900 dark:text-white">{c[1]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] font-medium text-gray-900 dark:bg-gray-900 dark:text-white">{c[2]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700  dark:bg-gray-900 dark:text-white">{c[3]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:bg-gray-900 dark:text-white">{c[4]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:bg-gray-900 dark:text-white">{c[5]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:bg-gray-900 dark:text-white">{c[6]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:bg-gray-900 dark:text-white">{c[7]}</td>
+                                <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:bg-gray-900 dark:text-white">{c[8]}</td>
                                 <td onClick={()=>RenewClient(c[1],c[0])} className="px-8 py-4 whitespace-nowrap text-[12px] text-white bg-red-500 cursor-pointer hover:bg-white hover:text-red-500  transition-colors duration-300  border-white">Renew</td>
-                                <td className="bg-white"></td>
+                                <td className="bg-white dark:bg-gray-900"></td>
                             </tr>
                         )
                     }

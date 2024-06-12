@@ -14,7 +14,7 @@ export default function BuyerProfilePieChart() {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowPercentage')
+		axios.get('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowPercentage')
 			.then(response => {
 				console.log(response.data)
 				const clientCount = parseInt(response.data[0][0], 10);
@@ -44,8 +44,8 @@ export default function BuyerProfilePieChart() {
 	};
 
 	return (
-		<div className="w-[20rem] h-[22rem] bg-white p-4 rounded-sm border border-gray-200 flex flex-col">
-			<strong className="text-gray-700 font-medium">Buyer Profile</strong>
+		<div className="w-[20rem] h-[22rem] bg-white  dark:bg-gray-900 p-4 rounded-sm border border-gray-200 flex flex-col">
+			<strong className="text-gray-700 font-medium dark:text-white">Buyer Profile</strong>
 			{error && <p className="text-red-500 text-xs">{error}</p>}
 			<div className="mt-3 w-full flex-1 text-lg">
 				<ResponsiveContainer width="100%" height="100%">

@@ -12,7 +12,7 @@ const Delete = () => {
     fileData.append('pass', pass);
 
     try {
-      const response = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/DeleteAccount', fileData);
+      const response = await axios.post('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/DeleteAccount', fileData);
       if(response.data){
         if(response.data=="deleted"){
           setNotification("your account has been deleted");

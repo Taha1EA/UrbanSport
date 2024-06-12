@@ -4,14 +4,14 @@ function priceCard({ parentCallback,daysnumber,title, price,index }) {
         parentCallback(e)
     }
     return (
-      <div className="min-w-[250px] mx-auto bg-white rounded-xl shadow-lg  overflow-hidden md:max-w-2xl h-[350px]">
+      <div className="min-w-[250px] mx-auto bg-white rounded-xl shadow-lg  overflow-hidden md:max-w-2xl h-[350px] dark:bg-blue-gray-700">
         
-          <div className="md:flex flex-col items-center content-around p-8">
+          <div className="md:flex flex-col items-center content-around p-8 ">
             <div className='text-center'>
             <div className="uppercase tracking-wide text-2xl text-red-500 font-semibold">{title}</div>
             <div className="uppercase tracking-wide text-2xl text-red-500 font-semibold">Plan</div>
             </div>
-            <h1 className="block mt-12 text-2xl leading-bold font-medium text-black">{price} dhs</h1>
+            <h1 className="block mt-12 text-2xl leading-bold font-medium text-black dark:text-white">{price} dhs</h1>
             <h1 className="block mt-4 text-lg leading-light font-medium text-gray-500">
               {/* {discount} discount */}
               </h1>

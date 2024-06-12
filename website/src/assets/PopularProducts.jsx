@@ -5,7 +5,7 @@ function PopularProgram() {
   const [programs, setPrograms] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowPopularPrograms.php')
+    axios.get('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowPopularPrograms.php')
       .then(response => {
         setPrograms(response.data);
       })
@@ -15,7 +15,7 @@ function PopularProgram() {
   }, []);
 
   return (
-    <div className='w-full'>
+    <div className='w-full dark:text-white'>
       <h1 className='text-center'>Popular Programs</h1>
       <table className="min-w-full divide-y divide-gray-600 text-center w-[60%]">
         <thead className="bg-[#ea580c] text-center">
@@ -26,12 +26,12 @@ function PopularProgram() {
             {/* Add more table headers if needed */}
           </tr>
         </thead>
-        <tbody className="bg-white divide-y divide-gray-200 text-center">
+        <tbody className="bg-white  dark:bg-gray-900 divide-y divide-gray-200 text-center">
           {programs.map(program => (
             <tr key={program.idProP}>
-              <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-900">{program.idProP}</td>
-              <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-900">{program.nomProgrammeSportif}</td>
-              <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-900">{program.num_clients}</td>
+              <td className="px-8 py-4 whitespace-nowrap text-sm dark:text-white text-gray-900">{program.idProP}</td>
+              <td className="px-8 py-4 whitespace-nowrap text-sm dark:text-white text-gray-900">{program.nomProgrammeSportif}</td>
+              <td className="px-8 py-4 whitespace-nowrap text-sm dark:text-white text-gray-900">{program.num_clients}</td>
               
             </tr>
           ))}

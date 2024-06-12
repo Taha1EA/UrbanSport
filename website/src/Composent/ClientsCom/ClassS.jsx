@@ -12,7 +12,7 @@ function ClassS() {
   const daysTab = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   useEffect(() => {
-    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/ProgrammeS";
+    const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/ProgrammeS";
     const fetchData = async () => {
       if (cookies.userI) {
         let classes = new FormData();
@@ -76,10 +76,10 @@ function ClassS() {
   }, [T]);
 
   return (
-    <div className='flex flex-col items-center w-full'>
+    <div className='flex flex-col items-center w-full dark:bg-blue-gray-800'>
       <div className='text-center mb-8'>
         <h3 className='text-red-400 text-xl font-bold'>CLASS SCHEDULE</h3>
-        <h1 className='text-5xl font-bold'>WORKING HOURS</h1>
+        <h1 className='text-5xl font-bold dark:text-white'>WORKING HOURS</h1>
       </div>
       <div className='w-[80%] bg-gray-900 h-11 rounded-3xl flex mb-4'>
         {daysTab.map((day, index) => (

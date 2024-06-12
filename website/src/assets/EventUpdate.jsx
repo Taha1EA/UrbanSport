@@ -18,7 +18,7 @@ function EventUpdate() {
     }, []);
 
     const fetchData = async () => {
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowEvents.php";
+        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowEvents.php";
         try {
             const response = await axios.get(url);
             if (Array.isArray(response.data)) {
@@ -32,7 +32,7 @@ function EventUpdate() {
     };
 
     const deleteEvent = (Event) => {
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/deleteEv.php";
+        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/deleteEv.php";
         const fetchData = async () => {
             if (Event) {
                 let classes = new FormData();
@@ -77,7 +77,7 @@ function EventUpdate() {
     };
 
     const updateEvent = async (idEvent) => {
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/updateEv.php";
+        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/updateEv.php";
         let form = new FormData();
         form.append("idEvent", idEvent);
         form.append("nameEvent", formData.nameEvent);
@@ -105,12 +105,12 @@ function EventUpdate() {
         }
     };
 
-    const imagePath = 'http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/uploads/';
+    const imagePath = 'http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/uploads/';
     return (
         <div className="p-4">
-            <h2 className="text-2xl font-bold mb-4">Event Update</h2>
+            <h2 className="text-2xl font-bold mb-4 dark:text-white">Event Update</h2>
             {eventDetail.map(event => (
-                <div key={event.idEvent} className="border rounded-lg p-4 mb-4">
+                <div key={event.idEvent} className="border rounded-lg p-4 mb-4 dark:bg-blue-gray-600 dark:text-white">
                     {editingEvent === event.idEvent ? (
                         <div>
                             <input
