@@ -32,7 +32,7 @@ const Event = () => {
   }
   const imagePath = 'http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/uploads/';
   return (
-    <div className="my-8">
+    <div className="my-8"  id='Event'>
       <div className="container mx-auto px-4 dark:bg-blue-gray-800">
         <h2 className="text-2xl font-bold text-center mb-8 dark:text-white">Events</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

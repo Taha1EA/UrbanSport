@@ -7,6 +7,7 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from "../../sousComp/PaymentAddPs";
 import Notification from './Notification';
+import ErrorNotification from './ErrorNotification'
 const stripePromise = loadStripe('pk_test_51PN2ejLKugBhnMnptyFTTIIqxLXCdDiUtiMsH7UwuNpxl1RiL35DIvWsnpbrNKWrqi38oFrxINmDTOKBHy3OgHwI00VmeRcg0A');
 
 const AddPro = () => {
@@ -22,6 +23,7 @@ const AddPro = () => {
   const containerRef = useRef(null);
   const [heightClass, setHeightClass] = useState('');
   const [notification, setNotification] = useState('');
+  const [Enotification, setENotification] = useState('');
   const [selectedPrice,setSelectedPrice]=useState([false,false,false,false])
   useEffect(() => {
     const updateHeight = () => {
@@ -76,7 +78,10 @@ const AddPro = () => {
     if (CNIE) {
       fetchPrograms(CNIE);
     } else {
-      alert("Please enter a CNIE");
+      setENotification('please enter the CNIE of the client');
+      setTimeout(() => {
+        setENotification("");
+      }, 2000);
     }
   };
 
@@ -95,24 +100,40 @@ const AddPro = () => {
   };
 
   const handleAdd = () => {
-    setShowPay(true);
+    if(sports && days && nbdays){
+      setShowPay(true);
+    }
+    else{
+      setENotification('Fill all the Information please');
+                setTimeout(() => {
+                  setENotification("");
+                }, 2000);
+    }
   };
 
   const handleAdminAdd = async () => {
-    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/inscrire";
-    let classes = new FormData();
-    classes.append("idClient", (CNIE));
-    classes.append("idPro", parseInt(sports));
-    classes.append("idWeek", days);
-    classes.append("nbdays", parseInt(nbdays));
-    try {
-      const response = await axios.post(url, classes);
-      setNotification('Succisfully Inscription');
-              setTimeout(() => {
-                window.location.reload();
-              }, 2000);
-    } catch (error) {
-      console.error("Error adding class:", error);
+    if(CNIE && sports && days && nbdays){
+      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/inscrire";
+      let classes = new FormData();
+      classes.append("idClient", (CNIE));
+      classes.append("idPro", parseInt(sports));
+      classes.append("idWeek", days);
+      classes.append("nbdays", parseInt(nbdays));
+      try {
+        const response = await axios.post(url, classes);
+        setNotification('Succisfully Inscription');
+                setTimeout(() => {
+                  window.location.reload();
+                }, 2000);
+      } catch (error) {
+        console.error("Error adding class:", error);
+      }
+    }
+    else{
+      setENotification('Fill all the Information please');
+                setTimeout(() => {
+                  setENotification("");
+                }, 2000);
     }
   };
 
@@ -138,9 +159,9 @@ const AddPro = () => {
       <h1 className='dark:text-white'>ADD NEW CLASS</h1>
           <div className='flex-col ml-48 md:flex md:flex-row w-[85%] md:w-[85%] md:justify-around  mb-3'>
             <div className="flex w-72 flex-col gap-6 ">
-            <Select variant="outlined" name='sports' onChange={handlePs} value={sports} color="blue"  label="Programme Sportif " >
-                {classes.map((c,index)=>(
-                  <Option key={index} value={c[0]}>{c[1]}</Option>
+            <Select key={sports} variant="outlined" name='sports' onChange={handlePs} value={sports} color="blue"  label="Programme Sportif " >
+                {classes.map((c)=>(
+                  <Option  value={c[0]}>{c[1]}</Option>
                 ))}
             </Select>
             </div>
@@ -174,6 +195,7 @@ const AddPro = () => {
         />
       )}
       <Notification message={notification} />
+      <ErrorNotification message={Enotification} />
       {showPay && (
         <div className={`w-full mt-10 z-10 overflow-y-scroll ${heightClass}`} >
           <Elements stripe={stripePromise}>

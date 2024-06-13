@@ -28,9 +28,9 @@ const Navbar = () => {
 
   const Links = [
     { name: "HOME", link: "/" },
-    { name: "Events", link: "/events" },
-    { name: "Coaches", link: "/coaches" },
-    { name: "Offers", link: "/offers" },
+    { name: "match reservation", link: "#Book" },
+    { name: "Events", link: "#Event" },
+    { name: "About US", link: "/aboutUs" },
     { name: "Dashboard", link: "/dashboard" },
   ];
 
@@ -56,11 +56,21 @@ const Navbar = () => {
           )}
           {toggleMenu && (
             <div className="sb__navbar-menu_container scale-up-center bg-white dark:bg-gray-900 text-black dark:text-white p-5">
-              {Links.map((Linko) => (
-                <p key={Linko.name} className="py-2">
-                  <Link to={Linko.link}>{Linko.name}</Link>
+                <p className="py-2">
+                  <Link to="/">HOME</Link>
                 </p>
-              ))}
+                <p className="py-2">
+                  <HashLink smooth to="#Book">Match Reservation</HashLink>
+                </p>
+                <p className="py-2">
+                  <HashLink smooth to="#Event">Events</HashLink>
+                </p>
+                <p className="py-2">
+                  <Link to="/aboutUs">About us</Link>
+                </p>
+                <p className="py-2">
+                  <Link to="/dashboard">Admin Side</Link>
+                </p>
               <div className="sb__navbar-menu_container-links-sign mt-4">
                 <button type="button">
                   <Link to="/reg">JOIN US</Link>

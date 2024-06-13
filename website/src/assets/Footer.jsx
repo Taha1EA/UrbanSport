@@ -7,38 +7,38 @@ import './Footer.css';
 import LogoW from "../images/SportsWhite.png";
 const Footer = () => {
   return (
-    <div className='footer   '>
-      <div className='sb__footer section__padding'>
+    <div className='footer p-4'>
+      <div className='sb_footer section_padding'>
           <div className='sb__footer-links'>
             <div className='sb__footer-links-div'>
-                    <img src={LogoW} alt="logo"/>
+                    <img src={LogoW} alt="logo" width={180} height={60}/>
                     
             </div>
             <div className='sb__footer-links-div'>
                     <h4>Home Page</h4>
-                    <a href="##">
+                    <a href="#Book">
                       <p>Book NOw</p>
                     </a>
-                    <a href="##">
+                    <a href="#Schedule">
                       <p>Class Schedule</p>
                     </a>
-                    <a href="##">
+                    <a href="#Prices">
                       <p>Class Prices</p>
                     </a>
-                    <a href="##">
+                    <a href="#Event">
                       <p>Event</p>
                     </a>
             </div>
             <div className='sb__footer-links-div'>
                     <h4>For Business</h4>
-                    <a href="##">
+                    <a href="/aboutUs">
                       <p>About us</p>
                     </a>
                     
             </div>
             <div className='sb__footer-links-div'>
                     <h4>For Business</h4>
-                    <a href="/aboutUs">
+                    <a href="">
                       <p>05 77 88 99 10</p>
                     </a>
                     <a href="##">
@@ -52,11 +52,10 @@ const Footer = () => {
             <div className='sb__footer-links-div'>
                     <h4>Coming soon on</h4>
                     <div className='socialmedia'>
-                        <p><ImFacebook2 className='text-white w-12 h-8'/></p>
-                        <p><FaInstagram className='text-white w-12 h-8'/></p>
-                        <p><BsTwitterX className='text-white w-12 h-8'/></p>
-                        <p><FaYoutube className='text-white w-12 h-8'/></p>
-                       
+                        <p><ImFacebook2 className='text-white w-8 h-4'/></p>
+                        <p><FaInstagram className='text-white w-8 h-4'/></p>
+                        <p><BsTwitterX className='text-white w-8 h-4'/></p>
+                        <p><FaYoutube className='text-white w-8 h-4'/></p>
                     </div>
             </div>
 

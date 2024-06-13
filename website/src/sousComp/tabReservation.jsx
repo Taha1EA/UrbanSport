@@ -208,7 +208,8 @@ const TabReservation = () => {
     }
     function SubmitAdminHandler(){
         const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/reserveAdmin";
-        const fetchData = async () => {
+        if(CNIE){
+            const fetchData = async () => {
             let classes = new FormData();
             classes.append("admin",parseInt(cookiesA.userA))
             classes.append("idTerrain",parseInt(field)+1)
@@ -231,6 +232,13 @@ const TabReservation = () => {
             }
         };
         fetchData();
+        }
+        else{
+            setENotification('Please anter the CNIE of the client');
+            setTimeout(() => {
+                setENotification("");
+            }, 2000);
+        }
     }
 
     const updateNumber = (index, newValue) => {
@@ -281,8 +289,8 @@ const TabReservation = () => {
     }, [dateR, deHeure, aHeure]);
 
     return (
-        <div className='mt-12 md:mt-4 dark:bg-blue-gray-800 '>
-            <h2 className="text-2xl font-bold text-center mb-8 mt-5 dark:text-white">Book Now</h2>
+        <div className='mt-12 md:mt-4 dark:bg-blue-gray-800 ' id='Book'>
+            <h2 className="text-2xl font-bold text-center mb-8 mt-5 dark:text-white">Book Now</h2>
             <div className='flex flex-col items-center  mb-4 dark:text-white'>
                 <p>Choose the date if doesn't exist in the table behind</p>
                 <CustomDatePicker  onDateChange={handleDateChange} />
