@@ -23,7 +23,7 @@ const PaymentForm = ({sport,price}) => {
             classes.append("id",  paymentMethod.id );
             classes.append("price",  price );
             try {
-                const response = await axios.post('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/paymentIntent.php', classes);
+                const response = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/paymentIntent.php', classes);
                 
                 const { client_secret } = response.data;
 
@@ -32,7 +32,7 @@ const PaymentForm = ({sport,price}) => {
             if (confirmCardPayment.error) {
                 console.error(confirmCardPayment.error.message);
             } else {
-                const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/renewPs";
+                const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/renewPs";
                 const fetchData = async () => {
                     let classes = new FormData();
                     classes.append("idClient", (cookies.userI));
