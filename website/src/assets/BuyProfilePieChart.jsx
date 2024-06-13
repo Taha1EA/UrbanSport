@@ -14,7 +14,7 @@ export default function BuyerProfilePieChart() {
 	const [error, setError] = useState(null);
 
 	useEffect(() => {
-		axios.get('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowPercentage')
+		axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowPercentage')
 			.then(response => {
 				console.log(response.data)
 				const clientCount = parseInt(response.data[0][0], 10);

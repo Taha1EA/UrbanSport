@@ -17,7 +17,7 @@ function ClassTab() {
         return result;
     };
     useEffect(() => {
-      const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/selectAdminPs";
+      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/selectAdminPs";
       const fetchData = async () => {
           try {
             const response = await axios.get(url);

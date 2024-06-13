@@ -48,7 +48,7 @@ const Reg = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm()) {
-      const url = 'http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/register';
+      const url = 'http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/register';
       let informations = new FormData();
       informations.append('nom', nom);
       informations.append('email', email);

@@ -59,7 +59,7 @@ const Reg = () => {
   };
   const handleSubmit=()=>{
     if(i===4){
-      const url="http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/register.php";
+      const url="http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/register.php";
       let informations=new FormData();
       informations.append("nom",nom);
       informations.append("email",email);

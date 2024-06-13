@@ -42,7 +42,7 @@ function ClassTab() {
       setshowPay(true)        
     };
     useEffect(() => {
-      const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/selectPs";
+      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/selectPs";
       const fetchData = async () => {
         if (cookiesU.userI) {
           let classes = new FormData();
@@ -87,7 +87,7 @@ function ClassTab() {
     }
     //delete class
     const deleteClass=(sport)=>{
-      const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/deletePs";
+      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/deletePs";
       const fetchData = async () => {
         if (cookiesU.userI) {
           let classes = new FormData();
@@ -179,7 +179,7 @@ function ClassTab() {
                                 <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">{c[5]}</td>
                                 <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">{c[6]}</td>
                                 <td className="px-8 py-4 whitespace-nowrap text-sm text-gray-500">{c[7]}</td>
-                                <td onClick={()=>RenewClient(c[0],c[5])} className="px-8 py-4 whitespace-nowrap text-sm text-white bg-red-500 cursor-pointer hover:bg-white hover:text-red-500  transition-colors duration-300  border-white">Renew</td>
+                                <td onClick={()=>RenewClient(c[0],c[6])} className="px-8 py-4 whitespace-nowrap text-sm text-white bg-red-500 cursor-pointer hover:bg-white hover:text-red-500  transition-colors duration-300  border-white">Renew</td>
                                 <td className="bg-white"></td>
                             </tr>
                         )

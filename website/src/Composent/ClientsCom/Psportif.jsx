@@ -31,9 +31,9 @@ function Psportif() {
   }, [cIndex1]);
   return (
     <div>
-      <div className='dark:bg-blue-gray-900  w-[100%] h-[300px]  relative lg:h-[685px] group flex  items-center justify-around'>
+      <div className='gb-gray-900 dark:bg-blue-gray-900  w-[100%] h-[300px]  relative lg:h-[685px] group flex  items-center justify-around'>
           <div style={{ backgroundImage: `url(${tab1[cIndex1]})` }} className='w-[60%]  h-[90%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>
-              {/* <h1 className='p-4 bg-white/50 text-xl rounded-lg'>BE patient</h1> */}
+              <h1 className='p-4 bg-white/50 text-2xl font-bold rounded-lg'>Motivate Your Mind And Set Your Body Free</h1>
             </div>
           <div className='w-[35%] h-[90%] flex flex-col justify-around'>
               <div style={{ backgroundImage: `url(${tab2[cIndex2]})` }} className='w-full  h-[49%] rounded-lg bg-center bg-cover duration-700 flex items-end justify-center p-8'>

@@ -8,7 +8,7 @@ const AdminClients = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/ShowClients.php")
+        axios.get("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/ShowClients.php")
             .then(response => {
                 console.log(response.data);
                 if (Array.isArray(response.data)) {

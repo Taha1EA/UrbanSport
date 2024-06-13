@@ -7,7 +7,7 @@ const ReservationsTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await  axios.get('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowReservations.php')
+        const response = await  axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowReservations.php')
 
         setReservations(response.data);
       } catch (error) {

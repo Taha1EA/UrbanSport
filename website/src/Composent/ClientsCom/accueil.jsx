@@ -43,7 +43,7 @@ const Accueil = () => {
     return () => clearInterval(intervalId);
   }, []);
   useEffect (() =>{
-    const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/accueil";
+    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/accueil";
     const fetchData = async () => {
         let classes = new FormData();
         classes.append("idClient",(cookiesU.userI))

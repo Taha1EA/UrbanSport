@@ -4,7 +4,7 @@ const ShowRes = () => {
     const [classDetail, setClassDetail] = useState([]);
     let tabF = ["5vs5 inside", "5vs5 inside", "5vs5 inside", "5vs5 outside", "6vs6 outside"];
     useEffect(() => {
-        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/selectPsAdmin";
+        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/selectPsAdmin";
         const fetchData = async () => {
             try {
               const response = await axios.get(url);

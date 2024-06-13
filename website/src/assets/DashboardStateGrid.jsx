@@ -13,7 +13,7 @@ export default function DashboardStatsGrid() {
    
     const [error2, setError2] = useState(null);
     useEffect(() => {
-        axios.get('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowTClients.php')
+        axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowTClients.php')
             .then(response => {
                 setClientCount(response.data[0]['TotlalClient']);
             })

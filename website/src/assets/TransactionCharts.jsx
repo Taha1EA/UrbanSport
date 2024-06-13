@@ -11,7 +11,7 @@ export default function TransactionChart() {
     const [error1, setError1] = useState(null);
 
     useEffect(() => {
-        axios.get("http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowDiagram.php")
+        axios.get("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowDiagram.php")
             .then(response => {
                 if (Array.isArray(response.data)) {
                     const modifiedData = response.data.map(entry => ({

@@ -77,7 +77,7 @@ const TabReservation = () => {
     console.log(field)
     useEffect(() => {
        if(selectedDate == null){
-        let url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
+        let url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
         axios.post(url).then(response => {
             setDayOfTable([])
                 setMatchDetails({
@@ -102,7 +102,7 @@ const TabReservation = () => {
        }
        else{
         console.log('Selected Date:', selectedDate);
-        let url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
+        let url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/tabRes";
         let dateInfo=new FormData();
         dateInfo.append("date",selectedDate)
         axios.post(url,dateInfo).then(response => {
@@ -207,7 +207,7 @@ const TabReservation = () => {
         }        
     }
     function SubmitAdminHandler(){
-        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/reserveAdmin";
+        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/reserveAdmin";
         const fetchData = async () => {
             let classes = new FormData();
             classes.append("admin",parseInt(cookiesA.userA))
@@ -254,7 +254,7 @@ const TabReservation = () => {
         setPricef(tabprice[index])
     };
     useEffect(() => {
-        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/fields";
+        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/tabReservation/fields";
         const fetchData = async () => {
             let classes = new FormData();
             classes.append("DateRes", dateR);

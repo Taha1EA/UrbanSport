@@ -56,7 +56,7 @@ function ClientNavBar(props) {
     ];
 
     useEffect(() => {
-        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/selectUser";
+        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/selectUser";
         const fetchData = async () => {
             if (cookiesU.userI) {
                 let classes = new FormData();
@@ -69,7 +69,7 @@ function ClientNavBar(props) {
                         if (response.data[0][1] === "") {
                             p = Test;
                         } else {
-                            p = `http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/${response.data[0][1]}`;
+                            p = `http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/${response.data[0][1]}`;
                         }
                         setPhoto(p);
                     } else {

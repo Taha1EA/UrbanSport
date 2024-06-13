@@ -116,7 +116,7 @@ const UpdateClientProfile = () => {
       informations.append("newNom", newNom);
       informations.append("newPass", newPass);
 
-      axios.post("http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/setting.php", informations, {
+      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/setting.php", informations, {
           withCredentials: true
         })
         .then(response => {

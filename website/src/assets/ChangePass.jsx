@@ -23,7 +23,7 @@ const UpdatePassword = () => {
       informations.append("newPass", newPass);
       informations.append("RnewPass", RnewPass);
 
-      axios.post("http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changepass.php", informations, {
+      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changepass.php", informations, {
           withCredentials: true
         })
         .then(response => {

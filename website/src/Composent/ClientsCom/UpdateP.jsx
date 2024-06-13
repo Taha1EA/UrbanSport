@@ -26,7 +26,7 @@ const UpdateP = () => {
       setNewPass(e.target.value);
     };
     const handleSubmit = () => {
-        const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/setting";
+        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/setting";
         const fetchData = async () => {
           if (cookiesU.userI) {
             let classes = new FormData();
@@ -52,7 +52,7 @@ const UpdateP = () => {
         fetchData();
     }
   return (
-    <div className='text-black h-[100vh] flex justify-center items-center bg-gray-400'>
+    <div className='text-black h-[400px] flex justify-center mt-4 bg-gray-400'>
     <div className='bg-white border-2 border-gray-300 rounded-md p-8 shadow-lg relative'>
     <h1 className="text-[32px] text-black font-bold text-center mb-6">Update Client Profile</h1>
     {errorMessage && <div className="text-red-500 mb-4">{errorMessage}</div>} {/* Display error message */}

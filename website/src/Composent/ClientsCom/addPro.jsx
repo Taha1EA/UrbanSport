@@ -50,7 +50,7 @@ const AddPro = () => {
   }, [cookiesU.userI]);
 
   const fetchPrograms = async (clientId) => {
-    const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/Ps";
+    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/Ps";
     let classes = new FormData();
     classes.append("idClient", clientId);
     try {
@@ -99,7 +99,7 @@ const AddPro = () => {
   };
 
   const handleAdminAdd = async () => {
-    const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/inscrire";
+    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/inscrire";
     let classes = new FormData();
     classes.append("idClient", (CNIE));
     classes.append("idPro", parseInt(sports));
@@ -139,8 +139,8 @@ const AddPro = () => {
           <div className='flex-col ml-48 md:flex md:flex-row w-[85%] md:w-[85%] md:justify-around  mb-3'>
             <div className="flex w-72 flex-col gap-6 ">
             <Select variant="outlined" name='sports' onChange={handlePs} value={sports} color="blue"  label="Programme Sportif " >
-                {classes.map((c)=>(
-                  <Option value={c[0]}>{c[1]}</Option>
+                {classes.map((c,index)=>(
+                  <Option key={index} value={c[0]}>{c[1]}</Option>
                 ))}
             </Select>
             </div>

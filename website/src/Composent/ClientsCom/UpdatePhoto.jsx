@@ -35,7 +35,7 @@ const UpdatePhoto = () => {
     fileData.append('file', file);
 
     try {
-      const response = await axios.post('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changeProfilePhoto', fileData, {
+      const response = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changeProfilePhoto', fileData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },
@@ -52,7 +52,7 @@ const UpdatePhoto = () => {
   };
 
   return (
-    <div className="flex flex-col items-center mt-12">
+    <div className="flex flex-col items-center mt-4">
       <input
         type="file"
         ref={fileInputRef}

@@ -41,6 +41,7 @@ export default function Sidebar() {
 					<SidebarLink key={link.key} link ={link}/>
 				))}
 			</div>
+			<DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 			<div className="flex flex-col gap-0.5 pt-2 border-t border-blue-gray-700">
 				<div className={classNames(linkClass, 'cursor-pointer text-red-500')}>
 					<span className="text-xl">
@@ -49,7 +50,7 @@ export default function Sidebar() {
 					
 					<p onClick={Logout} className='cursor-pointer text-red-500 '>Log Out</p>
 				</div>
-				<DarkModeToggle darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
+				
 			</div>
 		</div>
 	)

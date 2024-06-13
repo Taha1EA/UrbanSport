@@ -12,7 +12,7 @@ function ClassS() {
   const daysTab = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
   useEffect(() => {
-    const url = "http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/ProgrammeS";
+    const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/ProgrammeS";
     const fetchData = async () => {
       if (cookies.userI) {
         let classes = new FormData();

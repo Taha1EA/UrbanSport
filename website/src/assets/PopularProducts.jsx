@@ -5,7 +5,7 @@ function PopularProgram() {
   const [programs, setPrograms] = useState([]);
 
   useEffect(() => {
-    axios.get('http://localhost/UrbanSportW/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowPopularPrograms.php')
+    axios.get('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/ShowPopularPrograms.php')
       .then(response => {
         setPrograms(response.data);
       })
