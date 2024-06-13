@@ -19,22 +19,22 @@ function Home(props) {
       <Navbar/>
       <MainContent/>
       {/* <Offers /> */}
-      <div className="mt-36 ">
+      <div className="mt-36 " >
           <Tab/>
       </div>
       <Class />
       <h1 className="text-2xl font-bold text-center mb-8 mt-5">Our Class Prices</h1>
-      <div className="p-6  flex justify-between	w-full ">
-      <div className='rounded-xl border-8 border-gray-200 hover:border-red-100 '>
+      <div className="p-6   lg:flex lg:flex-row lg:justify-between flex flex-col justify-center items-center	w-full ">
+      <div className='max-w-[70%] md:max-w-2xl rounded-xl border-8 border-gray-200 hover:border-red-100 '>
         <PriceCard  daysnumber='7' title="Weekly " price="60"  discount="5%"/>
       </div>
-      <div className='rounded-xl border-8 border-gray-200 hover:border-red-100'>
+      <div className='max-w-[70%] md:max-w-2xl rounded-xl border-8 border-gray-200 hover:border-red-100'>
           <PriceCard  daysnumber='30' title="Monthly " price="200"  discount="10%"/>
       </div>
-      <div className='rounded-xl border-8 border-gray-200 hover:border-red-100'>
+      <div className='max-w-[70%] md:max-w-2xl rounded-xl border-8 border-gray-200 hover:border-red-100'>
           <PriceCard  daysnumber='180' title="Semi Annual " price="1100"  discount="15%"/>
       </div>
-      <div className='rounded-xl border-8 border-gray-200 hover:border-red-100'>
+      <div className='max-w-[70%] md:max-w-2xl rounded-xl border-8 border-gray-200 hover:border-red-100'>
           <PriceCard  daysnumber='360' title="Annual " price="2000"  discount="20%"/>
       </div>
       </div>

@@ -45,10 +45,12 @@
     "vite": "^5.1.0"
   },
   "jest": {
-  "collectCoverage": true,
-  "coverageDirectory": "coverage",
-  "coverageReporters": ["lcov", "text"],
-  "testResultsProcessor": "jest-sonar-reporter"
+    "collectCoverage": true,
+    "coverageDirectory": "coverage",
+    "coverageReporters": [
+      "lcov",
+      "text"
+    ],
+    "testResultsProcessor": "jest-sonar-reporter"
   }
-
 }
