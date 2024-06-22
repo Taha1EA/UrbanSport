@@ -1,7 +1,7 @@
 import React from 'react'
 import Tab from "../../sousComp/tabReservation"
 import foot from "../../images/football.jpg"
-import Footer from "../../assets/Footer.jsx"
+import ResTab from "./ResTab.jsx"
 function ResMatch() {
   return (
     <div className='bg-gray-200 dark:bg-blue-gray-900 dark:text-white'>
@@ -11,9 +11,11 @@ function ResMatch() {
         </div>
         </div>
         <div className='mb-12 mt-3 '>
+          <ResTab/>
+        </div>
+        <div className='mb-12 mt-3 '>
           <Tab/>
         </div>
-        <Footer/>
     </div>
   )
 }

@@ -8,7 +8,6 @@ import MuscleB from '../../images/muscleB.jpg';
 import PowerL from '../../images/powerLifting.jpg';
 import ClassTab from "../ClientsCom/ClassTab.jsx";
 import AddPro from "../ClientsCom/addPro.jsx";
-import Footer from "../../assets/Footer.jsx"
 function Psportif() {
   const tab1 = [CrossFit,BodyB,Cardio];
   const tab2 = [PowerL];
@@ -47,9 +46,6 @@ function Psportif() {
       </div>
       <div className='pt-5 h-[full] dark:bg-blue-gray-900 '>
           <AddPro/>
-      </div>
-      <div >
-          <Footer/>
       </div>
     </div>
   )

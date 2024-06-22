@@ -45,6 +45,7 @@ const Event = () => {
                 <h3 className="text-xl font-semibold">{event.nomEvent}</h3>
               
                 <p className="text-sm mt-4">{event.DescriptionEvents}</p>
+                <p className="text-sm mt-4">From {event.DateDEbEvents} To {event.DateFinEvents}</p>
               </div>
             </div>
           ))}

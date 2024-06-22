@@ -28,8 +28,6 @@ const Navbar = () => {
 
   const Links = [
     { name: "HOME", link: "/" },
-    { name: "match reservation", link: "#Book" },
-    { name: "Events", link: "#Event" },
     { name: "About US", link: "/aboutUs" },
     { name: "Dashboard", link: "/dashboard" },
   ];

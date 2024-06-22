@@ -111,9 +111,6 @@ const Accueil = () => {
         <Events />
 
       </div>
-      <div className='w-[100%]'>
-        <Footer/>
-      </div>
     </div>
   );
 }
