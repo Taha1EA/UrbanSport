@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import Navbar from './Navbar';
+import HeroX from "../images/arrire.jpg";
 const ForgotPass = () => {
     const [email, setEmail] = useState('');
     const [verify, setVerify] = useState('');
@@ -57,9 +58,9 @@ const ForgotPass = () => {
     return (
         <div className='text-black h-[100vh] flex flex-col justify-center items-center bg-white'>
              <Navbar/>
+            <div style={{ backgroundImage: `url(${HeroX})` }} className='flex flex-col justify-center items-center bg-fixed w-full h-[100hv] bg-center bg-cover duration-700 p-[212px]'>
             <form onSubmit={sendVerificationCode} className='bg-white border-4 w-[400px] h-[150px] mb-3 border-[#444444] rounded-md p-8 shadow-lg relative'>
                 <div>
-                   
                     <input
                         type="email"
                         id="email"
@@ -93,7 +94,7 @@ const ForgotPass = () => {
                     {loading ? 'Verifying...' : 'Verify'}
                 </button>
             </form>
-
+            </div>
             {response && <p>{response.message}</p>}
         </div>
     );

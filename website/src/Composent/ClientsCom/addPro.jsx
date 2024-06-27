@@ -113,7 +113,7 @@ const AddPro = () => {
 
   const handleAdminAdd = async () => {
     if(CNIE && sports && days && nbdays){
-      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/inscrire";
+      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/inscrire";
       let classes = new FormData();
       classes.append("idClient", (CNIE));
       classes.append("idPro", parseInt(sports));
@@ -143,13 +143,13 @@ const AddPro = () => {
         <div className='flex-col px-8 py-3 text-left text-xs font-medium flex text-gray-500 uppercase tracking-wider'>
           <input 
             type="text" 
-            className='mb-2 border-2 border-blue-500 py-2 px-8 rounded-lg' 
+            className='mb-2 border-4 border-blue-500 py-2 px-8 rounded-lg' 
             placeholder='Insert CNIE of client' 
             value={CNIE} 
             onChange={(e) => setCNIE(e.target.value)} 
           />
           <input 
-            className="cursor-pointer w-72 text-[15px] rounded-lg bg-red-400 text-yellow-50 hover:bg-white hover:border-red-500 hover:border-2 hover:text-red-600 py-2 transition-colors duration-300"
+            className="cursor-pointer w-72 text-[15px] rounded-lg bg-red-400 text-yellow-50 hover:bg-white hover:border-red-500 hover:border-4 hover:text-red-600 py-2 transition-colors duration-300"
             type='submit' 
             value="Submit"
             onClick={takeProgrammes}
@@ -157,38 +157,38 @@ const AddPro = () => {
         </div>
       )}
       <h1 className='dark:text-white'>ADD NEW CLASS</h1>
-          <div className='flex-col ml-48 md:flex md:flex-row w-[85%] md:w-[85%] md:justify-around  mb-3'>
-            <div className="flex w-72 flex-col gap-6 ">
-            <Select key={sports} variant="outlined" name='sports' onChange={handlePs} value={sports} color="blue"  label="Programme Sportif " >
-                {classes.map((c)=>(
-                  <Option  value={c[0]}>{c[1]}</Option>
-                ))}
-            </Select>
-            </div>
-            <div className="flex w-72 flex-col gap-6 ">
-            <Select variant="outlined" name='days' onChange={handleDays} value={days}  color="blue" label="days" >
-                <Option value='1'>Monday-Wednesday-Friday</Option>
-                <Option value='2'>Tuesday-Thursday-Saturday</Option>
-            </Select>
-            </div>
-          </div>
-      <div className="p-6 flex-col md:flex md:flex-row md:justify-between w-[70%] md:w-full">
-       <div className={`rounded-xl border-8 ${selectedPrice[0] ? 'border-red-100' : 'border-gray-200'} hover:border-red-100`}>
+          <div className='flex-col ml-48 md:ml-0 md:flex md:flex-row w-[85%] md:w-[80%] md:justify-between mb-3'>
+      <div className="flex w-72 flex-col gap-6 mr-0 md:mr-[-100px] justify-center items-center">
+        <Select key={sports} variant="outlined" name='sports' onChange={handlePs} value={sports} color="blue" label="Programme Sportif">
+          {classes.map((c) => (
+            <Option value={c[0]}>{c[1]}</Option>
+          ))}
+        </Select>
+      </div>
+      <div className="flex w-72 flex-col gap-6">
+        <Select variant="outlined" name='days' onChange={handleDays} value={days} color="blue" label="days">
+          <Option value='1'>Monday-Wednesday-Friday</Option>
+          <Option value='2'>Tuesday-Thursday-Saturday</Option>
+        </Select>
+      </div>
+    </div>
+      <div className="p-6  flex-col md:flex md:flex-row md:justify-between w-[70%] md:w-full">
+       <div className={`rounded-xl border-4 ${selectedPrice[0] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
           <PriceCard parentCallback={dataPrice} daysnumber='7' title="Weekly " price="60" index="0"/>
         </div>
-       <div className={`rounded-xl border-8 ${selectedPrice[1] ? 'border-red-100' : 'border-gray-200'} hover:border-red-100`}>
+       <div className={`rounded-xl border-4 ${selectedPrice[1] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
           <PriceCard parentCallback={dataPrice} daysnumber='30' title="Monthly " price="200" index="1" />
         </div>
-       <div className={`rounded-xl border-8 ${selectedPrice[2] ? 'border-red-100' : 'border-gray-200'} hover:border-red-100`}>
+       <div className={`rounded-xl border-4 ${selectedPrice[2] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
         <PriceCard parentCallback={dataPrice} daysnumber='180' title="Semi Annual " price="1100" index="2" />
         </div>
-       <div className={`rounded-xl border-8 ${selectedPrice[3] ? 'border-red-100' : 'border-gray-200'} hover:border-red-100`}>
+       <div className={`rounded-xl border-4 ${selectedPrice[3] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
         <PriceCard parentCallback={dataPrice} daysnumber='360' title="Annual " price="2000" index="3" />
         </div>        
       </div>
       {(cookiesU.userI || cookiesA.userA) && (
         <input 
-          className="cursor-pointer w-72 text-[15px] rounded-lg bg-red-400 text-yellow-50 hover:bg-white hover:border-red-500 hover:border-2 hover:text-red-600 py-2 transition-colors duration-300"
+          className="cursor-pointer w-72 text-[15px] rounded-lg bg-red-400 text-yellow-50 hover:bg-white hover:border-red-500 hover:border-4 hover:text-red-600 py-2 transition-colors duration-300"
           type='submit' 
           value="Submit"
           onClick={cookiesA.userA ? handleAdminAdd : handleAdd}

@@ -67,6 +67,12 @@ const TabReservation = () => {
         finMatch: [],
         terrainReserved: []
     });
+    const [activeDiv, setActiveDiv] = useState(null);
+
+    const handleClick = (index) => {
+        setActiveDiv(index);
+    };
+
     const handleDateChange = (date) => {
       setSelectedDate(date);
      
@@ -131,6 +137,7 @@ const TabReservation = () => {
     }, [selectedDate]);
 
     function takeReservation(heureDebut, heureFin, nbDay) {
+        handleClick(nbDay)
         let thisJour 
         if(selectedDate == null){
             thisJour=new Date();
@@ -161,7 +168,7 @@ const TabReservation = () => {
         }
         let diff = numDay - thisJour.getDay();
         let h = dayJour.getHours();
-        let diffHeure = heure - h - 5;
+        let diffHeure = heure - h ;
         thisJour.setDate(thisJour.getDate() + diff);
         if (dayJour.getTime() > thisJour.getTime()) {
             return false;
@@ -177,21 +184,21 @@ const TabReservation = () => {
             if (matchDetails.debutMatch[nbDay] === heureDebut && matchDetails.finMatch[nbDay] === heureFin) { 
                 if (matchDetails.terrainReserved[nbDay] === "5") {
                     return (
-                        <td key={nbDay} className={checkDate(nbDay) ? "bg-red-500 border-2 border-gray-200" : "bg-red-300 border-2 border-gray-200"}></td>
+                        <td key={nbDay} className={checkDate(nbDay) ? "bg-red-500 border-2 border-gray-200 cursor-not-allowed" : "bg-red-300 border-2 border-gray-200 cursor-not-allowed"}></td>
                     );
                 } else {
                     return (
-                        <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin, nbDay) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-orange-500 border-2 border-gray-200" : "bg-orange-300 border-2 border-gray-200"}></td>
+                        <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin, nbDay) : null }} key={nbDay} className={ activeDiv == nbDay ? "bg-orange-800 border-2 border-gray-200 cursor-pointer" :checkDate(nbDay) ? "bg-orange-500 border-2 border-gray-200 cursor-pointer" : "bg-orange-300 border-2 border-gray-200 cursor-not-allowed"} ></td>
                     );
                 }
             } else {
                 return (
-                    <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin, nbDay) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200" : "bg-green-300 border-2 border-gray-200"}></td>
+                    <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin, nbDay) : null }} key={nbDay} className={activeDiv == nbDay ? "bg-green-800 border-2 border-gray-200 cursor-pointer":checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200 cursor-pointer" : "bg-green-300 border-2 border-gray-200 cursor-not-allowed"}></td>
                 );
             }
         } else {
             return (
-                <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin, nbDay) : null }} key={nbDay} className={checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200" : "bg-green-300 border-2 border-gray-200"}></td>
+                <td onClick={() => { checkDate(nbDay) ? takeReservation(heureDebut, heureFin, nbDay) : null }} key={nbDay} className={activeDiv == nbDay ? "bg-green-800 border-2 border-gray-200 cursor-pointer":checkDate(nbDay) ? "bg-green-500 border-2 border-gray-200 cursor-pointer" : "bg-green-300 border-2 border-gray-200 cursor-not-allowed"}></td>
             );
         }
     }

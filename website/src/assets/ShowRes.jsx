@@ -57,7 +57,7 @@ const ShowRes = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200 text-center">
-            {classDetail.map((c) => {
+            {classDetail.slice(0,10).map((c) => {
                         return(
                           <tr key={c[0]} className={Search?Search==c[0]?"" : "hidden":""}>
                               <td className="px-8 py-4 whitespace-nowrap text-sm font-medium text-gray-900 dark:text-white dark:bg-gray-900">{c[0]}</td>

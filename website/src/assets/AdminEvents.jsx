@@ -24,36 +24,43 @@ const AdminEvents = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formErrors = validateForm(formData);
     if (Object.keys(formErrors).length === 0) {
-      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/CreateEvents.php";
+      const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/CreateEvents.php";
       const informations = new FormData();
       Object.entries(formData).forEach(([key, value]) => {
         informations.append(key, value);
       });
-      axios.post(url, informations, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-        withCredentials: true,
-      })
-      .then(response => {
-        if (response.data === "Success") {
-          setNotification('Event Created Succefully');
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 2000);
-        } else {
-          alert("Failed to create event: " + response.data);
+  
+      try {
+        const response = await axios.post(url, informations, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          }
+        });
+        if(response.data){
+          if (response.data == "Success") {
+            setNotification('Event Created Successfully');
+            setTimeout(() => {
+              window.location.reload();
+            }, 2000);
+          } else {
+            setNotification('Failed to create event: ' + response.data);
+          }
+        }else{
+          setNotification('error in request: ' + response.data);
         }
-      })
-      .catch(error => alert("Error: " + error.message));
+      } catch (error) {
+        setNotification('Error uploading file: ' + error.message);
+        console.error('Error uploading file:', error);
+      }
     } else {
       setErrors(formErrors);
     }
   };
+  
 
   const validateForm = (formData) => {
     const errors = {};
@@ -129,7 +136,7 @@ const AdminEvents = () => {
             <div className="w-full">
               <label className="text-white block mb-2">Image</label>
               <input
-                className="w-full p-2 rounded focus:outline-none focus:ring-2 focus:ring-pink-500"
+                className="block w-full mb-5 text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none"
                 type="file"
                 name="photoE"
                 onChange={handleChange}

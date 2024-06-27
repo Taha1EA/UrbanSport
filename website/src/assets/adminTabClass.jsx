@@ -153,7 +153,7 @@ function ClassTab() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 text-center">
-                {classDetail.map((c) => {
+                {classDetail.slice(0, 8).map((c) => {
                     if(c[8]=="payed"){
                         return (
                             <tr className={Search?Search==c[1]?"" : "hidden":""} key={c[0]}>

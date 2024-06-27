@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from "axios";
 import Navbar from "../../assets/Navbar"
+import HeroX from "../../images/arrire.jpg";
 import { useCookies } from 'react-cookie'
 import ErrorNotification from '../ClientsCom/ErrorNotification';
 import Notification from '../ClientsCom/Notification';
@@ -71,8 +72,8 @@ const Log = ({ Admin }) => {
   return (
     <div className='text-black h-[100vh] flex justify-center items-center bg-white'>
       <Navbar/>
-      
-      <div className='bg-white border-4 border-[#444444] rounded-md p-8 shadow-lg relative'>
+    <div style={{ backgroundImage: `url(${HeroX})` }} className='bg-fixed w-full h-[100hv] bg-center bg-cover duration-700 flex items-end justify-center p-[175px]'>
+     <div className='bg-white border-4 border-[#444444] rounded-md p-8 shadow-lg relative'>
         <h1 className="text-[32px] text-black font-bold text-center mb-6 ">{AdminOrUser()}</h1>
         <div>
           <div className="relative my-4">
@@ -93,6 +94,7 @@ const Log = ({ Admin }) => {
             {(!isAdmin) ? <span>New ? <Link to='/Reg' className='text-gray-600 hover:text-gray-300 duration-300'>Create an account</Link></span> : <span></span>}
           </div>
         </div>
+      </div>
       </div>
       <Notification message={notification} />
       <ErrorNotification message={Enotification} />

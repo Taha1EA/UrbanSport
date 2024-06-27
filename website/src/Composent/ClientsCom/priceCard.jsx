@@ -4,7 +4,7 @@ function priceCard({ parentCallback,daysnumber,title, price,index }) {
         parentCallback(e)
     }
     return (
-      <div className="min-w-[250px] mx-auto bg-white rounded-xl shadow-lg  overflow-hidden max-w-[70%] md:max-w-2xl h-[350px] dark:bg-blue-gray-700">
+      <div className="min-w-[250px] mx-auto bg-white rounded-lg shadow-lg  overflow-hidden max-w-[70%] md:max-w-2xl h-[350px] dark:bg-blue-gray-700">
         
           <div className="md:flex md:justify-center flex flex-col justify-center items-center content-around p-8 ">
             <div className='text-center'>

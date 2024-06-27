@@ -1,12 +1,16 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import Navbar from "../../assets/Navbar"
 import Notification from '../ClientsCom/Notification';
+import ErrorNotification from '../ClientsCom/ErrorNotification';
+import HeroX from "../../images/arrire.jpg";
 const Reg = () => {
   const passRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   const phoneRegex = /^[0-9]{10}$/; // Assuming a 10-digit phone number
   const [notification, setNotification] = useState('');
+  const [Enotification, setENotification] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [phone, setPhone] = useState('');
@@ -66,18 +70,25 @@ const Reg = () => {
           }, 2000);
           
         } else {
-          alert('Registration failed');
+          setENotification('Registration failed');
+          setTimeout(() => {
+            setEnotification('');
+          }, 2000);
         }
       } catch (error) {
-        alert('An error occurred during registration');
+        setENotification('An error occurred during registration');
+        setTimeout(() => {
+          setEnotification('');
+        }, 2000);
       }
     }
   };
 
   return (
-    <div className='text-black h-[100vh] flex justify-center items-center bg-white'>
-      
-      <div className='bg-white border border-[#444444] rounded-md p-8 shadow-lg relative'>
+    <div className='h-full'>
+      <Navbar/>
+      <div style={{ backgroundImage: `url(${HeroX})` }} className='bg-fixed w-full h-[100hv] bg-center bg-cover duration-700 flex items-end justify-center p-[93px]'>
+      <div className='bg-white border border-[#444444] rounded-md p-8 shadow-lg relative '>
         <h1 className='text-4xl text-black font-bold text-center mb-6'>Register</h1>
         <form onSubmit={handleSubmit}>
           <div className='flex flex-col md:flex-row'>
@@ -246,6 +257,8 @@ const Reg = () => {
         </form>
       </div>
       <Notification message={notification} />
+      <ErrorNotification message={Enotification} />
+    </div>
     </div>
   );
 };
