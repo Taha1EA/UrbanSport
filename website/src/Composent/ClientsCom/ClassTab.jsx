@@ -193,7 +193,7 @@ function ClassTab() {
     </div>
     {showPay?
             
-            <div className={`w-full mt-10 z-10 overflow-y-scroll ${heightClass}`}>
+            <div className={`w-full mt-10 z-10  ${heightClass}`}>
             <Elements stripe={stripePromise}>
                 <PaymentForm sport={sports} price={prices[offresT]}/>
             </Elements>

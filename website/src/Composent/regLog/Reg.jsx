@@ -87,7 +87,7 @@ const Reg = () => {
   return (
     <div className='h-full'>
       <Navbar/>
-      <div style={{ backgroundImage: `url(${HeroX})` }} className='bg-fixed w-full h-[100hv] bg-center bg-cover duration-700 flex items-end justify-center p-[93px]'>
+      <div style={{ backgroundImage: `url(${HeroX})` }} className='bg-fixed w-full h-[100hv] bg-center bg-cover duration-700 flex items-end justify-center p-[96.5px]'>
       <div className='bg-white border border-[#444444] rounded-md p-8 shadow-lg relative '>
         <h1 className='text-4xl text-black font-bold text-center mb-6'>Register</h1>
         <form onSubmit={handleSubmit}>

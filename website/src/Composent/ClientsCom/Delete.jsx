@@ -6,7 +6,7 @@ import ErrorNotification from "./ErrorNotification";
 const Delete = () => {
   const [notification, setNotification] = useState('');
   const [pass, setPass] = useState('');
-  const [cookiesU, removeCookie] = useCookies(['userI']); // Added removeCookie from useCookies
+  const [cookiesU, removeCookie] = useCookies(['userI']);
   const apiUrl = 'http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/DeleteAccount';
 
   const DeleteAccount = async () => {
@@ -19,7 +19,7 @@ const Delete = () => {
       if (response.data === "deleted") {
         setNotification("Your account has been deleted");
         setTimeout(() => {
-          removeCookie('userI'); 
+          removeCookie('userI');
         }, 2000);
       } else {
         alert(response.data); 

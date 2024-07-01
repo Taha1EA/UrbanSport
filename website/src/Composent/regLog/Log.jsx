@@ -72,7 +72,7 @@ const Log = ({ Admin }) => {
   return (
     <div className='text-black h-[100vh] flex justify-center items-center bg-white'>
       <Navbar/>
-    <div style={{ backgroundImage: `url(${HeroX})` }} className='bg-fixed w-full h-[100hv] bg-center bg-cover duration-700 flex items-end justify-center p-[175px]'>
+    <div style={{ backgroundImage: `url(${HeroX})` }} className={isAdmin?'bg-fixed w-full h-[100hv] bg-center bg-cover duration-700 flex items-end justify-center p-[203px]':'bg-fixed w-full h-[100hv] bg-center bg-cover duration-700 flex items-end justify-center p-[179px]'}>
      <div className='bg-white border-4 border-[#444444] rounded-md p-8 shadow-lg relative'>
         <h1 className="text-[32px] text-black font-bold text-center mb-6 ">{AdminOrUser()}</h1>
         <div>

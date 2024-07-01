@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from "axios";
 import { useCookies } from 'react-cookie';
 import Notification from './Notification';
+import ErrorNotification from './ErrorNotification';
 const UpdateP = () => {
     const [pass, setPass] = useState("");
     const [newPass, setNewPass] = useState("");
@@ -10,6 +11,7 @@ const UpdateP = () => {
     const [cookiesU] = useCookies(['userI']);
     const [infos, setInfos] = useState(null);
     const [notification, setNotification] = useState('');
+    const [Enotification, setENotification] = useState('');
     const handleNewCPass = (e) => {
         setCpass(e.target.value);
     };
@@ -26,27 +28,34 @@ const UpdateP = () => {
       setNewPass(e.target.value);
     };
     const handleSubmit = () => {
-        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/setting";
+        const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/setting";
         const fetchData = async () => {
           if (cookiesU.userI) {
             let classes = new FormData();
-            classes.append("idClient", (cookiesU.userI));
+            classes.append("idClient", cookiesU.userI);
             classes.append("pass", pass);
             classes.append("newPass", newPass);
-            classes.append("ConPass", cPass);
+            if(newPass == cPass){
             try {
+              
               const response = await axios.post(url, classes);
-              if ((response.data)) {
+              if (response.data=='secuss') {
                 setNotification('Your Password has been apdated');
                 setTimeout(() => {
                   window.location.reload();
                 }, 2000);
-              } else {
+              } 
+              else{
                 console.error("Expected an array but got:", response.data);
               }
             } catch (error) {
               console.error("Error fetching data:", error);
             }
+          }}else{
+            setENotification('check Your Password please ');
+                setTimeout(() => {
+                  setENotification('')
+                }, 2000);
           }
         };
         fetchData();
@@ -75,6 +84,7 @@ const UpdateP = () => {
     
     </div>
     <Notification message={notification} />
+    <ErrorNotification message={Enotification} />
 </div>
   )
 }

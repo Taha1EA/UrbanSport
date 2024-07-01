@@ -10,15 +10,11 @@ const Verifycode = () => {
     const sendVerificationCode = async (e) => {
         e.preventDefault();
         setLoading(true);
+        let informations = new FormData();
+        informations.append("email", email);
         try {
-            const res = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/VerifyEmail.php', {
-                email,
-            }, {
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                }
-            });
+            const res = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/VerifyEmail.php', 
+                informations);
             setResponse(res.data);
         } catch (error) {
             setResponse({ status: 'error', message: 'An error occurred. Please try again later.' });
@@ -34,17 +30,11 @@ const Verifycode = () => {
             const res = await axios.post('http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/VerifyEmail.php', {
                 verification: parseInt(verify, 10),
                 email: email // Send email along with verification code for PHP script
-            }, {
-                withCredentials: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                }
             });
             setResponse(res.data);
             if (res.data.status === 'success') {
                 setTimeout(() => {
-                    // Redirect to dashboard
-                    window.location.href = '/complete-registration';
+                    window.location.href = `/complete-registration?email=`+email;
                 }, 2000);
             }
         } catch (error) {

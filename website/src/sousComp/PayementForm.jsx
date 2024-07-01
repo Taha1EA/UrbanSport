@@ -7,7 +7,6 @@ const PaymentForm = ({onData,price,infos}) => {
     const [notification, setNotification] = useState('');
     const stripe = useStripe();
     const elements = useElements();
-    const [password,handlePassword]=useState("klj")
     const [p,setP]=useState(price)    
     const [cookies] = useCookies(['userI']);
     console.log(infos)
@@ -67,7 +66,7 @@ const PaymentForm = ({onData,price,infos}) => {
 
     return (
         <form onSubmit={handleSubmit} className="w-full max-w-lg mx-auto mt-8 p-6 border border-gray-300 rounded-lg shadow-lg bg-white">
-            <div className="mb-4">
+            <div className="mb-4 text-black">
                 <h1>You have to pay : {p} DHS</h1>
             </div>
             <div className="mb-4">

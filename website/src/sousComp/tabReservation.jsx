@@ -3,6 +3,7 @@ import {useNavigate} from "react-router-dom"
 import axios from "axios"
 import RedF from '../images/redField.png';
 import GreenF from '../images/greenField.png';
+import SF from '../images/selectedField.png';
 import { useCookies } from 'react-cookie';
 import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
@@ -71,6 +72,11 @@ const TabReservation = () => {
 
     const handleClick = (index) => {
         setActiveDiv(index);
+    };
+    const [activeF, setActiveF] = useState(null);
+
+    const handleF = (index) => {
+        setActiveF(index);
     };
 
     const handleDateChange = (date) => {
@@ -386,7 +392,7 @@ const TabReservation = () => {
             </div>
             {showPay?
             
-            <div className={`w-full mt-10 z-10 overflow-y-scroll ${heightClass}`}>
+            <div className={`w-full mt-10 z-10 ${heightClass}`}>
             <Elements stripe={stripePromise}>
                 <PaymentForm onData={handlePaymentS} price={pricef} infos={[dateR, deHeure, aHeure,field]}  />
             </Elements>
@@ -399,16 +405,16 @@ const TabReservation = () => {
                     <div className='w-[48%] h-full text-center border-r-2 border-gray-300'>
                         <h1>Inside -3*5vs5-</h1>
                         <div className='w-full h-full flex flex-col items-start justify-around'>
-                            <div style={{ backgroundImage: `url(${tabFields[0]})` }} onClick={() =>{tabFields[0]==GreenF?updateField(0):null}} className={tabFields[0]==GreenF?'bg-center bg-cover w-[100%] h-[28%] cursor-pointer':'bg-center bg-cover w-[100%] h-[28%] cursor-not-allowed'}></div>
-                            <div style={{ backgroundImage: `url(${tabFields[1]})` }} onClick={() =>{tabFields[1]==GreenF?updateField(1):null}} className={tabFields[1]==GreenF?'bg-center bg-cover w-[100%] h-[28%] cursor-pointer':'bg-center bg-cover w-[100%] h-[28%] cursor-not-allowed'}></div>
-                            <div style={{ backgroundImage: `url(${tabFields[2]})` }} onClick={() =>{tabFields[2]==GreenF?updateField(2):null}} className={tabFields[2]==GreenF?'bg-center bg-cover w-[100%] h-[28%] cursor-pointer':'bg-center bg-cover w-[100%] h-[28%] cursor-not-allowed'}></div>
+                            <div style={{ backgroundImage: field == 0 ? `url(${SF})` : `url(${tabFields[0]})` }} onClick={() =>{tabFields[0]==GreenF?updateField(0):null}} className={tabFields[0]==GreenF?'bg-center bg-cover w-[100%] h-[28%] cursor-pointer':'bg-center bg-cover w-[100%] h-[28%] cursor-not-allowed'}></div>
+                            <div style={{ backgroundImage: field == 1 ? `url(${SF})` : `url(${tabFields[1]})` }} onClick={() =>{tabFields[1]==GreenF?updateField(1):null}} className={tabFields[1]==GreenF?'bg-center bg-cover w-[100%] h-[28%] cursor-pointer':'bg-center bg-cover w-[100%] h-[28%] cursor-not-allowed'}></div>
+                            <div style={{ backgroundImage: field == 2 ? `url(${SF})` : `url(${tabFields[2]})` }} onClick={() =>{tabFields[2]==GreenF?updateField(2):null}} className={tabFields[2]==GreenF?'bg-center bg-cover w-[100%] h-[28%] cursor-pointer':'bg-center bg-cover w-[100%] h-[28%] cursor-not-allowed'}></div>
                         </div>
                     </div>
                     <div className='w-[48%] h-full text-center'>
                         <h1>Outside -5vs5 & 6vs6-</h1>
                         <div className='w-full h-full flex flex-col items-start justify-start'>
-                            <div style={{ backgroundImage: `url(${tabFields[3]})` }} onClick={() =>{tabFields[3]==GreenF?updateField(3):null}} className={tabFields[3]==GreenF?'mt-3 bg-center bg-cover w-full h-[28%] cursor-pointer':'mt-3 bg-center bg-cover w-full h-[28%] cursor-not-allowed'}></div>
-                            <div style={{ backgroundImage: `url(${tabFields[4]})` }} onClick={() =>{tabFields[4]==GreenF?updateField(4):null}} className={tabFields[4]==GreenF?'mt-3 bg-center bg-cover w-full h-[34%] cursor-pointer':'mt-3 bg-center bg-cover w-full h-[34%] cursor-not-allowed'}></div>
+                            <div style={{ backgroundImage: field == 3 ? `url(${SF})` : `url(${tabFields[3]})` }} onClick={() =>{tabFields[3]==GreenF?updateField(3):null}} className={tabFields[3]==GreenF?'mt-3 bg-center bg-cover w-full h-[28%] cursor-pointer':'mt-3 bg-center bg-cover w-full h-[28%] cursor-not-allowed'}></div>
+                            <div style={{ backgroundImage: field == 4 ? `url(${SF})` : `url(${tabFields[4]})` }} onClick={() =>{tabFields[4]==GreenF?updateField(4):null}} className={tabFields[4]==GreenF?'mt-3 bg-center bg-cover w-full h-[34%] cursor-pointer':'mt-3 bg-center bg-cover w-full h-[34%] cursor-not-allowed'}></div>
                         </div>
                     </div>
                 </div>

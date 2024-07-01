@@ -25,6 +25,7 @@ const AddPro = () => {
   const [notification, setNotification] = useState('');
   const [Enotification, setENotification] = useState('');
   const [selectedPrice,setSelectedPrice]=useState([false,false,false,false])
+  const [oldData,setOldData]=useState(true)
   useEffect(() => {
     const updateHeight = () => {
       if (containerRef.current) {
@@ -33,23 +34,17 @@ const AddPro = () => {
       }
     };
 
-    // Update height initially
     updateHeight();
-
-    // Add event listener for window resize to update height dynamically
     window.addEventListener('resize', updateHeight);
-
-    // Cleanup the event listener on component unmount
     return () => {
       window.removeEventListener('resize', updateHeight);
     };
   }, []);
-  // Fetch programs when component mounts
   useEffect(() => {
     if (cookiesU.userI) {
       fetchPrograms(cookiesU.userI);
     }
-  }, [cookiesU.userI]);
+  }, [oldData]);
 
   const fetchPrograms = async (clientId) => {
     const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/Ps";
@@ -58,6 +53,7 @@ const AddPro = () => {
     try {
       const response = await axios.post(url, classes);
       if (Array.isArray(response.data)) {
+        setOldData(false)
         setClasses(response.data.map(Class => [Class[0], Class[1]]));
       } else {
         console.error("Expected an array but got:", response.data);
@@ -123,7 +119,8 @@ const AddPro = () => {
         const response = await axios.post(url, classes);
         setNotification('Succisfully Inscription');
                 setTimeout(() => {
-                  window.location.reload();
+                  setNotification('');
+                  setOldData(true)
                 }, 2000);
       } catch (error) {
         console.error("Error adding class:", error);
@@ -197,7 +194,7 @@ const AddPro = () => {
       <Notification message={notification} />
       <ErrorNotification message={Enotification} />
       {showPay && (
-        <div className={`w-full mt-10 z-10 overflow-y-scroll ${heightClass}`} >
+        <div className={`w-full mt-10 z-10 ${heightClass}`} >
           <Elements stripe={stripePromise}>
             <PaymentForm sport={sports} price={price} weekDays={days} nbdays={nbdays} />
           </Elements>

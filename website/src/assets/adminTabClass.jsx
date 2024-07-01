@@ -22,7 +22,6 @@ function ClassTab() {
           try {
             const response = await axios.get(url);
             if (Array.isArray(response.data)) {
-               
                 let g1=new Date();
                 response.data.forEach((Class) => { 
                     let d1=new Date();
@@ -53,17 +52,19 @@ function ClassTab() {
       fetchData();
     }, []);
     //delete class
-    const deleteClass=(client , sport)=>{
+    const deleteClass=(sport , client)=>{
       const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/deletePs";
       const fetchData = async () => {
         if (client) {
           let classes = new FormData();
-          classes.append("idClient", parseInt(client));
+          
+          classes.append("idClient", client);
           classes.append("idPro", parseInt(sport));
           try {
             const response = await axios.post(url, classes);
-            if (response.data) {
-              setNotification('The programme has been deleted');
+            console.log(response.data)
+            if (response.data=='successfully deleted') {
+               setNotification('The programme has been deleted');
               setTimeout(() => {
                 window.location.reload();
               }, 2000);
@@ -77,17 +78,15 @@ function ClassTab() {
       };
       fetchData();
     }
-    const [Search, setSearch] = useState();
-    const RenewClient = (client, sport ) =>{
-    
-
+    const [Search, setSearch] = useState('');
+    const RenewClient = ( sport,client) =>{
         const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/renewPs";
                 const fetchData = async () => {
-                    let classes = new FormData();
-                    classes.append("idClient", parseInt(client));
-                    classes.append("idPro", parseInt(sport));
+                    let f = new FormData();
+                    f.append("idClient", client);
+                    f.append("idPro", parseInt(sport));
                     try {
-                        const response = await axios.post(url, classes);
+                        const response = await axios.post(url, f);
                         if (response.data) {
                           setNotification('The class Has been renew');
                           setTimeout(() => {
@@ -153,7 +152,7 @@ function ClassTab() {
                 </tr>
               </thead>
               <tbody className="bg-white divide-y divide-gray-200 text-center">
-                {classDetail.slice(0, 8).map((c) => {
+                {classDetail.map((c) => {
                     if(c[8]=="payed"){
                         return (
                             <tr className={Search?Search==c[1]?"" : "hidden":""} key={c[0]}>
@@ -181,7 +180,7 @@ function ClassTab() {
                                 <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:bg-gray-900 dark:text-white">{c[6]}</td>
                                 <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:bg-gray-900 dark:text-white">{c[7]}</td>
                                 <td className="px-8 py-4 whitespace-nowrap text-[12px] text-gray-700 dark:bg-gray-900 dark:text-white">{c[8]}</td>
-                                <td onClick={()=>RenewClient(c[1],c[0])} className="px-8 py-4 whitespace-nowrap text-[12px] text-white bg-red-500 cursor-pointer hover:bg-white hover:text-red-500  transition-colors duration-300  border-white">Renew</td>
+                                <td onClick={()=>RenewClient(c[0],c[1])} className="px-8 py-4 whitespace-nowrap text-[12px] text-white bg-red-500 cursor-pointer hover:bg-white hover:text-red-500  transition-colors duration-300  border-white">Renew</td>
                                 <td className="bg-white dark:bg-gray-900"></td>
                             </tr>
                         )

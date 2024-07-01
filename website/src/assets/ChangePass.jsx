@@ -18,18 +18,22 @@ const UpdatePassword = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (newPass && RnewPass && newPass === RnewPass) {
+    if (newPass === RnewPass) {
+      const search = window.location.search; 
+      const params = new URLSearchParams(search); 
+      const email = params.get('email'); 
+      console.log(search)
+      console.log(email)
       let informations = new FormData();
+      informations.append("email", email);
       informations.append("newPass", newPass);
-      informations.append("RnewPass", RnewPass);
 
-      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changepass.php", informations, {
-          withCredentials: true
-        })
+      axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changepass.php", informations)
         .then(response => {
+          console.log("Response:", response.data); // Added log
           if (response.data.success) {
-            alert("Password updated successfully!");
-            setTimeout(() => nav('/'), 2000);
+            alert(response.data.message);
+            setTimeout(() => nav('/'), 100);
           } else {
             setErrorMessage(response.data.error || "Error updating password");
           }

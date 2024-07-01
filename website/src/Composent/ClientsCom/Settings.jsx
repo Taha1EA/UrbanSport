@@ -43,7 +43,7 @@ const UpdateClientProfile = () => {
               T[5]=Test
             }
             else{
-              T[5] = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/" + response.data[0][5];
+              T[5] = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/" + T[5];
             }
             setInfos(T);
           } else {
