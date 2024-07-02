@@ -156,7 +156,7 @@ const TabReservation = () => {
         }
     
         let numDay = nbDay.substring(0, 1);
-        let diff = numDay - thisJour.getDay()+1;
+        let diff = numDay - thisJour.getDay();
     
         thisJour.setDate(thisJour.getDate() + diff);
     

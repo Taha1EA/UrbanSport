@@ -21,7 +21,7 @@ const UpdatePassword = () => {
     if (newPass === RnewPass) {
       // const search = window.location.search; 
       // const params = new URLSearchParams(search); 
-      const email = 'boumeshouliyouness6@gmail.com'; 
+      const email = 'elansari789taha@gmail.com'; 
       // console.log(email)
       let informations = new FormData();
       informations.append("email", email);

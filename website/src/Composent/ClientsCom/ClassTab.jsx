@@ -43,7 +43,7 @@ function ClassTab({ dataChange }) {
                         ];
                     });
                     setClassDetails(updatedClassDetails);
-                    setTimeout(() => setShowPay(false), 9000);
+                    setTimeout(() => setShowPay(false), 10000);
                 } else {
                     console.error('Expected an array but got:', response.data);
                 }
@@ -66,7 +66,7 @@ function ClassTab({ dataChange }) {
         }
     }, [dataChange]);
     useEffect(() => {
-        const intervalId = setInterval(fetchClassDetails, 5000); // Fetch data every 10 seconds
+        const intervalId = setInterval(fetchClassDetails, 30000); // Fetch data every 10 seconds
 
         return () => clearInterval(intervalId); // Cleanup interval on component unmount
     }, []);
