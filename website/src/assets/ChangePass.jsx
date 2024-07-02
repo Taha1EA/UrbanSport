@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import axios from "axios";
 import { useNavigate } from 'react-router-dom';
-
+import Notification from '../Composent/ClientsCom/Notification';
 const UpdatePassword = () => {
   const [newPass, setNewPass] = useState("");
   const [RnewPass, setRnewPass] = useState("");
   const [errorMessage, setErrorMessage] = useState(""); // State to hold error message
   const nav = useNavigate();
-
+  const [notification, setNotification] = useState('');
   const handleNewPass = (e) => {
     setNewPass(e.target.value);
   };
@@ -19,11 +19,10 @@ const UpdatePassword = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (newPass === RnewPass) {
-      const search = window.location.search; 
-      const params = new URLSearchParams(search); 
-      const email = params.get('email'); 
-      console.log(search)
-      console.log(email)
+      // const search = window.location.search; 
+      // const params = new URLSearchParams(search); 
+      const email = 'boumeshouliyouness6@gmail.com'; 
+      // console.log(email)
       let informations = new FormData();
       informations.append("email", email);
       informations.append("newPass", newPass);
@@ -31,9 +30,10 @@ const UpdatePassword = () => {
       axios.post("http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/changepass.php", informations)
         .then(response => {
           console.log("Response:", response.data); // Added log
-          if (response.data.success) {
-            alert(response.data.message);
-            setTimeout(() => nav('/'), 100);
+          if (response.data) {
+            setNotification('Your Password has been updated');
+          
+            setTimeout(() => nav('/'), 1000);
           } else {
             setErrorMessage(response.data.error || "Error updating password");
           }
@@ -64,6 +64,7 @@ const UpdatePassword = () => {
           <input type='submit' value="Change Password" className='cursor-pointer w-full mb-4 text-[15px] mt-6 rounded-full bg-gray-800 text-yellow-50 hover:bg-yellow-50 hover:text-gray-800 py-2 transition-colors duration-300' />
         </form>
       </div>
+      <Notification message={notification} />
     </div>
   );
 }

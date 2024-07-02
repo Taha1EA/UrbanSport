@@ -5,7 +5,7 @@ import { RiMenu3Fill } from "react-icons/ri";
 import DropMenu from '../Composent/ClientsCom/dropPhoto';
 import { useCookies } from 'react-cookie';
 import './navStyle.css';
-import Logo from "../images/Sports.png"
+import Logo from "../images/Sports.png";
 import LogoW from "../images/SportsWhite.png";
 import DarkModeToggle from "../assets/DarkModeToggle";
 import Test from "../images/test.jpeg";
@@ -14,28 +14,26 @@ function ClientNavBar(props) {
     const [isOpen, setIsOpen] = useState(false);
     const [cookiesU] = useCookies(['userI']);
     const [Username, setUsername] = useState();
-    const [photo, setPhoto] = useState();
-    const [showMenu, setShowMenu] = useState(false); 
-    
+    const [photo, setPhoto] = useState(Test); // Initialize with a default value
+    const [showMenu, setShowMenu] = useState(false);
 
     const [darkMode, setDarkMode] = useState(() => {
         const savedMode = localStorage.getItem('dark-mode');
         return savedMode ? JSON.parse(savedMode) : false;
-      });
-    
-      useEffect(() => {
+    });
+
+    useEffect(() => {
         if (darkMode) {
-          document.body.classList.add('dark');
+            document.body.classList.add('dark');
         } else {
-          document.body.classList.remove('dark');
+            document.body.classList.remove('dark');
         }
         localStorage.setItem('dark-mode', JSON.stringify(darkMode));
-      }, [darkMode]);
-    
-      const toggleDarkMode = () => {
+    }, [darkMode]);
+
+    const toggleDarkMode = () => {
         setDarkMode(!darkMode);
-      };
-    
+    };
 
     const openNav = () => {
         setIsOpen(!isOpen);
@@ -55,7 +53,7 @@ function ClientNavBar(props) {
         ["/Main/res", "Reservation match"],
     ];
 
-    useEffect(() => {
+    const showProfile = () => {
         const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/logReg/selectUser";
         const fetchData = async () => {
             if (cookiesU.userI) {
@@ -69,7 +67,7 @@ function ClientNavBar(props) {
                         if (response.data[0][1] === "") {
                             p = Test;
                         } else {
-                            p = `http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/${response.data[0][1]}`;
+                            p = `http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/usersData/${response.data[0][1]}?${new Date().getTime()}`; // Avoid caching
                         }
                         setPhoto(p);
                     } else {
@@ -81,11 +79,17 @@ function ClientNavBar(props) {
             }
         };
         fetchData();
-    }, [cookiesU.userI]);
+    };
+
+    useEffect(() => {
+        const intervalId = setInterval(showProfile, 5000); // Fetch data every 5 seconds
+
+        return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    }, []);
 
     return (
         <div>
-            <div className={darkMode ? 'bg-white w-full h-12 text-black flex place-content-around items-center fixed top-0 z-20 md:drop-shadow-lg ':'w-full h-12  flex place-content-around items-center fixed top-0 z-20 md:drop-shadow-lg text-white bg-gray-800'}>
+            <div className={darkMode ? 'bg-white w-full h-12 text-black flex place-content-around items-center fixed top-0 z-20 md:drop-shadow-lg' : 'w-full h-12 flex place-content-around items-center fixed top-0 z-20 md:drop-shadow-lg text-white bg-gray-800'}>
                 <div>
                     <img src={darkMode ? Logo : LogoW} width={180} height={60} className='cursor-pointer' alt="Logo" />
                 </div>

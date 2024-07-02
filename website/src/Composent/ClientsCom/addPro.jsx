@@ -1,4 +1,4 @@
-import React, { useState, useEffect,useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Select, Option } from "@material-tailwind/react";
 import { useCookies } from 'react-cookie';
 import axios from "axios";
@@ -7,16 +7,18 @@ import { loadStripe } from '@stripe/stripe-js';
 import { Elements } from '@stripe/react-stripe-js';
 import PaymentForm from "../../sousComp/PaymentAddPs";
 import Notification from './Notification';
-import ErrorNotification from './ErrorNotification'
+import ErrorNotification from './ErrorNotification';
+
 const stripePromise = loadStripe('pk_test_51PN2ejLKugBhnMnptyFTTIIqxLXCdDiUtiMsH7UwuNpxl1RiL35DIvWsnpbrNKWrqi38oFrxINmDTOKBHy3OgHwI00VmeRcg0A');
 
-const AddPro = () => {
+const AddPro = ({ dataChange,OnAdd }) => {
+  
   const [sports, setSports] = useState('');
   const [days, setDays] = useState('');
   const [nbdays, setNbDays] = useState('');
   const [price, setPrice] = useState('');
   const [classes, setClasses] = useState([]);
-  const [showPay, setShowPay] = useState(false);
+  const [showPay, setShowPay] = useState();
   const [CNIE, setCNIE] = useState('');
   const [cookiesU] = useCookies(['userI']);
   const [cookiesA] = useCookies(['userA']);
@@ -24,8 +26,8 @@ const AddPro = () => {
   const [heightClass, setHeightClass] = useState('');
   const [notification, setNotification] = useState('');
   const [Enotification, setENotification] = useState('');
-  const [selectedPrice,setSelectedPrice]=useState([false,false,false,false])
-  const [oldData,setOldData]=useState(true)
+  const [selectedPrice, setSelectedPrice] = useState([false, false, false, false]);
+  
   useEffect(() => {
     const updateHeight = () => {
       if (containerRef.current) {
@@ -33,28 +35,32 @@ const AddPro = () => {
         setHeightClass(`h-[${height}px]`);
       }
     };
-
     updateHeight();
     window.addEventListener('resize', updateHeight);
     return () => {
       window.removeEventListener('resize', updateHeight);
     };
   }, []);
+
   useEffect(() => {
     if (cookiesU.userI) {
       fetchPrograms(cookiesU.userI);
     }
-  }, [oldData]);
+  }, [cookiesU.userI]);
 
   const fetchPrograms = async (clientId) => {
     const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/Ps";
-    let classes = new FormData();
-    classes.append("idClient", clientId);
+    let formData = new FormData();
+    formData.append("idClient", clientId);
     try {
-      const response = await axios.post(url, classes);
+      const response = await axios.post(url, formData);
       if (Array.isArray(response.data)) {
-        setOldData(false)
         setClasses(response.data.map(Class => [Class[0], Class[1]]));
+        setTimeout(() => {
+          setShowPay(false)
+          OnAdd(true)
+        }, 10000);
+        
       } else {
         console.error("Expected an array but got:", response.data);
       }
@@ -62,19 +68,21 @@ const AddPro = () => {
       console.error("Error fetching data:", error);
     }
   };
+
   const handlePs = (e) => {
     setSports(e);
-    console.log(sports)
   };
+
   const handleDays = (e) => {
     setDays(e);
-    console.log(days)
   };
+
   const takeProgrammes = () => {
     if (CNIE) {
       fetchPrograms(CNIE);
+      
     } else {
-      setENotification('please enter the CNIE of the client');
+      setENotification('Please enter the CNIE of the client');
       setTimeout(() => {
         setENotification("");
       }, 2000);
@@ -84,53 +92,52 @@ const AddPro = () => {
   const dataPrice = (p) => {
     setNbDays(p[0]);
     setPrice(p[1]);
-    const newSelectedPrice = [];
-    for (let i = 0; i < 4; i++) {
-      if (i == p[2]) {
-        newSelectedPrice.push(true);
-      } else {
-        newSelectedPrice.push(false);
-      }
-    }
+    const newSelectedPrice = Array(4).fill(false);
+    newSelectedPrice[p[2]] = true;
     setSelectedPrice(newSelectedPrice);
   };
 
   const handleAdd = () => {
-    if(sports && days && nbdays){
+    if (sports && days && nbdays) {
       setShowPay(true);
-    }
-    else{
-      setENotification('Fill all the Information please');
-                setTimeout(() => {
-                  setENotification("");
-                }, 2000);
+    } else {
+      setENotification('Fill all the information, please');
+      setTimeout(() => {
+        setENotification("");
+      }, 2000);
     }
   };
 
   const handleAdminAdd = async () => {
-    if(CNIE && sports && days && nbdays){
+    if (CNIE && sports && days && nbdays) {
       const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/inscrire";
-      let classes = new FormData();
-      classes.append("idClient", (CNIE));
-      classes.append("idPro", parseInt(sports));
-      classes.append("idWeek", days);
-      classes.append("nbdays", parseInt(nbdays));
+      let formData = new FormData();
+      formData.append("idClient", CNIE);
+      formData.append("idPro", (sports));
+      formData.append("idWeek", days);
+      formData.append("nbdays", (nbdays));
       try {
-        const response = await axios.post(url, classes);
-        setNotification('Succisfully Inscription');
-                setTimeout(() => {
-                  setNotification('');
-                  setOldData(true)
-                }, 2000);
+        const response = await axios.post(url, formData);
+        if(response.data){
+          setNotification('Successfully added class');
+          setTimeout(() => {
+            setNotification('');
+          }, 2000);
+        }
+        else{
+          setENotification('semthing wrong');
+          setTimeout(() => {
+            setENotification("");
+          }, 2000);
+        }
       } catch (error) {
         console.error("Error adding class:", error);
       }
-    }
-    else{
-      setENotification('Fill all the Information please');
-                setTimeout(() => {
-                  setENotification("");
-                }, 2000);
+    } else {
+      setENotification('Fill all the information, please');
+      setTimeout(() => {
+        setENotification("");
+      }, 2000);
     }
   };
 
@@ -154,34 +161,34 @@ const AddPro = () => {
         </div>
       )}
       <h1 className='dark:text-white'>ADD NEW CLASS</h1>
-          <div className='flex-col ml-48 md:ml-0 md:flex md:flex-row w-[85%] md:w-[80%] md:justify-between mb-3'>
-      <div className="flex w-72 flex-col gap-6 mr-0 md:mr-[-100px] justify-center items-center">
-        <Select key={sports} variant="outlined" name='sports' onChange={handlePs} value={sports} color="blue" label="Programme Sportif">
-          {classes.map((c) => (
-            <Option value={c[0]}>{c[1]}</Option>
-          ))}
-        </Select>
-      </div>
-      <div className="flex w-72 flex-col gap-6">
-        <Select variant="outlined" name='days' onChange={handleDays} value={days} color="blue" label="days">
-          <Option value='1'>Monday-Wednesday-Friday</Option>
-          <Option value='2'>Tuesday-Thursday-Saturday</Option>
-        </Select>
-      </div>
-    </div>
-      <div className="p-6  flex-col md:flex md:flex-row md:justify-between w-[70%] md:w-full">
-       <div className={`rounded-xl border-4 ${selectedPrice[0] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
-          <PriceCard parentCallback={dataPrice} daysnumber='7' title="Weekly " price="60" index="0"/>
+      <div className='flex-col ml-48 md:ml-0 md:flex md:flex-row w-[85%] md:w-[80%] md:justify-between mb-3'>
+        <div className="flex w-72 flex-col gap-6 mr-0 md:mr-[-100px] justify-center items-center">
+          <Select key={sports} variant="outlined" name='sports' onChange={handlePs} value={sports} color="blue" label="Programme Sportif">
+            {classes.map((c) => (
+              <Option key={c[0]} value={c[0]}>{c[1]}</Option>
+            ))}
+          </Select>
         </div>
-       <div className={`rounded-xl border-4 ${selectedPrice[1] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
+        <div className="flex w-72 flex-col gap-6">
+          <Select variant="outlined" name='days' onChange={handleDays} value={days} color="blue" label="days">
+            <Option value='1'>Monday-Wednesday-Friday</Option>
+            <Option value='2'>Tuesday-Thursday-Saturday</Option>
+          </Select>
+        </div>
+      </div>
+      <div className="p-6 flex-col md:flex md:flex-row md:justify-between w-[70%] md:w-full">
+        <div className={`rounded-xl border-4 ${selectedPrice[0] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
+          <PriceCard parentCallback={dataPrice} daysnumber='7' title="Weekly " price="60" index="0" />
+        </div>
+        <div className={`rounded-xl border-4 ${selectedPrice[1] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
           <PriceCard parentCallback={dataPrice} daysnumber='30' title="Monthly " price="200" index="1" />
         </div>
-       <div className={`rounded-xl border-4 ${selectedPrice[2] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
-        <PriceCard parentCallback={dataPrice} daysnumber='180' title="Semi Annual " price="1100" index="2" />
+        <div className={`rounded-xl border-4 ${selectedPrice[2] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
+          <PriceCard parentCallback={dataPrice} daysnumber='180' title="Semi Annual " price="1100" index="2" />
         </div>
-       <div className={`rounded-xl border-4 ${selectedPrice[3] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
-        <PriceCard parentCallback={dataPrice} daysnumber='360' title="Annual " price="2000" index="3" />
-        </div>        
+        <div className={`rounded-xl border-4 ${selectedPrice[3] ? 'border-red-400' : 'border-gray-200'} hover:border-red-100`}>
+          <PriceCard parentCallback={dataPrice} daysnumber='360' title="Annual " price="2000" index="3" />
+        </div>
       </div>
       {(cookiesU.userI || cookiesA.userA) && (
         <input 
@@ -194,9 +201,9 @@ const AddPro = () => {
       <Notification message={notification} />
       <ErrorNotification message={Enotification} />
       {showPay && (
-        <div className={`w-full mt-10 z-10 ${heightClass}`} >
+        <div className={`w-full mt-10 z-10 ${heightClass}`} ref={containerRef}>
           <Elements stripe={stripePromise}>
-            <PaymentForm sport={sports} price={price} weekDays={days} nbdays={nbdays} />
+            <PaymentForm sport={sports} price={price} weekDays={days} nbdays={nbdays} onMessage={() => {fetchPrograms(cookiesU.userI)}} />
           </Elements>
         </div>
       )}

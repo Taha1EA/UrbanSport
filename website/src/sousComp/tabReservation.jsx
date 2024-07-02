@@ -31,6 +31,7 @@ const TabReservation = () => {
     const [heightClass, setHeightClass] = useState('');
     const [notification, setNotification] = useState('');
     const [Enotification, setENotification] = useState('');
+    const [oldData,setOldData]=useState(false);
     useEffect(() => {
       const updateHeight = () => {
         if (containerRef.current) {
@@ -39,13 +40,8 @@ const TabReservation = () => {
         }
       };
   
-      // Update height initially
       updateHeight();
-  
-      // Add event listener for window resize to update height dynamically
       window.addEventListener('resize', updateHeight);
-  
-      // Cleanup the event listener on component unmount
       return () => {
         window.removeEventListener('resize', updateHeight);
       };
@@ -109,6 +105,11 @@ const TabReservation = () => {
                         terrainReserved: { ...prevState.terrainReserved, [dayOfWeek]: day[3] }
                     }));
                 });
+                setOldData(false)
+                setTimeout(() => {
+                    setshowPay(false)
+                  }, 10000);
+                
             }
         });
        }
@@ -136,46 +137,55 @@ const TabReservation = () => {
                         terrainReserved: { ...prevState.terrainReserved, [dayOfWeek]: day[3] }
                     }));
                 });
+                // setshowPay(false)
+                setOldData(false)
             }
         });
        
        }
-    }, [selectedDate]);
+    }, [selectedDate,oldData]);
 
     function takeReservation(heureDebut, heureFin, nbDay) {
-        handleClick(nbDay)
-        let thisJour 
-        if(selectedDate == null){
-            thisJour=new Date();
+        handleClick(nbDay);
+    
+        let thisJour;
+        if (selectedDate == null) {
+            thisJour = new Date();
+        } else {
+            thisJour = new Date(selectedDate);
         }
-        else{
-            thisJour=new Date(selectedDate);
-        }
+    
         let numDay = nbDay.substring(0, 1);
-        let diff = numDay - thisJour.getDay();
+        let diff = numDay - thisJour.getDay()+1;
+    
         thisJour.setDate(thisJour.getDate() + diff);
+    
         let j = thisJour.toISOString().split('T')[0];
         setDateR(j);
         setDeHeure(heureDebut);
         setAHeure(heureFin);
     }
-
+    
     function checkDate(nbDay) {
         let numDay = nbDay.substring(0, 1);
         let heure = nbDay.substring(1, 3);
         if (heure === '00') heure = 24;
-        let dayJour =new Date();
-        let thisJour ;
-        if(selectedDate == null){
-            thisJour=new Date();
+    
+        let dayJour = new Date();
+        let thisJour;
+    
+        if (selectedDate == null) {
+            thisJour = new Date();
+        } else {
+            thisJour = new Date(selectedDate);
         }
-        else{
-            thisJour=new Date(selectedDate);
-        }
-        let diff = numDay - thisJour.getDay();
-        let h = dayJour.getHours();
-        let diffHeure = heure - h ;
-        thisJour.setDate(thisJour.getDate() + diff);
+    
+        let diff = numDay - thisJour.getUTCDay();
+        let h = dayJour.getUTCHours();
+        let diffHeure = heure - h;
+    
+        thisJour.setUTCDate(thisJour.getUTCDate() + diff);
+    
         if (dayJour.getTime() > thisJour.getTime()) {
             return false;
         } else if (dayJour.getTime() === thisJour.getTime()) {
@@ -184,6 +194,7 @@ const TabReservation = () => {
             return true;
         }
     }
+    
     
     function handleReserved(heureDebut, heureFin, nbDay) {
         if (dayOfTable.includes(nbDay)) { 
@@ -211,6 +222,7 @@ const TabReservation = () => {
     function SubmitUserHandler(){
         if(pricef != 0){
             setshowPay(true)
+            
         }
         else{
             setENotification('Please Select A field Graphiqly');
@@ -235,7 +247,8 @@ const TabReservation = () => {
                 if (response.data) {
                     setNotification('Match Reserved  successfully');
                     setTimeout(() => {
-                        window.location.reload();
+                        setNotification('')
+                        setOldData(true)
                     }, 2000);
                 } else {
                     console.error("Expected an array but got:", response.data);
@@ -291,6 +304,7 @@ const TabReservation = () => {
                         updateNumber(index, GreenF);
                         updateSelectF(index, selectFields.length);
                     });
+                    setOldData(false)
                 } else {
                     console.error("Expected an array but got:", response.data);
                 }
@@ -299,7 +313,7 @@ const TabReservation = () => {
             }
         };
         fetchData();
-    }, [dateR, deHeure, aHeure]);
+    }, [dateR, deHeure, aHeure,oldData]);
 
     return (
         <div className='mt-12 md:mt-4 dark:bg-blue-gray-800 ' id='Book'>
@@ -394,7 +408,7 @@ const TabReservation = () => {
             
             <div className={`w-full mt-10 z-10 ${heightClass}`}>
             <Elements stripe={stripePromise}>
-                <PaymentForm onData={handlePaymentS} price={pricef} infos={[dateR, deHeure, aHeure,field]}  />
+                <PaymentForm onData={handlePaymentS} price={pricef} infos={[dateR, deHeure, aHeure,field]} onMessage={() => setOldData(true)}  />
             </Elements>
         </div>
         :null

@@ -43,7 +43,7 @@ const UpdatePhoto = () => {
       if(response.data){
         setNotification('Photo Updated Succeffully');
         setTimeout(() => {
-          history.go(0);;
+          setNotification("")
         }, 2000);
       }
     } catch (error) {
