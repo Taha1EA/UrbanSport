@@ -6,9 +6,11 @@ import axios from "axios";
 function ClassTab() {
     const [currentDay, setCurrentDay] = useState(0);
     const [classDetail, setClassDetail] = useState([]);
+    const [classDetails, setClassDetails] = useState([]);
     const [sports, setSports] = useState();
     const [offresT, setOffresT] = useState();
     const [notification, setNotification] = useState('');
+    const [renewUpdate,setR]=useState(true);
     const cases=["payed","overdue"];
     const prices={"7":"60","30":"200","180":"1100","360":"2000"}
     const addDays = (date, days) => {
@@ -22,6 +24,7 @@ function ClassTab() {
           try {
             const response = await axios.get(url);
             if (Array.isArray(response.data)) {
+                setClassDetail([])
                 let g1=new Date();
                 response.data.forEach((Class) => { 
                     let d1=new Date();
@@ -50,7 +53,7 @@ function ClassTab() {
         
       };
       fetchData();
-    }, []);
+    }, [renewUpdate]);
     //delete class
     const deleteClass=(sport , client)=>{
       const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/admin/deletePs";
@@ -64,10 +67,9 @@ function ClassTab() {
             const response = await axios.post(url, classes);
             console.log(response.data)
             if (response.data=='successfully deleted') {
-               setNotification('The programme has been deleted');
-              setTimeout(() => {
-                window.location.reload();
-              }, 2000);
+                setNotification('Delete successful');
+                setClassDetail(prevState => prevState.filter(c => c[0] !== sport));
+                setTimeout(() => setNotification(''), 2000);
             } else {
               console.error("Expected an array but got:", response.data);
             }
@@ -90,7 +92,8 @@ function ClassTab() {
                         if (response.data) {
                           setNotification('The class Has been renew');
                           setTimeout(() => {
-                            window.location.reload();
+                            setNotification("");
+                            setR(!renewUpdate)
                           }, 2000);
                         } else {
                             console.error("Expected an array but got:", response.data);

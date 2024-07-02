@@ -3,12 +3,15 @@ import { CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import Notification from '../Composent/ClientsCom/Notification';
-const PaymentForm = ({onData,price,infos}) => {
+const PaymentForm = ({onData,price,infos,onMessage}) => {
     const [notification, setNotification] = useState('');
     const stripe = useStripe();
     const elements = useElements();
     const [p,setP]=useState(price)    
     const [cookies] = useCookies(['userI']);
+    const sendData = () => {
+        onMessage(false);
+      };
     console.log(infos)
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -45,7 +48,8 @@ const PaymentForm = ({onData,price,infos}) => {
                         if (response.data) {
                             setNotification(response.data);
                             setTimeout(() => {
-                                window.location.reload();
+                                setNotification('')
+                                sendData(false)
                             }, 2000);
                         } else {
                             console.error("Expected an array but got:", response.data);
@@ -72,7 +76,7 @@ const PaymentForm = ({onData,price,infos}) => {
             <div className="mb-4">
                 <CardElement className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
             </div>
-            <button type="submit" disabled={!stripe} className="w-full bg-indigo-600 text-white py-2 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50">
+            <button type="submit" disabled={!stripe} onClick={sendData} className="w-full bg-indigo-600 text-white py-2 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50">
                 Pay
             </button>
             <Notification message={notification} />

@@ -15,6 +15,13 @@ function Psportif() {
   const [cIndex1, setCindex1] = useState(0);
   const [cIndex2, setCindex2] = useState(0);
   const [cIndex3, setCindex3] = useState(0);
+  const [data,setData]=useState(false)
+
+  const handleDataChange = (newData) => {
+    console.log(newData)
+    setData(newData);
+  };
+
   useEffect(() => {
     const interval = setInterval(() => {
       if(cIndex1<2){
@@ -42,10 +49,10 @@ function Psportif() {
           </div>
       </div>
       <div className='py-5 dark:bg-blue-gray-900 '>
-          <ClassTab/>
+          <ClassTab dataChange={data}/>
       </div>
       <div className='pt-5 h-[full] dark:bg-blue-gray-900 '>
-          <AddPro/>
+          <AddPro dataChange={data} OnAdd={handleDataChange}/>
       </div>
     </div>
   )

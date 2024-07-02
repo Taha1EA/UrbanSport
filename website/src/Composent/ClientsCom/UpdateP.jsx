@@ -42,7 +42,7 @@ const UpdateP = () => {
               if (response.data=='secuss') {
                 setNotification('Your Password has been apdated');
                 setTimeout(() => {
-                  window.location.reload();
+                  setNotification('');
                 }, 2000);
               } 
               else{

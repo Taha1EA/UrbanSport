@@ -6,7 +6,7 @@ const ResTab = () => {
     const [cookiesU] = useCookies(['userI']);
     const [classDetail, setClassDetail] = useState([]);
     
-    useEffect(() => {
+    const fetchMatchs = async () => {
         const url = "http://localhost/UrbanSport/UrbanSport-Backend-/UrbanSport/cSide/ActiveRes";
         const fetchData = async () => {
             if (cookiesU.userI) {
@@ -22,8 +22,12 @@ const ResTab = () => {
             }
         };
         fetchData();
-    }, [cookiesU.userI]);
-    
+    }
+    useEffect(() => {
+        const intervalId = setInterval(fetchMatchs, 5000); // Fetch data every 10 seconds
+
+        return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    }, []);
     return (
         <div className="p-4 flex flex-col items-center dark:bg-blue-gray-900">
             <h1 className="text-2xl font-bold mb-4 dark:text-white">Your Active Reservation</h1>

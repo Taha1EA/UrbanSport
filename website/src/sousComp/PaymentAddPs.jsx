@@ -3,13 +3,15 @@ import { CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 import axios from 'axios';
 import { useCookies } from 'react-cookie';
 import Notification from '../Composent/ClientsCom/Notification';
-const PaymentForm = ({sport,price,weekDays,nbdays}) => {
+const PaymentForm = ({sport,price,weekDays,nbdays,onMessage}) => {
     const [notification, setNotification] = useState('');
     const stripe = useStripe();
     const elements = useElements();
     const [p,setP]=useState(price)    
     const [cookies] = useCookies(['userI']);
-    console.log([sport,price,weekDays,nbdays]);
+    const sendData = () => {
+        onMessage(false);
+      };
     const handleSubmit = async (event) => {
         event.preventDefault();
 
@@ -17,7 +19,6 @@ const PaymentForm = ({sport,price,weekDays,nbdays}) => {
             type: 'card',
             card: elements.getElement(CardElement),
         });
-        console.log(paymentMethod)
         if (!error) {
             let classes = new FormData();
             classes.append("id",  paymentMethod.id );
@@ -44,7 +45,8 @@ const PaymentForm = ({sport,price,weekDays,nbdays}) => {
                         if (response.data) {
                             setNotification('You Inscrire on the Programme  successfully');
                             setTimeout(() => {
-                                window.location.reload();
+                                setNotification("")
+                                sendData(false)
                             }, 2000);
                         } else {
                             console.error("Expected an array but got:", response.data);
@@ -71,7 +73,7 @@ const PaymentForm = ({sport,price,weekDays,nbdays}) => {
             <div className="mb-4">
                 <CardElement className="p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500"/>
             </div>
-            <button type="submit" disabled={!stripe} className="w-full bg-indigo-600 text-white py-2 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50">
+            <button type="submit" disabled={!stripe} onClick={sendData} className="w-full bg-indigo-600 text-white py-2 rounded-lg shadow-md hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 disabled:opacity-50">
                 Pay
             </button>
             <Notification message={notification} />
